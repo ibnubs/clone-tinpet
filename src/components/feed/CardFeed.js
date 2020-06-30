@@ -52,8 +52,8 @@ const CardFeed = () => {
                                 <Row>
                                     <Col span={24}>
                                         <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Description</p>
-                                        <p style={{fontWeight:'bold', fontSize:'16px',marginTop:'-5px', lineHeight:'22px', textAlign:'justify'}}>
-                                            The longhaired Angora cat is not the source for angora sweaters, although his fur is certainly just as soft and beautiful. This natural breed takes his name from the city of Ankara in Turkey, which was formerly known as Angora. For centuries, the cats have been attractive souvenirs for invaders of or visitors to Turkey and may have been the first longhaired cats to arrive in Europe. 
+                                        <p style={{fontWeight:'600', fontSize:'16px',marginTop:'-5px', lineHeight:'22px', textAlign:'justify'}}>
+                                            The longhaired Angora cat is not the source for angora sweaters, although his fur is certainly just as soft and beautiful. This natural breed takes his name from the city of Ankara in Turkey, which was formerly known as Angora.
                                         </p>
                                     </Col>
                                 </Row>

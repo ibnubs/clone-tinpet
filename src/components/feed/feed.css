@@ -1,9 +1,12 @@
-@media(max-width: 991px){
+@media screen and (max-width: 991px){
     .box{
         border-radius: 0px;
     }
-    .feed-component .feed-post{
-        height: 100%;
+    .feed-component {
+        height: auto;
+    }
+    .feed-post{
+        height: auto;
     }
     .btn-post{
         font-size: 1em;
@@ -18,7 +21,7 @@
     }
 }
 
-@media(min-width:992px){
+@media screen and (min-width:992px){
     .box{
         border-radius: 15px;
     }
@@ -26,8 +29,12 @@
         font-size: 1vw;
         height: 2.5vw;
     }
-    .feed-post .feed-component{
+    .feed-post {
         height: auto;
+    }
+    .feed-component{
+        height: auto;
+        
     }
     .btn-rqsmeet{
         font-size: 1vw;
