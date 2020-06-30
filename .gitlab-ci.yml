@@ -1,0 +1,27 @@
+image: node:latest
+
+stages:
+  - build
+  - production
+
+deploy-to-development:
+  type: build
+  script:
+    - npm install
+    - npm run build
+  only:
+    - develop
+    
+deploy-production:
+  type: deploy
+  stage: production
+  environment:
+    name: production
+    url: https://tinpet-finalproject.herokuapp.com/
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby ruby-dev rubygems-integration
+    - gem install dpl
+    - dpl --provider=heroku --app=tinpet-finalproject --api-key=81617ca3-078d-4725-85db-9e298f5abb73
+  only:
+    - master
