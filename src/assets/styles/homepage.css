@@ -1,0 +1,26 @@
+@media(max-width: 991px){
+    .row-homepage{
+        margin: 0;
+    }
+}
+
+@media(min-width:992px){
+    .row-homepage{
+        margin: 42px 6.25rem 0 6.25rem;
+    }
+}
+
+
+
+.row-homepage{
+    height: 500px;
+    
+}
+
+
+/* css reset */
+body{
+    background-color: #E5E5E5;
+}
+
+
