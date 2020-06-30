@@ -18,6 +18,7 @@ const FeedDisplay = () => {
                 </Row>
                 <Row className='feed-post'>
                     <CardFeed />
+                    <CardFeed />
                 </Row>
             </Col>
         </Fragment>
