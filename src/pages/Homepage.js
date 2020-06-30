@@ -1,13 +1,20 @@
 import React, { Fragment } from 'react';
 import Nav from '../components/nav/Nav';
-
+import { Row } from 'antd';
+import '../assets/styles/homepage.css';
+import SearchComponent from '../components/search/SearchComponent';
+import FeedDisplay from '../components/feed/FeedDisplay';
 
 
 const Homepage = () => {
     return (
         <Fragment>
             <Nav />
-            <h1>hello world</h1>
+            <Row className='row-homepage' >
+                <SearchComponent />
+                <FeedDisplay />
+            </Row>
+
         </Fragment>
     );
 }
