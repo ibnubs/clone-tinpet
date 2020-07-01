@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import MobileStoreButton from 'react-mobile-store-button';
@@ -13,8 +13,7 @@ const RegisterPage = (props) => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] =useState("")
 	const [confirmPassword, setConfirmPassword] = useState("")
-	 const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
-
+	
 	const submitRegister = e => {
 		console.log('ada gak')
 		// e.preventDefault();

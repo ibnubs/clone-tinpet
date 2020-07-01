@@ -7,7 +7,7 @@ import FeedDisplay from '../components/feed/FeedDisplay';
 
 
 
-const Homepage = () => {
+const HomePage = () => {
     return (
         <Fragment>
             <Nav />
@@ -20,5 +20,5 @@ const Homepage = () => {
     );
 }
 
-export default Homepage;
+export default HomePage;
 

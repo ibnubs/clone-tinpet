@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Form, Input, Button,Select, InputNumber, Modal } from 'antd';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { Form, Input, Button,Select, Modal } from 'antd';
+// import { useSelector } from 'react-redux';
 import './CreatePostModal.scss';
 
 const CreatePostModal = props => {
 
 	// //state
-	const {setCreatePostModal, dispatch, createpostModal } = props
+	const {setCreatePostModal, createpostModal } = props
 	// //store
 	// const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
 
