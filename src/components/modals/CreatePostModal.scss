@@ -1,0 +1,23 @@
+.createpost{
+	position: relative;
+	margin: auto;
+	width: 854px;
+	height: 661px;
+}
+.createpost-wrapper{
+	display: flex !important;
+	margin: auto;
+	position:relative;
+	background: blue;
+	
+	border: 5px solid black;
+	&__photo{
+	
+	}
+	&__form{
+		position: relative;
+		margin: auto !important;
+		
+		
+	}
+}
