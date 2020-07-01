@@ -23,11 +23,11 @@ const CreatePostModal = props => {
 	// }, [isAuthenticate, closeModal])
 
   return (
-  	<Modal style={{ transition: "all .4s ease"}}
-	  	onCancel={()=>setCreatePostModal(false)}
-	  	visible={createpostModal}
-	  	title = {<h1> Create a Post </h1>}
-  	>
+  	// <Modal style={{ transition: "all .4s ease"}}
+	  // 	onCancel={()=>setCreatePostModal(false)}
+	  // 	visible={createpostModal}
+	  // 	title = {<h1> Create a Post </h1>}
+  	// >
 	    <div className="createpost">
 	    	<h1> Create a Post </h1>
 	    	<div className="createpost-wrapper">
@@ -102,7 +102,7 @@ const CreatePostModal = props => {
 	      	</div>
 	      </div>
 	    </div>
-    </Modal>
+    // </Modal>
   );
 };
 

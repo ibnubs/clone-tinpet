@@ -22,7 +22,8 @@ const RegisterPage = (props) => {
 			email,
 			password,
 			confirmPassword 
-		} 
+		}
+		console.log('userdata', userData) 
 		dispatch(register(userData))
 	}
 
