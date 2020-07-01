@@ -1,13 +1,15 @@
 import React, { Fragment } from 'react';
 import {Route} from 'react-router-dom';
 import RegisterPage from "../pages/RegisterPage";
-import Homepage from '../pages/HomePage';
+import Homepage from '../pages/Homepage';
+import CreatePostModal from '../components/modals/CreatePostModal';
 
 const Routes = () => {
     return(
       <Fragment>
-        <Route path='/register' exact component={RegisterPage} />
-        <Route path='/' exact component={Homepage} />
+      	<Route path='/modal' exact component={CreatePostModal} />
+      	<Route path='/' exact component={RegisterPage} />
+        <Route path='/homepage' exact component={Homepage} />
       </Fragment>
     )
 }
