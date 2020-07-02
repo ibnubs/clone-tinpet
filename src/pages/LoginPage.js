@@ -4,21 +4,19 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import MobileStoreButton from 'react-mobile-store-button';
 import { Link } from 'react-router-dom';
 import './LoginPage.scss';
-
-import { useDispatch } from "react-redux";
 import {login} from '../store/actions/authentication'
+import { useDispatch } from "react-redux";
 //import { useForm } from "react-hook-form";
 
 import imagecatdog from '../assets/images/cat&dog.svg';
 import imagetinpet from '../assets/images/tinpet-logo.svg';
 
 
-const LoginPage = () => {
-
+const LoginPage = (props) => {
+	const dispatch = useDispatch()
 	const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-	const dispatch = useDispatch();
 	
 // 	const {register, handleSubmit} = useForm()
 //     const [input, setInput] = useState({
@@ -31,13 +29,14 @@ const LoginPage = () => {
 //     dispatch(login(data))
 //   }
 
-	const submit = e => {
-		e.preventDefault()
+	const submitLogin = e => {
+		console.log('test dlu')
+		//e.preventDefault()
 		const userData = {
 			email,
 			password
 		}
-		console.log("data", userData)
+		//console.log("data", userData)
 		dispatch(login(userData))
 	}
 
@@ -54,10 +53,11 @@ const LoginPage = () => {
 				</div>
 				<div className="login__form">
 					
-			<Form onSubmit={submit}
+			<Form 
 				name="login-form"
 				className="login__form--form-wrapper"
 				initialValues={{ remember: true }}
+				onFinish={submitLogin}
 				>
 						
 			<h1> Login </h1>
@@ -65,17 +65,18 @@ const LoginPage = () => {
 	          <Form.Item
               name="email"
               // onFieldsChange={email}
-              // onValuesChange={(e) => setEmail(e.target.value)}
+              onChange={(e) => setEmail(e.target.value)}
               rules={[{ required: true, message: 'Please input your Email!' }]}
 		          >
 		          <Input className="login__form--form-input" 
 		          	prefix={<UserOutlined className="site-form-item-icon" />} 
 					placeholder="Email" 
-                    value={email}
-                    onChange={(e)=> setEmail(e.target.value)}
+                    //value={email}
+                    //onChange={(e)=> setEmail(e.target.value)}
 		          />
 	          </Form.Item>
-{/* 
+				
+				{/* 
 		          <input className="login__form--form-input" 
 					  prefix={<UserOutlined className="site-form-item-icon" />} 
 					  rules={[{ required: true, message: 'Please input your Email!' }]}
@@ -101,15 +102,15 @@ const LoginPage = () => {
 	          <Form.Item
               name="password"
               // onFieldsChange={password}
-              // onValuesChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setPassword(e.target.value)}
               rules={[{ required: true, message: 'Please input your Password!' }]}
 	          	>
 				<Input className="login__form--form-input"
 					prefix={<LockOutlined className="site-form-item-icon" />}
 					type="password"
 					placeholder="Password"
-					value={password}
-                    onChange={(e)=> setPassword(e.target.value)}
+					//value={password}
+                    //nChange={(e)=> setPassword(e.target.value)}
 				/>
 	          </Form.Item>
 
@@ -120,7 +121,7 @@ const LoginPage = () => {
 	          </Form.Item>
 
 	          <Form.Item>
-	            <Button type="primary" htmlType="submit">
+			  	<Button style={{ fontWeight: 'bold', backgroundColor: '#FF65C5' }} type="primary" htmlType="submit">
 	                Login
 	            </Button>
 	          </Form.Item>
@@ -128,12 +129,12 @@ const LoginPage = () => {
 			  
 
               <Form.Item className="login__form--form-button">
-	          	<h5> <Link to='/register'> Forget Password ? </Link> </h5>
+	          	<h5> <Link to='/'> Forget Password ? </Link> </h5>
 	          </Form.Item>
 
               <Form.Item>
 	            <Button type="primary" >
-                    <Link to='/register'> Create New Account </Link>    
+                    <Link to='/'> Create New Account </Link>    
 	            </Button>
               </Form.Item>        
 
