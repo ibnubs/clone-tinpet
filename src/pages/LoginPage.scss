@@ -1,0 +1,140 @@
+.register {
+	position: relative;
+	margin: auto;
+	background-color: #F4F4F4;
+	width: 1440px;
+	height: 900px;
+	display: flex;
+	padding-top: 100px;
+	padding-left: 100px;
+	&__images{
+		width: 818px;
+		height: 693px;
+		left: 100px;
+		top: 103px;
+		background: rgba(62, 76, 111, 0.75) !important;
+		border-radius: 15px;
+		&--image-catdog{
+			border-radius: 15px;
+			opacity: 0.2;
+		}
+		&--image-tinpet{
+			position: relative;
+			margin: auto;
+			margin-top: -800px;
+		}
+		&--description{
+			position: relative;
+			font-weight: bold;
+			font-size: 20px;
+			color: #fff;
+			margin-top: -350px;
+		}
+	}
+	&__form{
+		margin-left: 30px;
+		&--form-wrapper{
+			h1 {
+			font-weight: bold;
+			font-size: 40px;
+			}
+			width: 403px;
+			height: 575px;
+			left: 937px;
+			top: 103px;
+			border: 1px solid #C4C4C4;
+			border-radius: 15px;
+			padding: 10px !important;
+			margin: 5px;
+		}
+		&--form-input{
+			height: 50px;
+			border-radius: 12px !important;
+		}
+		&--form-button{
+			h5{
+			font-size: 13px;
+			}
+		}
+	}
+}
+
+.login {
+	position: relative;
+	margin: auto;
+	background-color: #F4F4F4;
+	width: 1440px;
+	height: 900px;
+	display: flex;
+	padding-top: 100px;
+	padding-left: 100px;
+	&__images{
+		width: 818px;
+		height: 693px;
+		left: 100px;
+		top: 103px;
+		background: rgba(62, 76, 111, 0.75) !important;
+		border-radius: 15px;
+		&--image-catdog{
+			border-radius: 15px;
+			opacity: 0.2;
+		}
+		&--image-tinpet{
+			position: relative;
+			margin: auto;
+			margin-top: -800px;
+		}
+		&--description{
+			position: relative;
+			font-weight: bold;
+			font-size: 20px;
+			color: #fff;
+			margin-top: -350px;
+		}
+	}
+	&__form{
+		margin-left: 30px;
+		&--form-wrapper{
+			h1 {
+			font-weight: bold;
+			font-size: 40px;
+			}
+			width: 403px;
+			height: 575px;
+			left: 937px;
+			top: 103px;
+			border: 1px solid #C4C4C4;
+			border-radius: 15px;
+			padding: 10px !important;
+			margin: 5px;
+		}
+		&--form-input{
+			height: 50px;
+			border-radius: 12px !important;
+		}
+		&--form-button{
+			h5{
+			font-size: 13px;
+			}
+		}
+	}
+}
+
+.store{
+	margin-top: 30px !important;
+	position: relative;
+	display: flex;
+	width: 80%;
+	margin: auto;
+	}
+	.android{
+		position: relative;
+		width: 165px !important;
+		left: -10px;
+	}
+	.ios{
+		position: relative;
+		width: 147px !important;
+		top: 9px;
+	}
+
