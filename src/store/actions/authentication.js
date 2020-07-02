@@ -1,5 +1,6 @@
 import { LOGIN_SUCCESS, LOGIN_FAILED, REGISTER_SUCCESS, REGISTER_FAILED } from './types';
 import axios from 'axios';
+
 const baseUrl ='https://product-tinpet-app.herokuapp.com';
 
 export const register = data => async dispatch => {

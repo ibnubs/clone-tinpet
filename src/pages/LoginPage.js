@@ -129,12 +129,12 @@ const LoginPage = (props) => {
 			  
 
               <Form.Item className="login__form--form-button">
-	          	<h5> <Link to='/'> Forget Password ? </Link> </h5>
+	          	<h5> <Link to='/register'> Forget Password ? </Link> </h5>
 	          </Form.Item>
 
               <Form.Item>
 	            <Button type="primary" >
-                    <Link to='/'> Create New Account </Link>    
+                    <Link to='/register'> Create New Account </Link>    
 	            </Button>
               </Form.Item>        
 
