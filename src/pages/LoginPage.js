@@ -7,6 +7,9 @@ import './LoginPage.scss';
 import {login} from '../store/actions/authentication'
 import { useDispatch } from "react-redux";
 //import { useForm } from "react-hook-form";
+import RequestMeeting from '../components/modals/RequestMeeting'
+import { Col, Row } from 'antd';
+import { PlusSquareOutlined } from '@ant-design/icons';
 
 import imagecatdog from '../assets/images/cat&dog.svg';
 import imagetinpet from '../assets/images/tinpet-logo.svg';
@@ -15,7 +18,12 @@ import imagetinpet from '../assets/images/tinpet-logo.svg';
 const LoginPage = (props) => {
 	const dispatch = useDispatch()
 	const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+	const [password, setPassword] = useState("")
+	const [ requestMeeting, setRequestMeeting ] = useState(false);
+
+    const openRequestMeeting = async () => {
+        await setRequestMeeting (true)
+    }
 
 	
 // 	const {register, handleSubmit} = useForm()
@@ -39,6 +47,8 @@ const LoginPage = (props) => {
 		//console.log("data", userData)
 		dispatch(login(userData))
 	}
+
+	
 
 
 
@@ -125,20 +135,38 @@ const LoginPage = (props) => {
 	                Login
 	            </Button>
 	          </Form.Item>
+
+
+			  <Form.Item>
+	            <Button type="primary" >
+                    <Link to='/'> Create New Account </Link>    
+	            </Button>
+				<RequestMeeting
+                            dispatch={dispatch}
+                            requestMeeting={requestMeeting}
+                            setRequestMeeting={setRequestMeeting}
+                           
+                        />  
+              </Form.Item>  
 			 
 			  
 
               <Form.Item className="login__form--form-button">
 	          	<h5> <Link to='/'> Forget Password ? </Link> </h5>
-	          </Form.Item>
+	          </Form.Item>  
 
-              <Form.Item>
-	            <Button type="primary" >
-                    <Link to='/'> Create New Account </Link>    
-	            </Button>
-              </Form.Item>        
+			  <Form.Item>
+                        <Button type="primary" onClick={openRequestMeeting}>
+                            Req Meeting                          
+                        </Button>
+                        <RequestMeeting
+                            dispatch={dispatch}
+                            requestMeeting={requestMeeting}
+                            setRequestMeeting={setRequestMeeting}
+                        />  
+			  </Form.Item> 
 
-			   </Form>        
+			</Form>        
 
 	        
 
