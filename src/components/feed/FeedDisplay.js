@@ -2,10 +2,11 @@ import React, { useState, useEffect, } from 'react';
 import { useDispatch } from 'react-redux';
 import { Col, Row, Button } from 'antd';
 import { PlusSquareOutlined } from '@ant-design/icons';
-//import CreatePostModal from '../modals/CreatePostModal'
-import RequestMeeting from '../modals/RequestMeeting'
-import './feed.css';
+import CreatePostModal from '../modals/CreatePostModal'
+import './feed.scss';
 import CardFeed from './CardFeed';
+
+import RequestMeeting from '../modals/RequestMeeting'
 
 const FeedDisplay = (props) => {
 
@@ -31,8 +32,7 @@ const FeedDisplay = (props) => {
                     <Col lg={24} xs={24}>
                         <Button className='btn-post' block  onClick={openRequestMeeting}>
                             <span style={{float:'left', marginRight:'20px'}}><PlusSquareOutlined /></span>
-                            Write a post 
-                           
+                            Write a post                          
                         </Button>
                         {/* <CreatePostModal
                             dispatch={dispatch}
