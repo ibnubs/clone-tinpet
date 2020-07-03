@@ -26,7 +26,7 @@ const menu = (
 const SearchComponent = () => {
     return (
         <Fragment>
-            <Col className='search-component box' lg={6} md={24} sm={24} xs={24}>
+            <Col className='search-component box-search' lg={6} md={24} sm={24} xs={24}>
                     <Row justify='center' style={{marginTop:32}} >
                         <Dropdown overlay={menu}>
                             <Button block className='btn-search' >
