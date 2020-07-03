@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment} from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
 import { HeartFilled, MessageOutlined } from '@ant-design/icons';
 
