@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Col, Row, Button } from 'antd';
 import { PlusSquareOutlined } from '@ant-design/icons';
 import CreatePostModal from '../modals/CreatePostModal'
-import './feed.css';
+import './feed.scss';
 import CardFeed from './CardFeed';
 
 const FeedDisplay = (props) => {
@@ -22,14 +22,12 @@ const FeedDisplay = (props) => {
                     <Col lg={24} xs={24}>
                         <Button className='btn-post' block  onClick={openCreatePostModal}>
                             <span style={{float:'left', marginRight:'20px'}}><PlusSquareOutlined /></span>
-                            Write a post 
-                           
+                            Write a post                          
                         </Button>
                         <CreatePostModal
                             dispatch={dispatch}
                             createPostModal={createPostModal}
-                            setCreatePostModal={setCreatePostModal}
-                           
+                            setCreatePostModal={setCreatePostModal}                          
                         />
                     </Col>
                 </Row>
