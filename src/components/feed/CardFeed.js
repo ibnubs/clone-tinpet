@@ -1,10 +1,19 @@
-import React, { Fragment} from 'react';
+import React, { Fragment, useState } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
 import { HeartFilled, MessageOutlined } from '@ant-design/icons';
+import { useDispatch } from "react-redux";
+import RequestMeeting from '../../components/modals/RequestMeeting'
 
 
 
-const CardFeed = () => {
+const CardFeed = (props) => {
+	const dispatch = useDispatch()
+	const [ requestMeeting, setRequestMeeting ] = useState(false);
+
+    const openRequestMeeting = async () => {
+        await setRequestMeeting (true)
+    }
+
     return (
         <Fragment>
             <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} >
@@ -77,7 +86,12 @@ const CardFeed = () => {
                                 
                             </Col>
                             <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
-                                <Button block className='btn-rqsmeet' >Request Meeting</Button>
+                                <Button block className='btn-rqsmeet' onClick={openRequestMeeting} >Request Meeting</Button>
+                                <RequestMeeting
+                                    dispatch={dispatch}
+                                    requestMeeting={requestMeeting}
+                                    setRequestMeeting={setRequestMeeting}
+                                /> 
                             </Col>
                         </Row>
                     </Col>

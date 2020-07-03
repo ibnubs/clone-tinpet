@@ -36,10 +36,7 @@
         .createpost-wrapper{
             display: flex !important;
             margin: auto;
-            position:relative;
-            &__photo{
-                
-            }
+            position:relative;           
             &__form{
                 position: relative;
                 padding: 20px;
@@ -65,9 +62,9 @@
             float: center; 
         }
         
-        .button_cancel{
+        // .button_cancel{
             
-        }
+        // }
         
         .modal{
             position: relative !important;
