@@ -6,6 +6,9 @@ import CreatePostModal from '../modals/CreatePostModal'
 import './feed.scss';
 import CardFeed from './CardFeed';
 
+
+
+
 const FeedDisplay = (props) => {
 
     const [ createPostModal, setCreatePostModal ] = useState(false);
@@ -13,8 +16,8 @@ const FeedDisplay = (props) => {
 
     const openCreatePostModal = async () => {
         await setCreatePostModal (true)
-    }
-
+    }  
+    
     return (
         <Fragment>
             <Col className='box feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
@@ -29,6 +32,7 @@ const FeedDisplay = (props) => {
                             createPostModal={createPostModal}
                             setCreatePostModal={setCreatePostModal}
                         />
+
                     </Col>
                 </Row>
                 <Row className='feed-post'>

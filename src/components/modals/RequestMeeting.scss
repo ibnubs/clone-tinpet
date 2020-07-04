@@ -1,0 +1,80 @@
+.createpost{
+	position: relative;
+	margin: auto;
+	width: 854px;
+	height: 661px;
+	border-radius: 15px;
+	background-color: #F4F4F4;
+	&__header{
+		position: relative;
+		display: flex !important;
+		h1{		
+			width: 850px !important;
+			font-weight: bold;
+			padding: 20px;
+		}.createpost{
+            position: relative;
+            margin: auto;
+            width: 854px;
+            height: 661px;
+            border-radius: 15px;
+            background-color: #F4F4F4;
+            &__header{
+                position: relative;
+                display: flex !important;
+                h1{		
+                    width: 850px !important;
+                    font-weight: bold;
+                    padding: 20px;
+                }
+                Button{
+                    margin: 20px;
+                }
+            }
+        }
+        
+        .createpost-wrapper{
+            display: flex !important;
+            margin: auto;
+            position:relative;           
+            &__form{
+                position: relative;
+                padding: 20px;
+                font-weight: bold;
+                font-style: normal;
+                font-weight: bold;
+                font-size: 18px;
+                line-height: 22px;
+            }
+        }
+        
+        .input{
+            width: 450px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .form{
+            margin-top: -30px;
+        }
+        
+        .button_post{
+            float: center; 
+        }
+        
+        // .button_cancel{
+            
+        // }
+        
+        .modal{
+            position: relative !important;
+            width: 900px !important;
+            height: 661px;
+            border-radius: 50px !important;
+        }
+        
+		Button{
+			margin: 20px;
+		}
+	}
+}
