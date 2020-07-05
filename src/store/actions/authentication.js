@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS, REGISTER_FAILED, UPDATE_UPLOADING, UPDATE_SUCCESS, UPDATE_FAILED, LOGIN_SUCCESS, LOGIN_FAILED } from './types';
+import { REGISTER_SUCCESS, REGISTER_FAILED, UPDATE_UPLOADING, UPDATE_SUCCESS, UPDATE_FAILED, LOGIN_SUCCESS, LOGIN_FAILED, PROFILE_LOADING_ACTIVE, PROFILE_LOADING_FINISHED } from './types';
 import {message} from 'antd';
 import axios from 'axios';
 const baseUrl ='https://product-tinpet-app.herokuapp.com/api/v1';

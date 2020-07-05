@@ -106,7 +106,7 @@ const CreatePostModal = (props) => {
 	    	<div className="createpost-wrapper">
 		    	<div className="createpost-wrapper__photo">
 		    		
-			       <Upload
+			     <Upload
             name="avatar"
             listType="picture-card"
             className="avatar-uploader"

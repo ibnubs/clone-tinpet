@@ -4,12 +4,14 @@ import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
 import HomePage from '../pages/HomePage';
 import SearchResult from '../pages/SearchResult';
+import UpdateProfileModal from '../components/modals/UpdateProfileModal';
 
 
 
 const Routes = () => {
     return(
       <Fragment>
+      	<Route path='/updateprofile' exact component={UpdateProfileModal} />
       	<Route path='/searchresult' exact component={SearchResult} />
         <Route path='/login' exact component={LoginPage} />
         <Route path='/' exact component={RegisterPage} />
