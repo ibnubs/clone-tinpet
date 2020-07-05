@@ -1,5 +1,5 @@
 @media screen and (max-width: 991px){
-    .box{
+    .box-right-profile{
         border-radius: 0px;
     }
     .feed-component {
@@ -8,27 +8,19 @@
     .feed-post{
         height: auto;
     }
-    .btn-post{
-        font-size: 1em;
-        height: 3rem;
-    }
-    .btn-rqsmeet{
-        font-size: 1em;
-        height: 3em;
-    }
     .pets-data{
         margin-top: 1vh;
+    }
+    .btn-right-profile{
+        font-size: 1.3em;
     }
 }
 
 @media screen and (min-width:992px){
-    .box{
+    .box-right-profile{
         border-radius: 15px;
     }
-    .btn-post{
-        font-size: 1vw;
-        height: 2.5vw;
-    }
+
     .feed-post {
         height: auto;
     }
@@ -36,35 +28,31 @@
         height: auto;
         
     }
-    .btn-rqsmeet{
-        font-size: 1vw;
-        height: 2.5vw;
+    .btn-right-profile{
+        font-size: 1.5em;
     }
+
 }
 
-/* box */
-.box{
+
+
+/* box-right-profile */
+.box-right-profile{
     background-color: #FFFFFF;
     border: 1px solid #C4C4C4;
     box-sizing: border-box;
 }
 
-/* write-post */
-.row-btn-post{
+
+.row-profile{
     margin: 50px 32px 0 32px;
     
 }
 
-.btn-post{
-    background-color: #f4f4f4;
-    border-radius: 5px;
-}
-
-
 
 /* card-feed */
 
-.box-post{
+.box-right-profile-post{
     height: 100%;
     padding: 24px;
 }
@@ -78,10 +66,11 @@
     margin-right: 20px;
 }
 
-.btn-rqsmeet{
-    border-radius: 5px;
-    background-color: #ff65c5;
-    color: #FFFFFF;
-    font-weight: bold;
-}
 
+
+.btn-right-profile{
+    margin: .2em;
+    color: #C4C4C4;
+    font-weight: bold;
+    line-height: 29px;
+}

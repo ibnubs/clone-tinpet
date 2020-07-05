@@ -1,7 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import { Form, Input, Button,Select, Modal, message, Upload } from 'antd';
-import { LoadingOutlined, PlusOutlined, EditOutlined} from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux';
+import { LoadingOutlined, PlusOutlined, } from '@ant-design/icons';
+import { useSelector,  } from 'react-redux';
 import {updateProfile} from '../../store/actions/authentication';
 import './CreatePostModal.scss';
 import store from '../../store/index';
@@ -10,14 +10,12 @@ const CreatePostModal = (props) => {
 
 	 //state
 	const {setCreatePostModal, dispatch, createPostModal } = props
-	const [ isLoading, setIsLoading ] = useState(false)
 	const [file, setFile ] =useState(null)
 	const [imgUpload, setImgUpload] = useState ({
 		loading: false,
 		imgUrl: localStorage.getItem('userAvatar')
 	})
 	 //store
-	const loading = useSelector(state => state.auth.loading)
 	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
 	const updateStatus = useSelector( state => state.auth.updateStatus)
 	const closeModal = useCallback(
@@ -90,7 +88,7 @@ const CreatePostModal = (props) => {
     </div>)
 
   const { imgUrl } = imgUpload
-	const [imageUrl, setimageUrl] = useState();
+	
 
   return (
   	<Modal style={{ transition: "all .4s ease"}}

@@ -1,5 +1,5 @@
 @media(max-width: 991px){
-    .box{
+    .box-search{
         border-radius: 0px;
     }
     .btn-search{
@@ -12,8 +12,9 @@
 }
 
 @media(min-width:992px){
-    .box{
+    .box-search{
         border-radius: 15px;
+        height: 350px;
     }
     .btn-search{
         font-size: 1vw;
@@ -24,9 +25,9 @@
 
 
 /* box */
-.box{
+.box-search{
     background-color: #FFFFFF;
-    border: 100px solid #C4C4C4;
+    border: 1px solid #C4C4C4;
     box-sizing: border-box;
 }
 
