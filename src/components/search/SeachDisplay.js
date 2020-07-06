@@ -1,42 +1,33 @@
 import React, { useState, Fragment  } from 'react';
 import { useDispatch } from 'react-redux';
-import { Col, Row, Button } from 'antd';
-import { PlusSquareOutlined } from '@ant-design/icons';
+import { Col, Row } from 'antd';
 import CreatePostModal from '../modals/CreatePostModal'
-import './feed.scss';
-import CardFeed from './CardFeed';
+import '../feed/feed.scss';
+import CardFeed from '../feed/CardFeed';
 
-
-
-
-const FeedDisplay = (props) => {
+const SearchDisplay = (props) => {
 
     const [ createPostModal, setCreatePostModal ] = useState(false);
     const dispatch = useDispatch();
 
-    const openCreatePostModal = async () => {
-        await setCreatePostModal (true)
-    }  
-    
+    // const openCreatePostModal = async () => {
+    //     await setCreatePostModal (true)
+    // }
+
     return (
         <Fragment>
             <Col className='box feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
                 <Row className='row-btn-post' >
                     <Col lg={24} xs={24}>
-                        <Button className='btn-post' block  onClick={openCreatePostModal}>
-                            <span style={{float:'left', marginRight:'20px'}}><PlusSquareOutlined /></span>
-                            Write a post 
-                        </Button>
+                        <h3>Found 1 Result</h3>
                         <CreatePostModal
                             dispatch={dispatch}
                             createPostModal={createPostModal}
                             setCreatePostModal={setCreatePostModal}
                         />
-
                     </Col>
                 </Row>
                 <Row className='feed-post'>
-                    <CardFeed />
                     <CardFeed />
                 </Row>
             </Col>
@@ -44,4 +35,4 @@ const FeedDisplay = (props) => {
     );
 }
 
-export default FeedDisplay;
+export default SearchDisplay;

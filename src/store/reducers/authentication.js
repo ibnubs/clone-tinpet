@@ -1,9 +1,11 @@
-import { REGISTER_SUCCESS, REGISTER_FAILED } from '../actions/types';
+import * as type from '../actions/types';
 
 const initialState = {
 	token: localStorage.getItem('token'),
 	error: null,
-	isAuthenticate: false
+	isAuthenticate: false,
+	loading: false,
+	updateStatus: "initial"
 }
 
 const auth = (state = initialState, action) => {
@@ -12,18 +14,51 @@ const auth = (state = initialState, action) => {
 			return{
 			...state
 			}
-			case REGISTER_SUCCESS:
+			case type.REGISTER_SUCCESS:
 				return{
 					...state,
 					isAuthenticate: true,
 					userProfile: action.payload
 				}
-			case REGISTER_FAILED:
+			case type.REGISTER_FAILED:
 				return{
 					...state,
 					isAuthenticate: false,
 					token: localStorage.removeItem('access_token')
 				}
+			case type.LOGIN_SUCCESS :
+				return{
+					...state,
+					isAuthenticate: true
+				}
+			case type.LOGIN_FAILED:
+				return{
+					...state,
+					isAuthenticate: false,
+					token: localStorage.removeItem("token"),
+				}
+
+    	case type.UPDATE_UPLOADING:
+      return{
+        ...state, updateStatus: "uploading",loading: true
+      }
+
+    	case type.UPDATE_SUCCESS:
+      return{
+        ...state, updateStatus: "done",loading: false
+      }
+      
+    	case type.UPDATE_FAILED:
+      return{
+        ...state, updateStatus: "failed",loading: false
+      }
+      case "SIGNOUT" :
+      	localStorage.clear()
+      	return {
+      		...state,
+      		isAuthenticate: false,
+      	}
+
 	}
 }
 

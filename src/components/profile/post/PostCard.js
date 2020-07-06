@@ -1,32 +1,19 @@
-import React, { Fragment, useState } from 'react';
-import { Row, Col, Avatar, Button } from 'antd';
+import React, { Fragment  } from 'react';
+import { Row, Col, Button } from 'antd';
 import { HeartFilled, MessageOutlined } from '@ant-design/icons';
-import { useDispatch } from "react-redux";
-import RequestMeeting from '../../components/modals/RequestMeeting'
 
 
 
-const CardFeed = (props) => {
-	const dispatch = useDispatch()
-	const [ requestMeeting, setRequestMeeting ] = useState(false);
-
-    const openRequestMeeting = async () => {
-        await setRequestMeeting (true)
-    }
+const PostCard = () => {
 
     return (
         <Fragment>
-            <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} >
+            <Row style={{height:'', width:'100%', margin:'40px 0px 40px 0px'}} >
                 <Row style={{ width:'100%'}}>
-                    <Col span={2} >
-                        <a href='/#'>
-                            <Avatar size={80} src={require('../../assets/images/michael-dam-mEZ3PoFGs_k-unsplash.jpg')}  alt='avatar-icon' />
-                        </a>
-                    </Col>
-                    <Col xl={{offset:1, span:21}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{offset:4, span:18}}  className='box box-post' >
+                    <Col xl={{offset:1, span:22}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{offset:4, span:18}}  className='box box-post' >
                         <Row >
                             <Col xl={8} md={12} sm={{span:24}} xs={{span:24}} >
-                                <img alt='cat-sample' src={require('../../assets/images/ramiz-dedakovic-9SWHIgu8A8k-unsplash.jpg')} style={{height:248, width:'100%', borderRadius:'15px'}}  />
+                                <img alt='cat-sample' src={require('../../../assets/images/ramiz-dedakovic-9SWHIgu8A8k-unsplash.jpg')} style={{height:248, width:'100%', borderRadius:'15px'}}  />
                             </Col>
                             <Col className='pets-data' xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}}  >
                                 <Row>
@@ -85,14 +72,6 @@ const CardFeed = (props) => {
                                 </Row>
                                 
                             </Col>
-                            <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
-                                <Button block className='btn-rqsmeet' onClick={openRequestMeeting} >Request Meeting</Button>
-                                <RequestMeeting
-                                    dispatch={dispatch}
-                                    requestMeeting={requestMeeting}
-                                    setRequestMeeting={setRequestMeeting}
-                                /> 
-                            </Col>
                         </Row>
                     </Col>
                 </Row>
@@ -102,4 +81,4 @@ const CardFeed = (props) => {
     );
 }
 
-export default CardFeed;
+export default PostCard;
