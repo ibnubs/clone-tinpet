@@ -1,7 +1,7 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import { Form, Input, Button,Select, Modal, message, Upload } from 'antd';
 import { LoadingOutlined, PlusOutlined, } from '@ant-design/icons';
-import { useSelector,  } from 'react-redux';
+import { useSelector  } from 'react-redux';
 import {updateProfile} from '../../store/actions/authentication';
 import './CreatePostModal.scss';
 import store from '../../store/index';
@@ -105,7 +105,7 @@ const CreatePostModal = (props) => {
 	    	<div className="createpost-wrapper">
 		    	<div className="createpost-wrapper__photo">
 		    		
-			       <Upload
+			     <Upload
             name="avatar"
             listType="picture-card"
             className="avatar-uploader"
