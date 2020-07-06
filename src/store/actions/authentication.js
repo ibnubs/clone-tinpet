@@ -5,12 +5,10 @@ import axios from 'axios';
 const baseUrl ='https://product-tinpet-app.herokuapp.com';
 
 export const register = (data) => async dispatch => {
+	console.log("data", data)
 	try{
 		const res = await axios.post(`${baseUrl}/api/v1/users/register`, data)	
-			localStorage.setItem("register",res.data.data.newUser)
-			// localStorage.setItem("userAddress",res.data.data.newUserAddress.full_address)
-   //    localStorage.setItem("userAvatar",res.data.data.newUserProfile.avatar)
-   //    localStorage.setItem("userId",res.data.data.newUserProfile.id)
+		console.log('register', res)
     	message.info('Sign up success')
 			dispatch({
 				type: REGISTER_SUCCESS
@@ -25,8 +23,10 @@ export const register = (data) => async dispatch => {
 }
 
 export const login = data => async dispatch => {
+	console.log("data", data)
     try {
         const res = await axios.post(`${baseUrl}/api/v1/users/login`, data)
+        console.log("respond",res)
         localStorage.setItem("token", res.data.token)
         dispatch({
             type: LOGIN_SUCCESS
