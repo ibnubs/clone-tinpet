@@ -4,7 +4,7 @@
 	width: 854px;
 	height: 661px;
 	border-radius: 15px;
-	background-color: #F4F4F4;
+	background-color: white;
 	&__header{
 		position: relative;
 		display: flex !important;
@@ -40,11 +40,11 @@
 .avatar-uploader{
 	background: red !important;
 	margin: 20px;
-	width: 300px;
-	height: 194px;
+	width: 100px;
+	height: 100px;
 	left: 309px;
 	top: 231px;
-	border-radius: 15px;
+	border-radius: 100px ! important;
 }
 .input{
 	width: 450px;
