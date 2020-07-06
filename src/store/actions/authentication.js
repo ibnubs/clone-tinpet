@@ -4,11 +4,14 @@ import axios from 'axios';
 
 const baseUrl ='https://product-tinpet-app.herokuapp.com';
 
-export const register = data => async dispatch => {
+export const register = (data) => async dispatch => {
 	try{
-		const res = await axios.post(`${baseUrl}/api/v1/user/register`, data)	
-		localStorage.setItem('newUser', res.data.newUser && res.data.userProfile)
-		console.log('Register Success!', res)
+		const res = await axios.post(`${baseUrl}/api/v1/users/register`, data)	
+			localStorage.setItem("register",res.data.data.newUser)
+			// localStorage.setItem("userAddress",res.data.data.newUserAddress.full_address)
+   //    localStorage.setItem("userAvatar",res.data.data.newUserProfile.avatar)
+   //    localStorage.setItem("userId",res.data.data.newUserProfile.id)
+    	message.info('Sign up success')
 			dispatch({
 				type: REGISTER_SUCCESS
 			})
@@ -23,7 +26,7 @@ export const register = data => async dispatch => {
 
 export const login = data => async dispatch => {
     try {
-        const res = await axios.post(`${baseUrl}/user/login`, data)
+        const res = await axios.post(`${baseUrl}/api/v1/users/login`, data)
         localStorage.setItem("token", res.data.token)
         dispatch({
             type: LOGIN_SUCCESS

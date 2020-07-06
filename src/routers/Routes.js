@@ -10,11 +10,11 @@ import SearchResult from '../pages/SearchResult';
 const Routes = () => {
     return(
       <Fragment>
-      	<Route path='/searchresult' exact component={SearchResult} />
-        <Route path='/login' exact component={LoginPage} />
         <Route path='/' exact component={RegisterPage} />
+        <Route path='/login' exact component={LoginPage} />
         <Route path='/homepage' exact component={HomePage} />
         <Route path='/profile' exact component={Profile} />
+      	<Route path='/searchresult' exact component={SearchResult} />
       </Fragment>
     )
 }

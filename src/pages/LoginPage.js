@@ -19,16 +19,16 @@ const LoginPage = (props) => {
 
     
 
-// 	const {register, handleSubmit} = useForm()
-//     const [input, setInput] = useState({
-//     email: "",
-//     password: "",
-//   });
+	// const {register, handleSubmit} = useForm()
+    const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
 
-//   const onSubmit = data =>{
-//     console.log(data)
-//     dispatch(login(data))
-//   }
+  const onSubmit = data =>{
+    console.log(data)
+    dispatch(login(data))
+  }
 
 	const submitLogin = e => {
 		console.log('test dlu')
