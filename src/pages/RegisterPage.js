@@ -18,11 +18,12 @@ const RegisterPage = (props) => {
 		console.log('ada gak')
 		// e.preventDefault();
 		const userData = {
-			name,
+			username: name,
 			email,
 			password,
-			confirmPassword 
-		} 
+			confirm_password: confirmPassword 
+		}
+		console.log('userdata', userData) 
 		dispatch(register(userData))
 	}
 

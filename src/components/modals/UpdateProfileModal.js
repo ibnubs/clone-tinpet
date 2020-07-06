@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useCallback} from 'react';
 import { Modal, Form, Input, Button, message, Upload} from 'antd';
-import { LoadingOutlined, PlusOutlined, EditOutlined} from '@ant-design/icons';
+import { LoadingOutlined, PlusOutlined} from '@ant-design/icons'; //editoutlined
 import './UpdateProfileModal.scss';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux'; //, useDispatch
 import {updateProfile} from '../../store/actions/authentication';
 import store from '../../store/index';
 
@@ -10,14 +10,14 @@ import store from '../../store/index';
 const UpdateProfileModal = (props) => {
 		 //state
 	const {setUpdateProfileModal, dispatch, updateProfileModal } = props
-	const [ isLoading, setIsLoading ] = useState(false)
+	// const [ isLoading, setIsLoading ] = useState(false)
 	const [file, setFile ] =useState(null)
 	const [imgUpload, setImgUpload] = useState ({
 		loading: false,
 		imgUrl: localStorage.getItem('userAvatar')
 	})
 	 //store
-	const loading = useSelector(state => state.auth.loading)
+	// const loading = useSelector(state => state.auth.loading)
 	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
 	const updateStatus = useSelector( state => state.auth.updateStatus)
 	
@@ -91,7 +91,7 @@ const UpdateProfileModal = (props) => {
     </div>)
 
   const { imgUrl } = imgUpload
-	const [imageUrl, setimageUrl] = useState();
+	// const [imageUrl, setimageUrl] = useState();
 
 	return(
 		<Modal style={{ transition: "all .4s ease"}}

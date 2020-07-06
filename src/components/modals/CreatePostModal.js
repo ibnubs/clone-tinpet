@@ -91,6 +91,7 @@ const CreatePostModal = (props) => {
 	
 
   return (
+
   	<Modal style={{ transition: "all .4s ease"}}
 	  	onCancel={()=>setCreatePostModal(false)}
 	  	visible={createPostModal}
@@ -186,9 +187,9 @@ const CreatePostModal = (props) => {
 			   	  </Form>
 	      	</div>
 	      </div>
-	    </div>
-	    
+	    </div>    
     </Modal>
+
   );
 };
 

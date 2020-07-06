@@ -1,17 +1,19 @@
-import { REGISTER_SUCCESS, REGISTER_FAILED, UPDATE_UPLOADING, UPDATE_SUCCESS, UPDATE_FAILED, LOGIN_SUCCESS, LOGIN_FAILED, PROFILE_LOADING_ACTIVE, PROFILE_LOADING_FINISHED } from './types';
+import { REGISTER_SUCCESS, REGISTER_FAILED, UPDATE_UPLOADING, UPDATE_SUCCESS, UPDATE_FAILED, LOGIN_SUCCESS, LOGIN_FAILED } from './types';
 import {message} from 'antd';
 import axios from 'axios';
 
 const baseUrl ='https://product-tinpet-app.herokuapp.com';
 
 export const register = data => async dispatch => {
+	console.log("data", data)
 	try{
-		const res = await axios.post(`${baseUrl}/api/v1/user/register`, data)	
-		localStorage.setItem('newUser', res.data.newUser && res.data.userProfile)
-		console.log('Register Success!', res)
-			dispatch({
-				type: REGISTER_SUCCESS
-			})
+
+		const res = await axios.post(`${baseUrl}/api/v1/users/register`, data)
+		console.log('respond', res)		
+		console.log('Register Success!')
+		dispatch({
+			type: REGISTER_SUCCESS
+		})	
 	}
 	catch(error){
 		console.log(error.status)
@@ -22,12 +24,14 @@ export const register = data => async dispatch => {
 }
 
 export const login = data => async dispatch => {
+	console.log("data", data)
     try {
-        const res = await axios.post(`${baseUrl}/user/login`, data)
-        localStorage.setItem("token", res.data.token)
-        dispatch({
-            type: LOGIN_SUCCESS
-        })
+      const res = await axios.post(`${baseUrl}/api/v1/users/login`, data)
+      console.log("respond dong", res)
+      localStorage.setItem("token", res.data.token)
+      dispatch({
+          type: LOGIN_SUCCESS
+      })
     } catch(error) {
 		console.log(error)
 		dispatch({
