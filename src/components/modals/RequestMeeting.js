@@ -1,28 +1,25 @@
-import React, {useState, useCallback, useEffect} from 'react';
-import { Form, Input, Button,Select, Modal, message, Upload } from 'antd';
-import { LoadingOutlined, PlusOutlined, EditOutlined} from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux';
-import {updateProfile} from '../../store/actions/authentication';
+import React, { useCallback, useEffect} from 'react';
+import { Form, Input, Button, Modal } from 'antd';
+import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
-import store from '../../store/index';
 
 const RequestMeeting = (props) => {
 
 	 //state
-	const {setRequestMeeting, dispatch, requestMeeting } = props
-	const [ isLoading, setIsLoading ] = useState(false)
-	const [file, setFile ] =useState(null)
-	const [imgUpload, setImgUpload] = useState ({
-		loading: false,
-		imgUrl: localStorage.getItem('userAvatar')
-	})
+	const {setRequestMeeting, requestMeeting } = props
+	// const [ isLoading, setIsLoading ] = useState(false)
+	// const [file, setFile ] =useState(null)
+	// const [imgUpload, setImgUpload] = useState ({
+	// 	loading: false,
+	// 	imgUrl: localStorage.getItem('userAvatar')
+	// })
 
 	const { TextArea } = Input;
 
 	 //store
-	const loading = useSelector(state => state.auth.loading)
+	// const loading = useSelector(state => state.auth.loading)
 	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
-	const updateStatus = useSelector( state => state.auth.updateStatus)
+	// const updateStatus = useSelector( state => state.auth.updateStatus)
 	const closeModal = useCallback(
 		() => {
 				setRequestMeeting (false)

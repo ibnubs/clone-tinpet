@@ -1,7 +1,7 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState,} from 'react'; // useCallback, useEffect
 import { Form, Input, Button,Select, Modal, message, Upload } from 'antd';
 import { LoadingOutlined, PlusOutlined, } from '@ant-design/icons';
-import { useSelector,  } from 'react-redux';
+import { useSelector  } from 'react-redux';
 import {updateProfile} from '../../store/actions/authentication';
 import './CreatePostModal.scss';
 import store from '../../store/index';
@@ -16,19 +16,21 @@ const CreatePostModal = (props) => {
 		imgUrl: localStorage.getItem('userAvatar')
 	})
 	 //store
-	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
+	// const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
 	const updateStatus = useSelector( state => state.auth.updateStatus)
-	const closeModal = useCallback(
-		() => {
-				setCreatePostModal (false)
-		}, [setCreatePostModal],
-	)
+	// const closeModal = useCallback(
+	// 	() => {
+	// 		setCreatePostModal(false)
+	// 	}, [setCreatePostModal],
+	// )
 
-	useEffect( () =>{
-		if(isAuthenticate){
-			closeModal()
-		}
-	}, [isAuthenticate, closeModal])
+	// useEffect( () =>{
+	// 	if(isAuthenticate){
+	// 		closeModal()
+	// 	}
+	// }, [isAuthenticate, closeModal])
+
+
 
 	function getBase64(img, callback) {
 	  const reader = new FileReader();
@@ -91,6 +93,7 @@ const CreatePostModal = (props) => {
 	
 
   return (
+
   	<Modal style={{ transition: "all .4s ease"}}
 	  	onCancel={()=>setCreatePostModal(false)}
 	  	visible={createPostModal}
@@ -104,7 +107,7 @@ const CreatePostModal = (props) => {
 	    	<div className="createpost-wrapper">
 		    	<div className="createpost-wrapper__photo">
 		    		
-			       <Upload
+			     <Upload
             name="avatar"
             listType="picture-card"
             className="avatar-uploader"
@@ -186,9 +189,9 @@ const CreatePostModal = (props) => {
 			   	  </Form>
 	      	</div>
 	      </div>
-	    </div>
-	    
+	    </div>    
     </Modal>
+
   );
 };
 

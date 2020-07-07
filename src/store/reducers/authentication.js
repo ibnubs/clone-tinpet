@@ -18,13 +18,11 @@ const auth = (state = initialState, action) => {
 				return{
 					...state,
 					isAuthenticate: true,
-					userProfile: action.payload
 				}
 			case type.REGISTER_FAILED:
 				return{
 					...state,
 					isAuthenticate: false,
-					token: localStorage.removeItem('access_token')
 				}
 			case type.LOGIN_SUCCESS :
 				return{

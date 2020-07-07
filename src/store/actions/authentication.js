@@ -4,24 +4,43 @@ import axios from 'axios';
 
 const baseUrl ='https://product-tinpet-app.herokuapp.com';
 
-export const register = data => async dispatch => {
+export const register = (data, props) => async dispatch => {
+	console.log("data", data)
 	try{
-		const res = await axios.post(`${baseUrl}/api/v1/user/register`, data)	
-		if (res.data === 201 ) {
-		localStorage.setItem('newUser', res.data.data.token)
+		const res = await axios.post(`${baseUrl}/api/v1/users/register`, data)
+		console.log('respond', res)		
 		console.log('Register Success!')
 		dispatch({
 			type: REGISTER_SUCCESS
-		})
-		}
+		})	
+		props.history.push("/login")
 	}
 	catch(error){
+		console.log(error.status)
 		dispatch({
 			type: REGISTER_FAILED
 		})
 	}
 }
 
+export const login = (data, props) => async dispatch => {
+	console.log("data", data)
+    try {
+      const res = await axios.post(`${baseUrl}/api/v1/users/login`, data)
+      console.log("respond dong", res)
+      localStorage.setItem("token", res.data.token)
+      dispatch({
+          type: LOGIN_SUCCESS
+      })
+      props.history.push("/homepage")
+    } catch(error) {
+		console.log(error)
+		dispatch({
+	   		type: LOGIN_FAILED
+		 })
+    }
+
+}
 
 export const updateProfile = data => async dispatch => {
 	if(!!data) {
@@ -54,21 +73,6 @@ export const updateProfile = data => async dispatch => {
 		}
 	}
 
-export const login = data => async dispatch => {
-    try {
-        const res = await axios.post(`${baseUrl}/user/login`, data)
-        localStorage.setItem("token", res.data.token)
-        dispatch({
-            type: LOGIN_SUCCESS
-        })
-    } catch(error) {
-		console.log(error)
-		dispatch({
-	   		type: LOGIN_FAILED
-		 })
-    }
-
-}
 // export const login = (data) => async (dispatch) => {
 // 	try {
 // 		const res = await axios.post(`${baseUrl}/user/login`, data)

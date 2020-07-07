@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Nav from '../components/nav/Nav';
+import CreatePostModal from '../components/modals/CreatePostModal';
 import { Row } from 'antd';
 import '../assets/styles/homepage.css';
 import SearchComponent from '../components/search/SearchComponent';
@@ -15,6 +16,7 @@ const HomePage = () => {
                 <SearchComponent />
                 <FeedDisplay />
             </Row>
+            <CreatePostModal />
 
         </Fragment>
     );
