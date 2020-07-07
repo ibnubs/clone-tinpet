@@ -14,19 +14,6 @@ const LoginPage = (props) => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 
-    
-
-// 	const {register, handleSubmit} = useForm()
-//     const [input, setInput] = useState({
-//     email: "",
-//     password: "",
-//   });
-
-//   const onSubmit = data =>{
-//     console.log(data)
-//     dispatch(login(data))
-//   }
-
 	const submitLogin = e => {
 		console.log('test dlu')
 		//e.preventDefault()
@@ -37,7 +24,6 @@ const LoginPage = (props) => {
 		//console.log("data", userData)
 		dispatch(login(userData, props))
 	}
-
 	
 	return(
 		<div>
