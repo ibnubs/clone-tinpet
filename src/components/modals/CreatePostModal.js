@@ -1,4 +1,4 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState,} from 'react'; // useCallback, useEffect
 import { Form, Input, Button,Select, Modal, message, Upload } from 'antd';
 import { LoadingOutlined, PlusOutlined, } from '@ant-design/icons';
 import { useSelector  } from 'react-redux';
@@ -16,7 +16,7 @@ const CreatePostModal = (props) => {
 		imgUrl: localStorage.getItem('userAvatar')
 	})
 	 //store
-	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
+	// const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
 	const updateStatus = useSelector( state => state.auth.updateStatus)
 	// const closeModal = useCallback(
 	// 	() => {
