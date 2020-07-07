@@ -43,12 +43,12 @@ const RequestMeeting = (props) => {
 	  	className="modal"
 	  	footer='null'
 		>
-	    <div className="createpost">
-	    	<div className="createpost__header">
+	    <div className="reqmeeting">
+	    	<div className="reqmeeting__header">
 	    		<h1> Request Meeting </h1>    		
 	    	</div>
 	    	
-		    	<div 	className="createpost-wrapper__form">
+		    	<div 	className="reqmeeting-wrapper__form">
 			      <Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical">
 
 				    

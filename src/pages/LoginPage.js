@@ -106,10 +106,6 @@ const LoginPage = (props) => {
 	            </Button>
 	          </Form.Item>
 			  
-			  <Form.Item className="login__form--form-button">
-	          	<h5> <Link to='/'> Forget Password ? </Link> </h5>
-	          </Form.Item>  
-
 			  <Form.Item>
 	            <Button type="primary" >
                     <Link to='/register'> Create New Account </Link>    
