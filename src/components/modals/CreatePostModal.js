@@ -18,17 +18,19 @@ const CreatePostModal = (props) => {
 	 //store
 	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
 	const updateStatus = useSelector( state => state.auth.updateStatus)
-	const closeModal = useCallback(
-		() => {
-				setCreatePostModal (false)
-		}, [setCreatePostModal],
-	)
+	// const closeModal = useCallback(
+	// 	() => {
+	// 		setCreatePostModal(false)
+	// 	}, [setCreatePostModal],
+	// )
 
-	useEffect( () =>{
-		if(isAuthenticate){
-			closeModal()
-		}
-	}, [isAuthenticate, closeModal])
+	// useEffect( () =>{
+	// 	if(isAuthenticate){
+	// 		closeModal()
+	// 	}
+	// }, [isAuthenticate, closeModal])
+
+
 
 	function getBase64(img, callback) {
 	  const reader = new FileReader();
