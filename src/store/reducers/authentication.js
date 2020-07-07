@@ -36,26 +36,39 @@ const auth = (state = initialState, action) => {
 					token: localStorage.removeItem("token"),
 				}
 
-    	case type.UPDATE_UPLOADING:
-      return{
-        ...state, updateStatus: "uploading",loading: true
-      }
+			case type.REQUEST_SUCCESS:
+				return{
+					...state,
+					isAuthenticate: false,
+					token: localStorage.removeItem("token"),
+				}
 
-    	case type.UPDATE_SUCCESS:
-      return{
-        ...state, updateStatus: "done",loading: false
-      }
-      
-    	case type.UPDATE_FAILED:
-      return{
-        ...state, updateStatus: "failed",loading: false
-      }
-      case "SIGNOUT" :
-      	localStorage.clear()
-      	return {
-      		...state,
-      		isAuthenticate: false,
-      	}
+			case type.REQUEST_FAILED:
+				return{
+					...state,
+					isAuthenticate: false,
+				}
+
+				case type.UPDATE_UPLOADING:
+			return{
+				...state, updateStatus: "uploading",loading: true
+			}
+
+				case type.UPDATE_SUCCESS:
+			return{
+				...state, updateStatus: "done",loading: false
+			}
+			
+				case type.UPDATE_FAILED:
+			return{
+				...state, updateStatus: "failed",loading: false
+			}
+			case "SIGNOUT" :
+				localStorage.clear()
+				return {
+					...state,
+					isAuthenticate: false,
+		}
 
 	}
 }
