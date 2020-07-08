@@ -85,3 +85,7 @@
     font-weight: bold;
 }
 
+
+p::first-letter{
+    text-transform: uppercase;
+}
