@@ -87,7 +87,7 @@ const LoginPage = (props) => {
 			  
 			  <Form.Item>
 	            <Button type="primary" >
-                    <Link to='/register'> Create New Account </Link>    
+                    <Link to='/'> Create New Account </Link>    
 	            </Button>
               </Form.Item>  
 

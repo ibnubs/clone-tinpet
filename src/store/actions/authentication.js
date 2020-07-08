@@ -6,6 +6,7 @@ import {
 } from './types';
 import { message } from 'antd';
 import axios from 'axios';
+import {getAllPets} from './post';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -37,7 +38,6 @@ export const login = (data, props) => async dispatch => {
 		if (res.data.status === 'success') {
 			localStorage.setItem("token", res.data.data.token)
 		}
-
 		dispatch({
 			type: LOGIN_SUCCESS
 		})
