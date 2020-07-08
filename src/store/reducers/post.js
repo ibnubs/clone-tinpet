@@ -1,4 +1,4 @@
-import * as type from '../actions/types';
+// import * as type from '../actions/types';
 
 const initialState = {
 	token: localStorage.getItem('token'),

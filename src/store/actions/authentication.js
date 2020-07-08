@@ -6,7 +6,7 @@ import {
 } from './types';
 import { message } from 'antd';
 import axios from 'axios';
-import {getAllPets} from './post';
+
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 

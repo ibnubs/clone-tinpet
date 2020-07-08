@@ -1,5 +1,5 @@
 import React, { useState, Fragment  } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch  } from 'react-redux';
 import { Col, Row, Button } from 'antd';
 import { PlusSquareOutlined } from '@ant-design/icons';
 import CreatePostModal from '../modals/CreatePostModal'

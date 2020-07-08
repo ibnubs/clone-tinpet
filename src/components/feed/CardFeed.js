@@ -16,7 +16,10 @@ const CardFeed = (props) => {
     const openRequestMeeting = async () => {
         await setRequestMeeting (true)
     }
-
+    
+    useEffect(() => {
+        dispatch(getAllPets())
+    }, [dispatch])
 
 const petList = pets.map((item) =>{
     return(
