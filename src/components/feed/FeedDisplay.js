@@ -26,12 +26,12 @@ const FeedDisplay = (props) => {
                         <Button className='btn-post' block  onClick={openCreatePostModal}>
                             <span style={{float:'left', marginRight:'20px'}}><PlusSquareOutlined /></span>
                             Write a post 
+                        </Button>
                         <CreatePostModal
                             dispatch={dispatch}
                             createPostModal={createPostModal}
                             setCreatePostModal={setCreatePostModal}
                         />
-                        </Button>
 
                     </Col>
                 </Row>
