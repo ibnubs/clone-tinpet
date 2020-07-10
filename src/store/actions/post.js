@@ -25,3 +25,4 @@ export const getAllPets = () => async (dispatch) => {
         })
     }
 }
+

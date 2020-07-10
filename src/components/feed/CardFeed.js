@@ -21,6 +21,16 @@ const CardFeed = (props) => {
         dispatch(getAllPets())
     }, [dispatch])
 
+    // const likeCounterLogic = pets(item => {
+    //     if (item.likeCounter === 'null' ){
+    //         return 0
+    //     } else {
+    //         return item.likeCounter
+    //     }
+    // })
+
+    // console.log(likeCounterLogic)
+
 const petList = pets.map((item) =>{
     return(
         <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} key={item.id} >
