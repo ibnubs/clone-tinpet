@@ -7,7 +7,6 @@ import SearchComponent from '../components/search/SearchComponent';
 import FeedDisplay from '../components/feed/FeedDisplay';
 
 
-
 const HomePage = () => {
     return (
         <Fragment>
@@ -17,7 +16,6 @@ const HomePage = () => {
                 <FeedDisplay />
             </Row>
             <CreatePostModal />
-
         </Fragment>
     );
 }
