@@ -98,7 +98,7 @@ export const request = (data, props) => async dispatch => {
 			type: REQUEST_FAILED
 		})
 	}
-
 }
+
 
 
