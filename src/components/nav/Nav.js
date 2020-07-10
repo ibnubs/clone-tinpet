@@ -1,30 +1,72 @@
-import React, { Fragment } from 'react';
-import { Layout, Menu, Row, Avatar } from 'antd';
+import React, { Fragment, useEffect } from 'react';
+import { Layout, Menu, Row, Avatar, Badge, Dropdown } from 'antd';
 import './nav.css';
+import {Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../../store/actions/profile';
 
 const { Header } = Layout;
 
+
+const menu = (
+    <Menu>
+        <Menu.Item key="0">
+            <Link to='/profile'>
+                <p>Profile</p>
+            </Link>
+        </Menu.Item>
+        <Menu.Item key="1">
+            <Link to='/login'>
+                <p>Logout</p>
+            </Link>
+        </Menu.Item>
+    </Menu>
+);
+
+
+
+
+
 const Nav = () => {
+    
+    const dispatch = useDispatch();
+    const profile = useSelector(state => state.profile.profileDetail)
+    useEffect(() => {
+        dispatch(getProfile())
+        return () => {
+        }
+    }, [dispatch])
+    
     return (
         <Fragment>
             <Header className="header navBar" >
-                <div className="logo" >
-                    <img src={require('../../assets/images/tinpet-navbar-logo.svg')} alt='tinpet-logo' />
-                </div>
+                <Link to='/homepage'>
+                    <div className="logo" >
+                        <img className="logo-img" src={require('../../assets/images/tinpet-navbar-logo.svg')} alt='tinpet-logo' />
+                    </div>
+                </Link>
                 <Row justify="end">
-                <Menu  mode="horizontal"  collapsible="false" style={{borderBottom: 'none'}}>
+                <Menu  mode="horizontal" className='menu-item'>
                     <Menu.Item key="1" >
-                        <a href='/#'><img src={require('../../assets/images/message-icon.svg')}  alt='message-icon' /></a>
-                        
+                        <Badge count={1} dot>
+                            <Link to='/profile'>
+                                <img src={require('../../assets/images/message-icon.svg')}  alt='message-icon' />
+                            </Link>
+                        </Badge>
                     </Menu.Item>
                     <Menu.Item key="2">
-                        <a href='/#'><img src={require('../../assets/images/notification-icon.svg')}  alt='notif-icon' /></a>
+                        <Badge count={20} overflowCount={10}>
+                            <Link to='/profile'>
+                                <img src={require('../../assets/images/notification-icon.svg')}  alt='notif-icon' />
+                            </Link>
+                        </Badge>
                     </Menu.Item>
                     <Menu.Item key="3">
-                        <a href='/#'>
-                            <Avatar size={35} src={require('../../assets/images/michael-dam-mEZ3PoFGs_k-unsplash.jpg')}  alt='avatar-icon' />
-                            {/* <img  style={{width:'35px', height:'35px'}} /></a> */} 
-                        </a>
+                        <Dropdown overlay={menu} trigger={['click']}>
+                            <a href='/profile'>
+                                <Avatar size={35} src={profile.image_url}  alt='avatar-icon' />
+                            </a>
+                        </Dropdown>
                     </Menu.Item>
                 </Menu>
                 </Row>
