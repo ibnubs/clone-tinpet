@@ -2,25 +2,21 @@ const initialState = {
 	token: localStorage.getItem('token'),
 	error: null,
 	loading: false,
-	profileDetail: [],
+	petsDetail:[]
 }
 
-
-
-const profile = (state = initialState, action) => {
+const ownPets = (state = initialState, action) => {
 
 	const {type, payload} = action;
 	switch (type){
-		case 'GET_PROFILE':
+		case 'GET_OWN_PETS':
 			return{
 				...state,
-				profileDetail: payload
-			};
+				petsDetail: payload
+			}
 		default:
 			return {...state};
 	}
 }
 
-export default profile;
-
-
+export default ownPets; 

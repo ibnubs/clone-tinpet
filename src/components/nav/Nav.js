@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Layout, Menu, Row, Avatar, Badge, Dropdown } from 'antd';
 import './nav.css';
 import {Link} from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from '../../store/actions/profile';
 
 const { Header } = Layout;
 
@@ -24,7 +26,17 @@ const menu = (
 
 
 
+
 const Nav = () => {
+    
+    const dispatch = useDispatch();
+    const profile = useSelector(state => state.profile.profileDetail)
+    useEffect(() => {
+        dispatch(getProfile())
+        return () => {
+        }
+    }, [dispatch])
+    
     return (
         <Fragment>
             <Header className="header navBar" >
@@ -52,7 +64,7 @@ const Nav = () => {
                     <Menu.Item key="3">
                         <Dropdown overlay={menu} trigger={['click']}>
                             <a href='/profile'>
-                                <Avatar size={35} src={require('../../assets/images/michael-dam-mEZ3PoFGs_k-unsplash.jpg')}  alt='avatar-icon' />
+                                <Avatar size={35} src={profile.image_url}  alt='avatar-icon' />
                             </a>
                         </Dropdown>
                     </Menu.Item>
