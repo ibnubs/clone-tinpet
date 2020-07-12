@@ -8,27 +8,11 @@ import {login} from '../store/actions/authentication'
 import { useDispatch } from "react-redux";
 //import { useForm } from "react-hook-form";
 
-import imagecatdog from '../assets/images/cat&dog.svg';
-import imagetinpet from '../assets/images/tinpet-logo.svg';
-
 
 const LoginPage = (props) => {
 	const dispatch = useDispatch()
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
-
-    
-
-	// const {register, handleSubmit} = useForm()
-    const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
-
-  const onSubmit = data =>{
-    console.log(data)
-    dispatch(login(data))
-  }
 
 	const submitLogin = e => {
 		console.log('test dlu')
@@ -38,20 +22,15 @@ const LoginPage = (props) => {
 			password
 		}
 		//console.log("data", userData)
-		dispatch(login(userData))
+		dispatch(login(userData, props))
 	}
-
 	
-
-
-
-
 	return(
 		<div>
 			<div className="login">
 				<div className="login__images">
-					<img className="login__images--image-catdog" src={imagecatdog} alt='' />
-					<img className="login__images--image-tinpet" src={imagetinpet} alt='' />
+					<img className="login__images--image-catdog" src={require('../assets/images/cat&dog.svg')} alt='' />
+					<img className="login__images--image-tinpet" src={require('../assets/images/tinpet-logo.svg')} alt='' />
 					<h5 className="login__images--description" > Find Your Pet's Soulmate </h5>
 				</div>
 				<div className="login__form">
@@ -106,13 +85,9 @@ const LoginPage = (props) => {
 	            </Button>
 	          </Form.Item>
 			  
-			  <Form.Item className="login__form--form-button">
-	          	<h5> <Link to='/'> Forget Password ? </Link> </h5>
-	          </Form.Item>  
-
 			  <Form.Item>
 	            <Button type="primary" >
-                    <Link to='/register'> Create New Account </Link>    
+                    <Link to='/'> Create New Account </Link>    
 	            </Button>
               </Form.Item>  
 

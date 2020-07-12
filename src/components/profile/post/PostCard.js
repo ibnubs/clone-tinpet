@@ -6,6 +6,8 @@ import { HeartFilled, MessageOutlined } from '@ant-design/icons';
 
 const PostCard = () => {
 
+
+
     return (
         <Fragment>
             <Row style={{height:'', width:'100%', margin:'40px 0px 40px 0px'}} >
