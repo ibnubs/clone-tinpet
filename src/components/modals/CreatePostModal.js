@@ -114,7 +114,7 @@ const uploadButton = (
 	  	onCancel={()=>setCreatePostModal(false)}
 	  	visible={createPostModal}
 	  	className="modal"
-	  	footer='null'
+	  	footer={null}
 		>
 	    <Fragment>
 

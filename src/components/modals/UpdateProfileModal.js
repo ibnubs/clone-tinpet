@@ -2,24 +2,17 @@ import React, { useState, useEffect, useCallback} from 'react';
 import { Modal, Form, Input, Button, message, Upload} from 'antd';
 import { LoadingOutlined, PlusOutlined} from '@ant-design/icons'; //editoutlined
 import './UpdateProfileModal.scss';
-import { useSelector } from 'react-redux'; //, useDispatch
+import { useSelector, useDispatch } from 'react-redux'; 
+import { useHistory } from 'react-router-dom';
 import {updateProfile} from '../../store/actions/authentication';
-import store from '../../store/index';
-
+import swal from 'sweetalert2';
+const {TextArea} = Input;
 
 const UpdateProfileModal = (props) => {
 		 //state
-	const {setUpdateProfileModal, dispatch, updateProfileModal } = props
-	// const [ isLoading, setIsLoading ] = useState(false)
-	const [file, setFile ] =useState(null)
-	const [imgUpload, setImgUpload] = useState ({
-		loading: false,
-		imgUrl: localStorage.getItem('userAvatar')
-	})
-	 //store
-	// const loading = useSelector(state => state.auth.loading)
-	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
-	const updateStatus = useSelector( state => state.auth.updateStatus)
+	const {setUpdateProfileModal, updateProfileModal } = props
+
+	const updateProfile = useSelector( state => state.auth.updateProfile)
 	
 	const closeModal = useCallback(
 		() => {
@@ -27,117 +20,71 @@ const UpdateProfileModal = (props) => {
 		}, [setUpdateProfileModal],
 	)
 
-	useEffect( () =>{
-		if(isAuthenticate){
-			closeModal()
-		}
-	}, [isAuthenticate, closeModal])
+// state update profile
 
-	function getBase64(img, callback) {
-	  const reader = new FileReader();
-	  reader.addEventListener('load', () => callback(reader.result));
-	  reader.readAsDataURL(img);
-	}
+const dispatch = useDispatch();
+const history = useHistory();
+const profile = useSelector((state) => state.profileReducer);
+const [image, setImage] = useState('');
+// const [full_name, setFull_name] = useState(profile.data.full_name);
+// const [email, setEmail] = useState(profile.data.email);
+const [mobile_number, setMobile_number] = useState();
+const [full_address, setFull_address] = useState('');
+const [description, setDescription] = useState('');
 
-	function beforeUpload(file) {
-	  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-	  if (!isJpgOrPng) {
-	    message.error('You can only upload JPG/PNG file!');
-	  }
-	  const isLt2M = file.size / 1024 / 1024 < 2;
-	  if (!isLt2M) {
-	    message.error('Image must smaller than 2MB!');
-	  }
-	  return isJpgOrPng && isLt2M;
-	}
+// const changeFull_name = (value) => {
+// 	setFull_name(value);
+// };
+// const changeEmail = (value) => {
+// 	setEmail(value);
+// };
 
-	const handleChangeCallback = () => {
-		const status = store.getState().auth.updateStatus
-		if(status === 'done'){
-			console.log("done")
-			getBase64(file, imgUrl => 
-				setImgUpload({
-					imgUrl,
-					loading: false
-				}),
-			);
-			
-			dispatch({type: "UPDATE_INITIAL"})
-		}
-		if (status === 'failed'){
-			setImgUpload({
-				...imgUpload,
-				loading: false,
-			})
-			dispatch({type: 'UPDATE_INITIAL'})
-		}
-	}
 
-	const handleChange = async (callback) => {
-		const data = new FormData()
-		data.append("image", file)
-		if(updateStatus === 'initial') {
-			console.log("uploading")
-			setImgUpload({loading: true});
-			await dispatch(updateProfile(data))
-		}
-		callback()
-	}
-
-	 const uploadButton = (
-    <div>
-      {imgUpload.loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div className="ant-upload-text">Change Picture</div>
-    </div>)
-
-  const { imgUrl } = imgUpload
-	// const [imageUrl, setimageUrl] = useState();
+	
 
 	return(
 		<Modal style={{ transition: "all .4s ease"}}
-		  	onCancel={()=>setUpdateProfileModal(false)}
-		  	visible={updateProfileModal}
-		  	className="modal"
-		  	footer='null'
-			>
+	  	onCancel={()=>setUpdateProfileModal(false)}
+	  	visible={updateProfileModal}
+	  	className="modal-updateprofile"
+	  	footer= {null}
+		>
 
 			<div className="updateprofile-wrapper">
 
 				<h1> Edit Profile </h1>
-				<Upload
-          name="avatar"
-          listType="picture-card"
-          className="avatar-uploader"
-          showUploadList={false}
-          beforeUpload={file => {beforeUpload(file); setFile(file)}}
-          onChange={()=>handleChange(handleChangeCallback)}
-        >
-           {imgUrl ? <img src={imgUrl} alt="avatar" className="image-uploader"/> : uploadButton}
-        </Upload>
-
-				<Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical">
+				<div className="updateprofile-wrapper__changepicture">
+					<img className="updateprofile-wrapper__changepicture--image" src='' />
+					<Button className="updateprofile-wrapper__changepicture--button"> Change Picture </Button>
+				</div>
+				
+				<Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical" className="updateprofile-wrapper__form">
 		      <Form.Item label="Full Name">
-		        <Input  className="input"/>
+		        <Input  className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
 		      <Form.Item label="Email">
-		        <Input  className="input"/>
+		        <Input  className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
  					<Form.Item label="Mobile Number">
-		        <Input  className="input"/>
+		        <Input  className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
  					<Form.Item label="Full Address">
-		        <Input  className="input"/>
+		        <Input  className="updateprofile-wrapper__form--input"/>
+		      </Form.Item>
+
+		      <Form.Item label="Description">
+		      	<TextArea  className="updateprofile-wrapper__form--input" 
+		      	placeholder="description of your pet" />
 		      </Form.Item>
 					
-					<Form.Item className="button_post">
-	          <Button type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '130px'}}
-	           key="submit">Save Changes</Button>
+					<Form.Item className="updateprofile-wrapper__form--button-post">
+	          <Button type="primary" style={{backgroundColor: '#FF65C5', fontWeight: 'bold'}} key="submit">Save Changes</Button>
 	        </Form.Item>
 
-	        <Form.Item className="button_cancel">
+	        <Form.Item className="updateprofile-wrapper__form--button-cancel">
 	          <Button onClick={()=>setUpdateProfileModal(false)}>Cancel</Button>
 	        </Form.Item>
 
