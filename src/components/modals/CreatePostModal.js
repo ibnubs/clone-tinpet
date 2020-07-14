@@ -6,12 +6,12 @@ import { useHistory } from 'react-router-dom';
 import {createPost} from '../../store/actions/createPost';
 import './CreatePostModal.scss';
 
-function getBase64(img, callback){
-	const reader = new FileReader();
-	reader.addEventListener("load", () => callback(reader.result));
-	reader.readAsDataURL(img);
-	console.log(reader.result)
-}
+// function getBase64(img, callback){
+// 	const reader = new FileReader();
+// 	reader.addEventListener("load", () => callback(reader.result));
+// 	reader.readAsDataURL(img);
+// 	console.log(reader.result)
+// }
 
 const CreatePostModal = (props) => {
 
@@ -20,40 +20,32 @@ const CreatePostModal = (props) => {
 	const dispatch = useDispatch()
 	const history = useHistory();
 	const [name, setName] = useState('')
-	const [image, setImage] = useState('')
-	const [age, setAge] = useState('')
+	const [age, setAge] = useState()
+	const [image, setImage] = useState(null)
 	const [category, setCategory] = useState('')
 	const [gender, setGender] = useState('')
 	const [breed, setBreed] = useState('')
 	const [location, setLocation] = useState('')
 	const [description, setDescription] = useState('')
 	const { createPostModal, setCreatePostModal} = props
-	const { imageUrl } = useState(null);
 	const { TextArea } = Input
+
 
 	const submitCreatePost  = (e) => {
 		e.preventDefault();
 		let data = new FormData();
 		data.append("name", name)
 		data.append("age", age)
-		data.append("file", image)
+		data.append("image", image)
 		data.append("category", category)
 		data.append("gender", gender)
 		data.append("breed", breed)
 		data.append("location", location)
 		data.append("description", description)
-		const userData = {
-			name,
-			file,
-			age,
-			category,
-			gender,
-			breed,
-			location,
-			description
-		}
-		console.log('userdata', userData)
-		dispatch(createPost(userData))
+
+		console.log('userdata', data)
+		dispatch(createPost(data))
+		//dispatch get all data
 	}
 
 	const submitCategory = async (value) => {
@@ -64,11 +56,9 @@ const CreatePostModal = (props) => {
 		await setGender(value)
 	}
 
-	const [file, setFile] = useState(null)
-	const onChange = async e => {
-		setFile(e.target.files[0])
-			getBase64(e.target.files[0], img => setFile(img))
-			console.log(e.target.files[0])
+	const onChange = (e) => {
+		console.log('image', e.target.files) 
+		setImage(e.target.files[0])
 	}
 
   return (
@@ -84,21 +74,17 @@ const CreatePostModal = (props) => {
 	    	</div>
 	    	<div className="createpost-wrapper">	    		
 		    	<div className="createpost-wrapper__photo">		    				  
-			    {/*<img src={file} alt="avatar" style={{ width: '100%', borderRadius:"50%" }} />*/}
       			<div>
 				    	<label for="file"> <Avatar icon={<UserOutlined />} 
 				    	style={{cursor: "pointer", borderRadius:"50%", marginRight: "30px", marginLeft: '10px'}} 
-				    	src={file} size={260}/> </label>     			
-      				<input 
+				    	src={image} size={260}/> </label>     			
+      				<input
 				    		type ="file"
-				    		name ="file"
-				    		id ="file"
-				    		accept= "image/*"
-				    		style= {{display: 'none'}}
+				    		name ="image"
+				    		// style= {{display: 'none'}}
 				    		onChange={onChange}
 				    		placeholder="Upload your photo"
-				    		// value ={image}
-				    		/>     		
+				    	/> 		
       			</div> 
 		    	</div>
 		    	<div 	className="createpost-wrapper__form">

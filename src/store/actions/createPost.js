@@ -7,7 +7,7 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 export const createPost = (data) => async dispatch => {
 	console.log("ada create post gak?", data)
 	try{
-		const res = await axios.post(`${baseUrl}/api/v1/pets/{id}`, data)
+		const res = await axios.post(`${baseUrl}/api/v1/pets/`, data)
 		console.log("respond createpost", res)
 		dispatch({
 			type: CREATEPOST_SUCCESS

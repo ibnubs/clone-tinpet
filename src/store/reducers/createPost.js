@@ -3,7 +3,7 @@ import {CREATEPOST_SUCCESS} from '../actions/types';
 const initialState = {
 	token: localStorage.getItem('token'),
 	loading: false,
-	data: [],
+	userData: [],
 }
 
 const createPost = (state= initialState, action) => {
