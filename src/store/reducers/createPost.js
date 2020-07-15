@@ -1,4 +1,4 @@
-import {CREATEPOST_SUCCESS} from '../actions/types';
+
 
 const initialState = {
 	token: localStorage.getItem('token'),
@@ -9,7 +9,7 @@ const initialState = {
 const createPost = (state= initialState, action) => {
 	const {type, payload} = action;
 	switch(type) {
-		case CREATEPOST_SUCCESS:
+		case 'CREATEPOST_SUCCESS':
 			return{
 				...state,
 				data: payload,

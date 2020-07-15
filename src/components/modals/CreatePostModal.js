@@ -1,8 +1,8 @@
 import React, {useState, Fragment} from 'react'; // useCallback, useEffect,
-import { Form, Input, Button,Select, Modal, message, Upload, Avatar } from 'antd';
-import { LoadingOutlined, PlusOutlined, UserOutlined} from '@ant-design/icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom'; 
+import { Form, Input, Button,Select, Modal, Avatar } from 'antd'; // message, Upload,
+import {  UserOutlined} from '@ant-design/icons'; //LoadingOutlined, PlusOutlined,
+import { useDispatch } from 'react-redux'; //, useSelector
+// import { useHistory } from 'react-router-dom'; 
 import {createPost} from '../../store/actions/createPost';
 import './CreatePostModal.scss';
 
@@ -18,7 +18,7 @@ const CreatePostModal = (props) => {
 //state
 	// const createPosts = useSelector (state => state.createPost.pets)
 	const dispatch = useDispatch()
-	const history = useHistory();
+	// const history = useHistory();
 	const [name, setName] = useState('')
 	const [age, setAge] = useState()
 	const [image, setImage] = useState(null)
@@ -32,7 +32,6 @@ const CreatePostModal = (props) => {
 
 
 	const submitCreatePost  = (e) => {
-		
 		e.preventDefault();
 		console.log('test', name, age, image, category, gender, breed, location, description)
 		let data = new FormData();
@@ -46,9 +45,10 @@ const CreatePostModal = (props) => {
 		data.append("description", description)
 
 		console.log('userdata', data)
-		dispatch(createPost(data))
-
+		dispatch(createPost(data,))
+		setCreatePostModal(false)
 		//dispatch get all data
+		
 	}
 
 	const submitCategory = async (value) => {
@@ -78,13 +78,14 @@ const CreatePostModal = (props) => {
 	    	<div className="createpost-wrapper">	    		
 		    	<div className="createpost-wrapper__photo">		    				  
       			<div>
-				    	<label for="file"> <Avatar icon={<UserOutlined />} 
+				    	<label for="image"> <Avatar icon={<UserOutlined />} 
 				    	style={{cursor: "pointer", borderRadius:"50%", marginRight: "30px", marginLeft: '10px'}} 
 				    	src={image} size={260}/> </label>     			
       				<input
+      					id="image"
 				    		type ="file"
 				    		name ="image"
-				    		// style= {{display: 'none'}}
+				    		style= {{display: 'none'}}
 				    		onChange={onChange}
 				    		placeholder="Upload your photo"
 				    	/> 		
