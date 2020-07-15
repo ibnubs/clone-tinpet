@@ -32,7 +32,9 @@ const CreatePostModal = (props) => {
 
 
 	const submitCreatePost  = (e) => {
+		
 		e.preventDefault();
+		console.log('test', name, age, image, category, gender, breed, location, description)
 		let data = new FormData();
 		data.append("name", name)
 		data.append("age", age)
@@ -45,6 +47,7 @@ const CreatePostModal = (props) => {
 
 		console.log('userdata', data)
 		dispatch(createPost(data))
+
 		//dispatch get all data
 	}
 

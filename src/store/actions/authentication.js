@@ -37,6 +37,7 @@ export const login = (data, props) => async dispatch => {
 		console.log('respon data', res.data)
 		if (res.data.status === 'success') {
 			localStorage.setItem("token", res.data.data.token)
+			// axios.defaults.headers.common['/Authorization'] = res.data.data.token;
 		}
 		dispatch({
 			type: LOGIN_SUCCESS
