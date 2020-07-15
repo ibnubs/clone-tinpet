@@ -31,12 +31,18 @@ export const register = (data, props) => async dispatch => {
 
 export const login = (data, props) => async dispatch => {
 	console.log("data", data)
+	let token = localStorage.getItem("token")
 	try {
-		const res = await axios.post(`${baseUrl}/api/v1/users/login`, data)
+		const res = await axios.post(`${baseUrl}/api/v1/users/login`, data, {
+			headers: {
+				authorization: token
+			}
+		})
 		console.log("respond dong", res)
 		console.log('respon data', res.data)
 		if (res.data.status === 'success') {
 			localStorage.setItem("token", res.data.data.token)
+			// axios.defaults.headers.common['/Authorization'] = res.data.data.token;
 		}
 		dispatch({
 			type: LOGIN_SUCCESS
