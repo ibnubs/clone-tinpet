@@ -48,21 +48,6 @@ const auth = (state = initialState, action) => {
 					...state,
 					isAuthenticate: false,
 				}
-
-				case type.UPDATE_UPLOADING:
-			return{
-				...state, updateStatus: "uploading",loading: true
-			}
-
-				case type.UPDATE_SUCCESS:
-			return{
-				...state, updateStatus: "done",loading: false
-			}
-			
-				case type.UPDATE_FAILED:
-			return{
-				...state, updateStatus: "failed",loading: false
-			}
 			case "SIGNOUT" :
 				localStorage.clear()
 				return {
