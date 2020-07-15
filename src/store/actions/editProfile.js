@@ -9,7 +9,7 @@ export const editProfile = data => {
 			url: 'https://product-tinpet-app.herokuapp.com/api/v1/users/profile',
 			data,
 			headers: {
-				Authorization: token,
+				authorization: token,
 			}
 		})
 		.then((res) => {
