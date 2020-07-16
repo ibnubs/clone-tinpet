@@ -7,11 +7,13 @@ import Profile from '../pages/Profile';
 import SearchResult from '../pages/SearchResult';
 import Notification from '../pages/Notification';
 import Message from '../pages/Message';
+// import PrivateRoute from './PrivateRoute';
+
 
 const Routes = () => {
     return(
       <Fragment>
-      	<Route path='/searchresult' exact component={SearchResult} />
+        <Route path='/searchresult' exact component={SearchResult} />
         <Route path='/login' exact component={LoginPage} />
         <Route path='/' exact component={RegisterPage} />
         <Route path='/homepage' exact component={HomePage} />
@@ -23,3 +25,4 @@ const Routes = () => {
 }
 
 export default Routes;
+        // {*/// <PrivateRoute exact path="/" component={RegisterPage}  />*/}

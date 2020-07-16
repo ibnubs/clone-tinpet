@@ -1,4 +1,3 @@
-// import * as type from '../actions/types';
 
 const initialState = {
 	token: localStorage.getItem('token'),
@@ -32,3 +31,5 @@ const post = (state = initialState, action) => {
 }
 
 export default post;
+
+

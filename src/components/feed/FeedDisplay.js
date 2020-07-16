@@ -6,9 +6,6 @@ import CreatePostModal from '../modals/CreatePostModal'
 import './feed.scss';
 import CardFeed from './CardFeed';
 
-
-
-
 const FeedDisplay = (props) => {
 
     const [ createPostModal, setCreatePostModal ] = useState(false);
@@ -28,7 +25,6 @@ const FeedDisplay = (props) => {
     // </div>
     // )
     
-
     return (
         <Fragment>
             <Col className='box feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
