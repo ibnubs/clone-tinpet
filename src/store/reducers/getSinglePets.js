@@ -5,7 +5,7 @@ const initialState = {
 	petsDetail:[]
 }
 
-const ownPets = (state = initialState, action) => {
+const getSinglePets = (state = initialState, action) => {
 
 	const {type, payload} = action;
 	switch (type){
@@ -19,4 +19,4 @@ const ownPets = (state = initialState, action) => {
 	}
 }
 
-export default ownPets; 
+export default getSinglePets; 

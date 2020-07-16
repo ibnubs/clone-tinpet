@@ -19,8 +19,6 @@ export const getProfile = () => async (dispatch) => {
             type: 'GET_PROFILE',
             payload: res.data.data.userData.Profile 
         })
-        
-        
     } catch (error) {
         console.log(error, 'error Get profile')
         dispatch({
@@ -29,25 +27,3 @@ export const getProfile = () => async (dispatch) => {
     }
 }
 
-export const getSinglePets = () => async (dispatch) => {
-    const token = localStorage.getItem('token')
-    try{
-        const res = await axios.get (`${baseUrl}/api/v1/pets/`, {
-            headers: {
-                authorization:token
-            }
-        })
-        // console.log(res.data, 'ini res data single' )
-        // console.log(res.data.data, 'ini res data single' )
-        dispatch({
-            type: 'GET_OWN_PETS',
-            playload: res.data.data
-        })
-
-    } catch  (error) {
-        console.log(error, 'error dari single get pets')
-        dispatch({
-            type: 'GET_OWN_PETS_FAILED'
-        })
-    }
-}

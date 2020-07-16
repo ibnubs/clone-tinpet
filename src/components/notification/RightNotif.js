@@ -1,22 +1,11 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Col, Row, Button } from 'antd';
 import {Link} from 'react-router-dom';
-import './right-profile.css';
-import PostCard from './post/PostCard';
-import { useDispatch, useSelector } from "react-redux";
-import { getSinglePets } from '../../store/actions/getSinglePets';
+import './right-notif.css';
+import NotificationProfile from './notification/NotificationProfile';
 
-
-const RightProfile = () => {
+const RightNotif = () => {
     
-    const dispatch = useDispatch()
-    const singlePets = useSelector(state => state.getSinglePets.petsDetail)
-    console.log(singlePets, 'single pets dari component')
-    
-    useEffect(() => {
-        dispatch ( getSinglePets() )
-    }, [dispatch])
-
     return (
         <Fragment>
             <Col className='box-right-profile feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
@@ -32,11 +21,11 @@ const RightProfile = () => {
                     </Link>
                 </Row>
                 <Row className='feed-post'>
-                    <PostCard singlePets={singlePets} />
+                    <NotificationProfile />
                 </Row>
             </Col>
         </Fragment>
     );
 }
 
-export default RightProfile;
+export default RightNotif;
