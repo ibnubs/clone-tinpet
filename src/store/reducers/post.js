@@ -7,6 +7,7 @@ const initialState = {
 	updateStatus: "initial",
 	post: [],
 	pets: [],
+	likeCounter: (null),
 }
 
 
@@ -20,6 +21,11 @@ const post = (state = initialState, action) => {
 				...state,
 				pets: payload
 			};
+		case 'LIKE':
+			return{
+				...state,
+				likeCounter:payload
+			}
 		default:
 			return {...state};
 	}

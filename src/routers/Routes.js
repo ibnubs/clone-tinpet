@@ -5,7 +5,8 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from '../pages/HomePage';
 import Profile from '../pages/Profile';
 import SearchResult from '../pages/SearchResult';
-
+import Notification from '../pages/Notification';
+import Message from '../pages/Message';
 
 const Routes = () => {
     return(
@@ -15,6 +16,8 @@ const Routes = () => {
         <Route path='/' exact component={RegisterPage} />
         <Route path='/homepage' exact component={HomePage} />
         <Route path='/profile' exact component={Profile} />
+        <Route path='/notif' exact component={Notification} />
+        <Route path='/message' exact component={Message} />
       </Fragment>
     )
 }
