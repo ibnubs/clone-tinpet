@@ -102,6 +102,7 @@ const petList = pets.map((item) =>{
                     <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
                         <Button block className='btn-rqsmeet' onClick={openRequestMeeting} >Request Meeting</Button>
                         <RequestMeeting
+                            id={item.id}
                             dispatch={dispatch}
                             requestMeeting={requestMeeting}
                             setRequestMeeting={setRequestMeeting}

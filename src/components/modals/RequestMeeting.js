@@ -3,7 +3,7 @@ import { Form, Input, Button, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
 import { useDispatch } from "react-redux";
-import {request} from '../../store/actions/authentication'
+import {request} from '../../store/actions/reqmeeting'
 
 const RequestMeeting = (props) => {
 
