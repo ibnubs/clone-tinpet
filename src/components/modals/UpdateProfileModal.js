@@ -3,16 +3,56 @@ import { Modal, Form, Input, Button, message, Upload, Avatar} from 'antd';
 import { LoadingOutlined, PlusOutlined, UserOutlined} from '@ant-design/icons'; //editoutlined
 import './UpdateProfileModal.scss';
 import { useSelector, useDispatch } from 'react-redux'; 
-import { useHistory } from 'react-router-dom';
-import { getProfile } from '../../store/actions/profile';
+// import { useHistory } from 'react-router-dom';
 import { editProfile } from '../../store/actions/editProfile';
 import swal from 'sweetalert2';
 const {TextArea} = Input;
 
 const UpdateProfileModal = (props) => {
-		 //state
-	const {setUpdateProfileModal, updateProfileModal } = props
 
+	const {setUpdateProfileModal, updateProfileModal } = props
+	const profile = useSelector((state) => state.editProfile);
+	const dispatch = useDispatch();
+	const [full_name, setFull_name] = useState('')
+	const [email, setEmail] = useState('')
+	// const [full_name, setFull_name] = useState(profile.data.name);
+	// const [email, setEmail] = useState(profile.data.email);
+	const [imagePreview, setImagePreview] = useState('');
+	const [image, setImage] = useState(null);
+	const [mobile_number, setMobile_number] = useState();
+	const [full_address, setFull_address] = useState('');
+	const [description, setDescription] = useState('')
+
+	// const changeName = (value) => {
+	// 	setName(value);
+	// }
+
+	// const changeEmail = (value) => {
+	// 	setEmail(value);
+	// }
+
+	const saveChanges = (e) => {
+		e.preventDefault();
+		let data = new FormData();
+		let inputName = document.getElementById("name").value;
+		let inputEmail = document.getElementById("email").value;
+		data.append("name", inputName)
+		data.append("email", inputEmail)
+		// data.append("image", selectedFile)
+		data.append("mobile_number", mobile_number)
+		data.append("full_address", full_address)
+		data.append("description", description)
+	}
+
+	// const [selectedFile, setSelectedFile] = useState(null);
+	// const onChangeHandler = (e) => {
+	// 	e.preventDefault();
+	// 	let reader = new FileReader();
+	// 	const file = e.target.files[0];
+	// 	reader.onloadend = () => {
+	// 		setSelectedFile(file);
+	// 	}
+	// }
 	
 	const closeModal = useCallback(
 		() => {
@@ -20,58 +60,33 @@ const UpdateProfileModal = (props) => {
 		}, [setUpdateProfileModal],
 	)
 
-	// state update profile
+	// const dispatch = useDispatch();
+	// const [full_name, setFull_name] = useState('')
+	// const [email, setEmail] = useState('')
+	// const [image, setImage] = useState(null);
+	// const [mobile_number, setMobile_number] = useState();
+	// const [full_address, setFull_address] = useState('');
+	// const [description, setDescription] = useState('');
 
-	// const [full_name, setFull_name] = useState(profile.profilaDetail.full_name);
-	// const [email, setEmail] = useState(profile.profileDetail.email);
-	// const changeFull_name = (value) => {
-	// 	setFull_name(value);
-	// };
-	// const changeEmail = (value) => {
-	// 	setEmail(value);
-	// };
-	const editProfile = useSelector( state => state.getProfile)
-	const dispatch = useDispatch();
-	const history = useHistory();
-	const profile = useSelector((state) => state.profileReducer);
-	const [full_name, setFull_name] = useState('')
-	const [email, setEmail] = useState('')
-	const [imagePreview, setImagePreview] = useState('');
-	const [mobile_number, setMobile_number] = useState();
-	const [full_address, setFull_address] = useState('');
-	const [description, setDescription] = useState('');
+	const onChangeImage = (e) => {
+		setImage(e.target.files[0])
+	}
 
-	// const onChangeImage = (e) => {
-	// 	setImage(e.target.files[0])
+	// const saveChanges = (e) => {
+	// 	// e.preventDefault();
+	// 	console.log(full_name, full_address, mobile_number, email, image, description)
+	// 	let data = new FormData();
+	// 	data.append('full_name', full_name)
+	// 	data.append('email', email)
+	// 	data.append('image', image)
+	// 	data.append('mobile_number', mobile_number)
+	// 	data.append('full_address', full_address)
+	// 	data.append('description', description)
+	// 	dispatch(saveChanges(data))
+	// 	setUpdateProfileModal(false)
 	// }
 
-	const saveChanges = (e) => {
-		// e.preventDefault();
-		let data = new FormData();
-		data.append('full_name', full_name)
-		data.append('email', email)
-		data.append('image', selectedFile)
-		data.append('mobile_number', mobile_number)
-		data.append('full_address', full_address)
-		data.append('description', description)
-		dispatch(saveChanges(data))
-	}
 
-	const [selectedFile, setSelectedFile] = useState(null);
-	const onChangeImage = e => {
-		e.preventDefault();
-		let reader = new FileReader();
-		const file = e.target.files[0]
-		reader.onloadend = () => {
-			setSelectedFile(file);
-			setImagePreview(reader.result);
-		};
-		reader.readAsDataURL(file);
-	}
-
-	useEffect(()=> {
-		dispatch(getProfile());
-	}, [dispatch]);
 
 	return(
 		<Modal style={{ transition: "all .4s ease"}}
@@ -87,8 +102,7 @@ const UpdateProfileModal = (props) => {
 				<div className="updateprofile-wrapper__changepicture">
 					{/*// <label for="file" className="updateprofile-wrapper__changepicture--image"> 
 					// <Avatar icon={<UserOutlined />}
-					// style={{cursor:"pointer", borderRadius:"50%"}} src={image} size={260}/> </label>*/}
-					
+					// style={{cursor:"pointer", borderRadius:"50%"}} src={image} size={260}/> </label>*/}					
 					<input 
 						type="file"
 						name="image"

@@ -8,24 +8,6 @@ import { getProfile } from '../../store/actions/profile';
 const { Header } = Layout;
 
 
-const menu = (
-    <Menu>
-        <Menu.Item key="0">
-            <Link to='/profile'>
-                <p>Profile</p>
-            </Link>
-        </Menu.Item>
-        <Menu.Item key="1">
-            <Link to='/login'>
-                <p>Logout</p>
-            </Link>
-        </Menu.Item>
-    </Menu>
-);
-
-
-
-
 
 const Nav = () => {
     
@@ -36,7 +18,24 @@ const Nav = () => {
         return () => {
         }
     }, [dispatch])
-    
+
+    const menu = () => {
+        return ( 
+            <Menu>
+                <Menu.Item key="0">
+                    <Link to='/profile'>
+                        <p>Profile</p>
+                    </Link>
+                </Menu.Item>
+                <Menu.Item key="1">
+                    <Link to='/login'>
+                        <p onClick={(()=>dispatch({type:"SIGNOUT"}))}>Logout</p>
+                    </Link>
+                </Menu.Item>
+            </Menu>
+        )
+    }
+
     return (
         <Fragment>
             <Header className="header navBar" >

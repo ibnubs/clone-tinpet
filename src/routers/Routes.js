@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import HomePage from '../pages/HomePage';
 import Profile from '../pages/Profile';
 import SearchResult from '../pages/SearchResult';
+// import PrivateRoute from './PrivateRoute';
 
 
 const Routes = () => {
@@ -20,3 +21,4 @@ const Routes = () => {
 }
 
 export default Routes;
+        // <PrivateRoute path="/" exact component={RegisterPage} />

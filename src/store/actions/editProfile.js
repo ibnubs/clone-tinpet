@@ -1,26 +1,31 @@
 import {EDIT_PROFILE_SUCCESS, EDIT_PROFILE_FAILED} from './types';
 import axios from 'axios';
+import {message} from 'antd';
 
-export const editProfile = data => {
-	let token = localStorage.getItem('token');
-	return (dispatch) => {
-		axios({
-			method: "PUT",
-			url: 'https://product-tinpet-app.herokuapp.com/api/v1/users/profile',
-			data,
+const baseUrl = 'https://product-tinpet-app.herokuapp.com';
+
+export const editProfile = (data) => async dispatch => {
+	let token = localStorage.getItem("token")
+	console.log("ada edit profile gak?", data)
+	try{
+		const res = await axios.put(`${baseUrl}/api/v1/users/profile`, data, {
 			headers: {
-				authorization: token,
+				authorization: token
 			}
 		})
-		.then((res) => {
-			console.log(res, 'res')
-			dispatch({
-				type: EDIT_PROFILE_SUCCESS,
-				payload: res.data.data
-			});
+		console.log("respond edit profile", res)
+		dispatch({
+			type: EDIT_PROFILE_SUCCESS
 		})
-		.catch((res) => {
-			console.log(res.message, "error");
+		message.info("edit profile success!")
+	}catch(error) {
+		console.log(error)
+		dispatch({
+			type: EDIT_PROFILE_FAILED
 		})
+		message.info("edit profile failed")
 	}
 }
+
+
+

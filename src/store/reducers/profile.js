@@ -14,11 +14,6 @@ const profile = (state = initialState, action) => {
 				...state,
 				profileDetail: payload,
 			};
-		case 'EDIT_PROFILE_SUCCESS':
-			return{
-				...state,
-				profileDetail: payload,
-			}
 		default:
 			return {...state};
 	}
