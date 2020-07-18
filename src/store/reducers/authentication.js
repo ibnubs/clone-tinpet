@@ -5,7 +5,6 @@ const initialState = {
 	error: null,
 	isAuthenticate: false,
 	loading: false,
-	updateStatus: "initial"
 }
 
 const auth = (state = initialState, action) => {
@@ -27,23 +26,10 @@ const auth = (state = initialState, action) => {
 			case type.LOGIN_SUCCESS :
 				return{
 					...state,
-					isAuthenticate: true
+					isAuthenticate: true,
+					loading: true
 				}
 			case type.LOGIN_FAILED:
-				return{
-					...state,
-					isAuthenticate: false,
-					token: localStorage.removeItem("token"),
-				}
-
-			case type.REQUEST_SUCCESS:
-				return{
-					...state,
-					isAuthenticate: false,
-					token: localStorage.removeItem("token"),
-				}
-
-			case type.REQUEST_FAILED:
 				return{
 					...state,
 					isAuthenticate: false,

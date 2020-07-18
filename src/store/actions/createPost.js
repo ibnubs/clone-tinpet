@@ -1,7 +1,6 @@
 import {CREATEPOST_SUCCESS, CREATEPOST_FAILED} from './types';
-import {message} from 'antd';
 import axios from 'axios';
-
+import Swal from 'sweetalert2';
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
 export const createPost = (data) => async dispatch => {
@@ -17,13 +16,21 @@ export const createPost = (data) => async dispatch => {
 		dispatch({
 			type: CREATEPOST_SUCCESS
 		})
-		message.info("create post success!")
+		Swal.fire({
+			icon: 'success',
+			title: 'success',
+			text: 'Create Post Success',
+		})
 	}catch(error) {
 		console.log(error)
 		dispatch({
 			type: CREATEPOST_FAILED
 		})
-		message.info("create post failed")
+		Swal.fire({
+		  icon: 'error',
+		  title: 'Oops...',
+		  text: "Create Post Failed!",
+		})
 	}
 }
 

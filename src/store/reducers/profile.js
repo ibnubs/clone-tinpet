@@ -1,4 +1,4 @@
-import {GET_PROFILE, EDIT_PROFILE_SUCCESS} from '../actions/types';
+import {GET_PROFILE} from '../actions/types';
 const initialState = {
 	token: localStorage.getItem('token'),
 	error: null,
