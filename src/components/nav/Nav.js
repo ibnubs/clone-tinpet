@@ -7,8 +7,6 @@ import { getProfile } from '../../store/actions/profile';
 
 const { Header } = Layout;
 
-
-
 const Nav = () => {
     
     const dispatch = useDispatch();
@@ -19,22 +17,24 @@ const Nav = () => {
         }
     }, [dispatch])
 
+    
     const menu = () => {
-        return ( 
+        return (
             <Menu>
-                <Menu.Item key="0">
-                    <Link to='/profile'>
-                        <p>Profile</p>
-                    </Link>
-                </Menu.Item>
-                <Menu.Item key="1">
-                    <Link to='/login'>
-                        <p onClick={(()=>dispatch({type:"SIGNOUT"}))}>Logout</p>
-                    </Link>
-                </Menu.Item>
-            </Menu>
+            <Menu.Item key="0">
+                <Link to='/profile'>
+                    <p>Profile</p>
+                </Link>
+            </Menu.Item>
+            <Menu.Item key="1">
+                <Link to='/login'>
+                    <p onClick={(()=>dispatch({type:"SIGNOUT"}))} >Logout</p>
+                </Link>
+            </Menu.Item>
+        </Menu>
         )
-    }
+    };
+
 
     return (
         <Fragment>
@@ -48,14 +48,14 @@ const Nav = () => {
                 <Menu  mode="horizontal" className='menu-item'>
                     <Menu.Item key="1" >
                         <Badge count={1} dot>
-                            <Link to='/profile'>
+                            <Link to='/message'>
                                 <img src={require('../../assets/images/message-icon.svg')}  alt='message-icon' />
                             </Link>
                         </Badge>
                     </Menu.Item>
                     <Menu.Item key="2">
                         <Badge count={20} overflowCount={10}>
-                            <Link to='/profile'>
+                            <Link to='/notif'>
                                 <img src={require('../../assets/images/notification-icon.svg')}  alt='notif-icon' />
                             </Link>
                         </Badge>

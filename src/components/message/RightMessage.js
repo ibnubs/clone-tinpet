@@ -1,21 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Col, Row, Button } from 'antd';
 import {Link} from 'react-router-dom';
-import './right-profile.css';
-import PostCard from './post/PostCard';
-import { useDispatch, useSelector } from "react-redux";
-import { getSinglePets } from '../../store/actions/getSinglePets';
+import './right-message.css';
+import MessageNotif from './message/MessageNotif';
 
-
-const RightProfile = () => {
-    
-    const dispatch = useDispatch()
-    const singlePets = useSelector(state => state.getSinglePets.petsDetail)
-    console.log(singlePets, 'single pets dari component')
-    
-    useEffect(() => {
-        dispatch ( getSinglePets() )
-    }, [dispatch])
+const RightMessage = () => {
 
     return (
         <Fragment>
@@ -32,11 +21,11 @@ const RightProfile = () => {
                     </Link>
                 </Row>
                 <Row className='feed-post'>
-                    <PostCard singlePets={singlePets} />
+                    <MessageNotif />
                 </Row>
             </Col>
         </Fragment>
     );
 }
 
-export default RightProfile;
+export default RightMessage;
