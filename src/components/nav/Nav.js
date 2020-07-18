@@ -16,6 +16,7 @@ const Nav = () => {
         return () => {
         }
     }, [dispatch])
+
     
     const menu = () => {
         return (
@@ -33,6 +34,7 @@ const Nav = () => {
         </Menu>
         )
     };
+
 
     return (
         <Fragment>

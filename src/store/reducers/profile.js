@@ -1,3 +1,4 @@
+import {GET_PROFILE} from '../actions/types';
 const initialState = {
 	token: localStorage.getItem('token'),
 	error: null,
@@ -5,16 +6,13 @@ const initialState = {
 	profileDetail: [],
 }
 
-
-
 const profile = (state = initialState, action) => {
-
 	const {type, payload} = action;
 	switch (type){
 		case 'GET_PROFILE':
 			return{
 				...state,
-				profileDetail: payload
+				profileDetail: payload,
 			};
 		default:
 			return {...state};

@@ -12,7 +12,7 @@ const createPost = (state= initialState, action) => {
 		case 'CREATEPOST_SUCCESS':
 			return{
 				...state,
-				data: payload,
+				userData: payload,
 			}
 		default:
 			return state

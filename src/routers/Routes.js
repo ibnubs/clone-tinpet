@@ -13,11 +13,11 @@ import Message from '../pages/Message';
 const Routes = () => {
     return(
       <Fragment>
-        <Route path='/searchresult' exact component={SearchResult} />
-        <Route path='/login' exact component={LoginPage} />
         <Route path='/' exact component={RegisterPage} />
+        <Route path='/login' exact component={LoginPage} />
         <Route path='/homepage' exact component={HomePage} />
         <Route path='/profile' exact component={Profile} />
+        <Route path='/searchresult' exact component={SearchResult} />
         <Route path='/notif' exact component={Notification} />
         <Route path='/message' exact component={Message} />
       </Fragment>
@@ -25,4 +25,4 @@ const Routes = () => {
 }
 
 export default Routes;
-        // {*/// <PrivateRoute exact path="/" component={RegisterPage}  />*/}
+        // <PrivateRoute path="/" exact component={RegisterPage} />
