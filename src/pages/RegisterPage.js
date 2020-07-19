@@ -94,14 +94,16 @@ const RegisterPage = (props) => {
               />
 	          </Form.Item>
 		
-	          <Form.Item>
-              <Form.Item name="remember" valuePropName="unchecked" noStyle>
-                  <Checkbox>Remember me</Checkbox>
-              </Form.Item>
+	          <Form.Item className="register__form--form-button">
+              <h5> By signing up, you agree to our <Link to='/'> Terms </Link> and <Link to='/'> Privacy Policy </Link> </h5>
 	          </Form.Item>
 
 	          <Form.Item>
-	            <Button style={{ fontWeight: 'bold', backgroundColor: '#FF65C5' }} type="primary" htmlType="submit">
+	            <Button style={{ fontWeight: 'bold', 
+	            backgroundColor: '#FF65C5',
+	            width: '100%',
+	            height: '50px',
+	            borderRadius: '5px' }} type="primary" htmlType="submit">
 	                Sign Up
 	            </Button>
 	          </Form.Item>
