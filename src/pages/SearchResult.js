@@ -3,7 +3,7 @@ import Nav from '../components/nav/Nav';
 import SearchComponent from '../components/search/SearchComponent';
 import {Row} from 'antd';
 import '../assets/styles/homepage.css';
-import SearchDisplay from '../components/search/SeachDisplay';
+import SearchDisplay from '../components/search/SearchDisplay';
 
 const SearchResult = () => {
 	return(

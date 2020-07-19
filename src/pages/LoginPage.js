@@ -42,7 +42,7 @@ const LoginPage = (props) => {
 				onFinish={submitLogin}
 				>
 						
-			<h1> Login </h1>
+			<h1> Log In </h1>
 	          
 	          <Form.Item
               name="email"
@@ -80,13 +80,18 @@ const LoginPage = (props) => {
 	          </Form.Item>
 
 	          <Form.Item>
-			  	<Button style={{ fontWeight: 'bold', backgroundColor: '#FF65C5' }} type="primary" htmlType="submit">
-	                Login
+			  	<Button style={{ fontWeight: 'bold', 
+			  	backgroundColor: '#FF65C5', 
+			  	width: '100%',
+			  	height: '50px',
+			  	borderRadius: '5px' }} 
+			  	type="primary" htmlType="submit">
+	                Log In
 	            </Button>
 	          </Form.Item>
 			  
 			  <Form.Item>
-	            <Button type="primary" >
+	            <Button type="primary" style={{width: '100%', height: '50px', borderRadius:'5px'}}>
                     <Link to='/'> Create New Account </Link>    
 	            </Button>
               </Form.Item>  

@@ -34,7 +34,7 @@ const RequestMeeting = (props) => {
 
 	const submitRequest = e => {
 		console.log('test dlu')
-		//e.preventDefault()
+		e.preventDefault()
 		const userData = {
 			date,
 			hour,
