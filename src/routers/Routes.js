@@ -25,4 +25,4 @@ const Routes = () => {
 }
 
 export default Routes;
-        // <PrivateRoute path="/" exact component={RegisterPage} />
+        // <PrivateRoute path="/login" exact component={RegisterPage} />
