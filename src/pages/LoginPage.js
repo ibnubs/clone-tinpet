@@ -42,7 +42,7 @@ const LoginPage = (props) => {
 				onFinish={submitLogin}
 				>
 						
-			<h1> Login </h1>
+			<h1> Sign In </h1>
 	          
 	          <Form.Item
               name="email"
