@@ -10,6 +10,7 @@ import './feed.scss';
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
+    const [ id, setId ] = useState();
     //like data
     // const [likes, setLikes] = useState(0);
     const [action, setAction] = useState('null')
