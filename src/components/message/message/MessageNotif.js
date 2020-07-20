@@ -1,6 +1,7 @@
 import React, { Fragment  } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
 import './MessageNotif.css'
+import {DeleteFilled } from '@ant-design/icons';
 
 
 const MessageNotif = () => {
@@ -16,13 +17,16 @@ const MessageNotif = () => {
                             <Col xl={4} sm={4} xs={4}  >
                                 <Avatar size={100} />
                             </Col>
-                            <Col className='pets-data' xl={{span:19, offset:1}} sm={{span:19, offset:1}} xs={{span:16, offset:4}}   >
+                            <Col className='pets-data' xl={{span:18, offset:1}} sm={{span:18, offset:1}} xs={{span:15, offset:4}}   >
                                 <Row>
                                     <p className='m-notif' style={{fontWeight:'bold'}} > {nameLike} </p>
                                 </Row>
                                 <Row>
                                     <Button type='text' >Kucing yang cantik bro</Button>
                                 </Row>
+                            </Col>
+                            <Col xl={1} sm={1} xs={1} justify='end'>
+                                <DeleteFilled style={{color:'red'}} />
                             </Col>
                         </Row>
                     </Col>

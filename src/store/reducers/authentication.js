@@ -5,7 +5,6 @@ const initialState = {
 	error: null,
 	isAuthenticate: false,
 	loading: false,
-	updateStatus: "initial"
 }
 
 const auth = (state = initialState, action) => {
@@ -27,12 +26,14 @@ const auth = (state = initialState, action) => {
 			case type.LOGIN_SUCCESS :
 				return{
 					...state,
-					isAuthenticate: true
+					isAuthenticate: true,
+					loading: true
 				}
 			case type.LOGIN_FAILED:
 				return{
 					...state,
 					isAuthenticate: false,
+<<<<<<< HEAD
 					token: localStorage.removeItem("token"),
 				}
 
@@ -50,6 +51,9 @@ const auth = (state = initialState, action) => {
 			return{
 				...state, updateStatus: "failed",loading: false
 			}
+=======
+				}
+>>>>>>> 90ea55ae6488641ad2b52036d0a9d08ea2580e08
 			case "SIGNOUT" :
 				localStorage.clear()
 				return {

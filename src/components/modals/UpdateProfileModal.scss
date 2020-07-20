@@ -1,10 +1,14 @@
+.modal-updateprofile {
+	width: 620px !important;
+	height: 920px !important;
+}
+
 .updateprofile-wrapper{
 	h1{
 		font-weight: bold;
 		font-size: 24px;
 		line-height: 29px;
 	}
-	background-color: white;
 	width: 570px;
 	height: 820px;
 	position: relative;
@@ -12,11 +16,45 @@
 	margin: auto !important;
 	border-radius: 15px;
 	align-item: center !important;
+	&__changepicture{
+		display: flex;
+		position: relative;
+	  &--image{
+			width: 120px;
+			height: 120px;
+			border-radius: 50%;
+			margin-bottom: 60px;
+		}
+		&--button{
+			margin: auto 20px;
+			color: #FF65C5;
+			border: none;
+			font-style: normal;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 22px;
+		}
+	}
+	&__form{
+		font-style: normal;
+		font-weight: bold;
+		font-size: 18px;
+		line-height: 22px;
+		width: 490px;
+		&--input{
+			border: 1px solid #C4C4C4;
+			box-sizing: border-box;
+			border-radius: 5px;
+			background-color: #F4F4F4;
+			width: 490px;
+			height: 50px;
+		}
+		&--button-post{
+			float: right;
+		}
+	}
 }
 
-.input{
-	border: 1px solid #C4C4C4;
-	box-sizing: border-box;
-	border-radius: 5px;
-	background-color: #F4F4F4;
+.img {
+	border-radius: 50%;
 }

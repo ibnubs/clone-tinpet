@@ -3,7 +3,7 @@ import { Form, Input, Button, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
 import { useDispatch } from "react-redux";
-import {request} from '../../store/actions/reqmeeting'
+// import {request} from '../../store/actions/authentication'
 
 const RequestMeeting = (props) => {
 
@@ -34,7 +34,7 @@ const RequestMeeting = (props) => {
 
 	const submitRequest = e => {
 		console.log('test dlu')
-		//e.preventDefault()
+		e.preventDefault()
 		const userData = {
 			date,
 			hour,
@@ -42,7 +42,7 @@ const RequestMeeting = (props) => {
 			location
 		}
 		//console.log("data", userData)
-		dispatch(request(userData, props))
+		// dispatch(request(userData, props))
 	}
 
 

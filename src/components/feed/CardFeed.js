@@ -1,19 +1,21 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, createElement } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
-import { HeartFilled, MessageOutlined } from '@ant-design/icons';
+import { HeartFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting'
-import { getAllPets } from '../../store/actions/post';
+import { getAllPets, likeById } from '../../store/actions/post';
 import './feed.scss';
 
 
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
-    const [ id, setId ] = useState('');
+    //like data
+    // const [likes, setLikes] = useState(0);
+    const [action, setAction] = useState('null')
     const pets = useSelector(state => state.post.pets)
     // console.log(pets, 'ini pets')
-
+    
     const openRequestMeeting = async () => {
         await setRequestMeeting (true)
         setId(id)
@@ -23,15 +25,20 @@ const CardFeed = (props) => {
         dispatch(getAllPets())
     }, [dispatch])
 
-    // const likeCounterLogic = pets(item => {
-    //     if (item.likeCounter === 'null' ){
-    //         return 0
-    //     } else {
-    //         return item.likeCounter
-    //     }
-    // })
+    //handle like
+    
+    
+    // const like = () => {
+    //     (likes == 0 ? setLikes(1) : setLikes(0) )
+    //     (action === 'liked' ? setAction('null') : setAction('liked'))
+    //     // dispatch = ({type:})
+    // }
 
-    // console.log(likeCounterLogic)
+    const handleLike = (pets_id) => {
+        // (likes === 0 ? setLikes(1) : setLikes(0) )
+        (action === 'liked' ? setAction('null') : setAction('liked'))
+        likeById(pets_id)
+    }
 
 const petList = pets.map((item) =>{
     return(
@@ -39,7 +46,7 @@ const petList = pets.map((item) =>{
         <Row style={{ width:'100%'}}>
             <Col span={2} >
                 <a href='/#'>
-                    <Avatar size={80} src={require('../../assets/images/michael-dam-mEZ3PoFGs_k-unsplash.jpg')}  alt='avatar-icon' />
+                    <Avatar size={80} src={item.Profile.image_url}  alt='avatar-icon' />
                 </a>
             </Col>
             <Col xl={{offset:1, span:21}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{offset:4, span:18}}  className='box box-post' >
@@ -95,10 +102,16 @@ const petList = pets.map((item) =>{
                             <p className='likes-comment' > {item.commentCounter} Comments</p>
                         </Row>
                         <Row>
-                            <Button type='text'>
+                            <span onClick={()=>{handleLike(item.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
+                                {createElement(action === 'liked' ? <HeartFilled style={{color:'red'}} />  : HeartOutlined  )}
+                            </span>
+
+                            {/* <Button type='text'>
                                 <HeartFilled href="www.google.co.id" twoToneColor="#eb2f96" style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }} />
-                            </Button>
-                            <MessageOutlined style={{fontSize:'1.7rem'}} />
+                            </Button> */}
+                            <span>
+                                <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem'}} />
+                            </span>
                         </Row>
                     </Col>
                     <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
