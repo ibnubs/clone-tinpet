@@ -9,12 +9,14 @@ import './feed.scss';
 
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
-	const [ requestMeeting, setRequestMeeting ] = useState(false);
+    const [ requestMeeting, setRequestMeeting ] = useState(false);
+    const [ id, setId ] = useState('');
     const pets = useSelector(state => state.post.pets)
     // console.log(pets, 'ini pets')
 
     const openRequestMeeting = async () => {
         await setRequestMeeting (true)
+        setId(id)
     }
     
     useEffect(() => {
@@ -100,13 +102,7 @@ const petList = pets.map((item) =>{
                         </Row>
                     </Col>
                     <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
-                        <Button block className='btn-rqsmeet' onClick={openRequestMeeting} >Request Meeting</Button>
-                        <RequestMeeting
-                            id={item.id}
-                            dispatch={dispatch}
-                            requestMeeting={requestMeeting}
-                            setRequestMeeting={setRequestMeeting}
-                        /> 
+                        <Button block className='btn-rqsmeet' onClick={() => openRequestMeeting(item.id)} >Request Meeting</Button>
                     </Col>
                 </Row>
             </Col>
@@ -117,6 +113,13 @@ const petList = pets.map((item) =>{
     return (
         <Fragment>
             {petList}
+
+            <RequestMeeting
+                            id={id}
+                            dispatch={dispatch}
+                            requestMeeting={requestMeeting}
+                            setRequestMeeting={setRequestMeeting}
+                        /> 
         </Fragment>
     );
 }

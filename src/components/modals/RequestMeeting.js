@@ -97,7 +97,8 @@ const RequestMeeting = (props) => {
 	       			<hr />
 	       			
 				    <Form.Item className="button_post">
-				        <Button type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '60px'}}
+						<Button onClick={submitRequest}
+						type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '60px'}}
 				         key="submit">Request</Button>
 				    </Form.Item>
 
