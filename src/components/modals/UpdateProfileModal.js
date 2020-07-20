@@ -1,143 +1,95 @@
-import React, { useState, useEffect, useCallback} from 'react';
-import { Modal, Form, Input, Button, message, Upload} from 'antd';
-import { LoadingOutlined, PlusOutlined} from '@ant-design/icons'; //editoutlined
+import React, { useState} from 'react';
+import { Modal, Form, Input, Button, Avatar} from 'antd';
+import { UserOutlined} from '@ant-design/icons'; 
 import './UpdateProfileModal.scss';
-import { useSelector } from 'react-redux'; //, useDispatch
-import {updateProfile} from '../../store/actions/authentication';
-import store from '../../store/index';
-
+import { useDispatch } from 'react-redux'; 
+import { editProfile } from '../../store/actions/editProfile';
+const {TextArea} = Input;
 
 const UpdateProfileModal = (props) => {
-		 //state
-	const {setUpdateProfileModal, dispatch, updateProfileModal } = props
-	// const [ isLoading, setIsLoading ] = useState(false)
-	const [file, setFile ] =useState(null)
-	const [imgUpload, setImgUpload] = useState ({
-		loading: false,
-		imgUrl: localStorage.getItem('userAvatar')
-	})
-	 //store
-	// const loading = useSelector(state => state.auth.loading)
-	const isAuthenticate = useSelector(state => state.auth.isAuthenticate)
-	const updateStatus = useSelector( state => state.auth.updateStatus)
+
+	const {setUpdateProfileModal, updateProfileModal } = props
+	const dispatch = useDispatch();
+	const [full_name, setFull_name] = useState('')
+	const [image, setImage] = useState(null)
+	const [email, setEmail] = useState('')
+	const [mobile_number, setMobile_number] = useState('')
+	const [full_address, setFull_address] = useState('')
+	const [description, setDescription] = useState('');
+	const [imagePreview, setImagePreview] = useState('')
+
+	const saveChanges = (e) => {
+		e.preventDefault();
+		let data = new FormData();
+		data.append("full_name", full_name)
+		data.append("email", email)
+		data.append("image", image)
+		data.append("mobile_number", mobile_number)
+		data.append("full_address", full_address)
+		data.append("description", description)
+		dispatch(editProfile(data))
+		setUpdateProfileModal(false)
+	}
+
+	const onChangeImage = (e) => {
+		console.log('image', e.target.files) 
+		setImage(e.target.files[0])
+		setImagePreview(URL.createObjectURL(e.target.files[0]))
+	}
+
 	
-	const closeModal = useCallback(
-		() => {
-				setUpdateProfileModal (false)
-		}, [setUpdateProfileModal],
-	)
-
-	useEffect( () =>{
-		if(isAuthenticate){
-			closeModal()
-		}
-	}, [isAuthenticate, closeModal])
-
-	function getBase64(img, callback) {
-	  const reader = new FileReader();
-	  reader.addEventListener('load', () => callback(reader.result));
-	  reader.readAsDataURL(img);
-	}
-
-	function beforeUpload(file) {
-	  const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-	  if (!isJpgOrPng) {
-	    message.error('You can only upload JPG/PNG file!');
-	  }
-	  const isLt2M = file.size / 1024 / 1024 < 2;
-	  if (!isLt2M) {
-	    message.error('Image must smaller than 2MB!');
-	  }
-	  return isJpgOrPng && isLt2M;
-	}
-
-	const handleChangeCallback = () => {
-		const status = store.getState().auth.updateStatus
-		if(status === 'done'){
-			console.log("done")
-			getBase64(file, imgUrl => 
-				setImgUpload({
-					imgUrl,
-					loading: false
-				}),
-			);
-			
-			dispatch({type: "UPDATE_INITIAL"})
-		}
-		if (status === 'failed'){
-			setImgUpload({
-				...imgUpload,
-				loading: false,
-			})
-			dispatch({type: 'UPDATE_INITIAL'})
-		}
-	}
-
-	const handleChange = async (callback) => {
-		const data = new FormData()
-		data.append("image", file)
-		if(updateStatus === 'initial') {
-			console.log("uploading")
-			setImgUpload({loading: true});
-			await dispatch(updateProfile(data))
-		}
-		callback()
-	}
-
-	 const uploadButton = (
-    <div>
-      {imgUpload.loading ? <LoadingOutlined /> : <PlusOutlined />}
-      <div className="ant-upload-text">Change Picture</div>
-    </div>)
-
-  const { imgUrl } = imgUpload
-	// const [imageUrl, setimageUrl] = useState();
-
 	return(
 		<Modal style={{ transition: "all .4s ease"}}
-		  	onCancel={()=>setUpdateProfileModal(false)}
-		  	visible={updateProfileModal}
-		  	className="modal"
-		  	footer='null'
-			>
+	  	onCancel={()=>setUpdateProfileModal(false)}
+	  	visible={updateProfileModal}
+	  	className="modal-updateprofile"
+	  	footer= {null}
+		>
 
 			<div className="updateprofile-wrapper">
 
 				<h1> Edit Profile </h1>
-				<Upload
-          name="avatar"
-          listType="picture-card"
-          className="avatar-uploader"
-          showUploadList={false}
-          beforeUpload={file => {beforeUpload(file); setFile(file)}}
-          onChange={()=>handleChange(handleChangeCallback)}
-        >
-           {imgUrl ? <img src={imgUrl} alt="avatar" className="image-uploader"/> : uploadButton}
-        </Upload>
-
-				<Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical">
-		      <Form.Item label="Full Name">
-		        <Input  className="input"/>
+				<div className="updateprofile-wrapper__changepicture">
+					 <label for="image" className="updateprofile-wrapper__changepicture--image"> 
+					<Avatar icon={<UserOutlined />}
+					style={{cursor:"pointer", borderRadius:"50%"}} src={imagePreview} size={160}/> </label>					
+					<input 
+						id="image"
+						type="file"
+						name="image"
+						onChange={onChangeImage}
+				    style= {{display: 'none'}}
+				    placeholder="Upload your photo"
+					/>
+				</div>
+				
+				<Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical" className="updateprofile-wrapper__form">
+		      <Form.Item label="Full Name" onChange={(e)=> setFull_name(e.target.value)}>
+		        <Input  className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
-		      <Form.Item label="Email">
-		        <Input  className="input"/>
+		      <Form.Item label="Email" onChange={(e)=> setEmail(e.target.value)}>
+		        <Input  className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
- 					<Form.Item label="Mobile Number">
-		        <Input  className="input"/>
+ 					<Form.Item label="Mobile Number" onChange={(e)=> setMobile_number(e.target.value)}>
+		        <Input  className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
- 					<Form.Item label="Full Address">
-		        <Input  className="input"/>
+ 					<Form.Item label="Full Address" onChange={(e)=> setFull_address(e.target.value)}>
+		        <Input  className="updateprofile-wrapper__form--input"/>
+		      </Form.Item>
+
+		      <Form.Item label="Description" onChange={(e)=> setDescription(e.target.value)}>
+		      	<TextArea  className="updateprofile-wrapper__form--input" 
+		      	placeholder="About Me" />
 		      </Form.Item>
 					
-					<Form.Item className="button_post">
-	          <Button type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '130px'}}
-	           key="submit">Save Changes</Button>
+					<Form.Item className="updateprofile-wrapper__form--button-post">
+	          <Button onClick={saveChanges} type="primary" style={{backgroundColor: '#FF65C5', fontWeight: 'bold'}} key="submit">Save Changes</Button>
 	        </Form.Item>
 
-	        <Form.Item className="button_cancel">
+	        <Form.Item className="updateprofile-wrapper__form--button-cancel">
 	          <Button onClick={()=>setUpdateProfileModal(false)}>Cancel</Button>
 	        </Form.Item>
 

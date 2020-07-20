@@ -1,18 +1,16 @@
 import React, { useState, Fragment  } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {useParams} from 'react-router-dom';
 import { Col, Row } from 'antd';
-import CreatePostModal from '../modals/CreatePostModal'
 import '../feed/feed.scss';
-import CardFeed from '../feed/CardFeed';
+// import CardFeed from '../feed/CardFeed';
 
 const SearchDisplay = (props) => {
 
-    const [ createPostModal, setCreatePostModal ] = useState(false);
+    const location = useSelector( state => state.searchPet.location);
+    const category = useSelector( state => state.searchPet.category);
+    const {id} = useParams(); 
     const dispatch = useDispatch();
-
-    // const openCreatePostModal = async () => {
-    //     await setCreatePostModal (true)
-    // }
 
     return (
         <Fragment>
@@ -20,15 +18,10 @@ const SearchDisplay = (props) => {
                 <Row className='row-btn-post' >
                     <Col lg={24} xs={24}>
                         <h3>Found 1 Result</h3>
-                        <CreatePostModal
-                            dispatch={dispatch}
-                            createPostModal={createPostModal}
-                            setCreatePostModal={setCreatePostModal}
-                        />
                     </Col>
                 </Row>
                 <Row className='feed-post'>
-                    <CardFeed />
+                    {/*<CardFeed />*/}
                 </Row>
             </Col>
         </Fragment>

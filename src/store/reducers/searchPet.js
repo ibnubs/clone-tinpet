@@ -1,22 +1,23 @@
 
-
 const initialState = {
 	token: localStorage.getItem('token'),
 	loading: false,
-	userData: [],
+	location: [],
+	category: []
 }
 
-const createPost = (state= initialState, action) => {
+const searchPet = (state= initialState, action) => {
 	const {type, payload} = action;
 	switch(type) {
-		case 'CREATEPOST_SUCCESS':
+		case 'SEARCH_PET_SUCCESS':
 			return{
 				...state,
-				userData: payload,
+				location: payload,
+				category: payload
 			}
 		default:
 			return state
 	}
 }
 
-export default createPost;
+export default searchPet;

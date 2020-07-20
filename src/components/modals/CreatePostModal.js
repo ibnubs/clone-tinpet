@@ -6,12 +6,6 @@ import { useDispatch } from 'react-redux'; //, useSelector
 import {createPost} from '../../store/actions/createPost';
 import './CreatePostModal.scss';
 
-// function getBase64(img, callback){
-// 	const reader = new FileReader();
-// 	reader.addEventListener("load", () => callback(reader.result));
-// 	reader.readAsDataURL(img);
-// 	console.log(reader.result)
-// }
 
 const CreatePostModal = (props) => {
 
@@ -27,6 +21,7 @@ const CreatePostModal = (props) => {
 	const [breed, setBreed] = useState('')
 	const [location, setLocation] = useState('')
 	const [description, setDescription] = useState('')
+	const [imagePreview, setImagePreview] = useState('')
 	const { createPostModal, setCreatePostModal} = props
 	const { TextArea } = Input
 
@@ -45,10 +40,8 @@ const CreatePostModal = (props) => {
 		data.append("description", description)
 
 		console.log('userdata', data)
-		dispatch(createPost(data,))
+		dispatch(createPost(data))
 		setCreatePostModal(false)
-		//dispatch get all data
-		
 	}
 
 	const submitCategory = async (value) => {
@@ -62,6 +55,7 @@ const CreatePostModal = (props) => {
 	const onChange = (e) => {
 		console.log('image', e.target.files) 
 		setImage(e.target.files[0])
+		setImagePreview(URL.createObjectURL(e.target.files[0]))
 	}
 
   return (
@@ -80,7 +74,7 @@ const CreatePostModal = (props) => {
       			<div>
 				    	<label for="image"> <Avatar icon={<UserOutlined />} 
 				    	style={{cursor: "pointer", borderRadius:"50%", marginRight: "30px", marginLeft: '10px'}} 
-				    	src={image} size={260}/> </label>     			
+				    	src={imagePreview} size={260}/> </label> 			
       				<input
       					id="image"
 				    		type ="file"
@@ -88,7 +82,7 @@ const CreatePostModal = (props) => {
 				    		style= {{display: 'none'}}
 				    		onChange={onChange}
 				    		placeholder="Upload your photo"
-				    	/> 		
+				    	/>	
       			</div> 
 		    	</div>
 		    	<div 	className="createpost-wrapper__form">

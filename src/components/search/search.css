@@ -22,7 +22,15 @@
     }
 }
 
+/* input */
 
+.input-search{
+    border-radius: 5px;
+    height: 3rem;
+    text-align: center;
+    background-color: #f4f4f4;
+    font-size: 1vw;
+}
 
 /* box */
 .box-search{
@@ -39,6 +47,7 @@
     border-radius: 5px;
     background-color: #f4f4f4;
     margin: 0px 16px;
+    width: 92%;
 }
 
 .btn-search-color{

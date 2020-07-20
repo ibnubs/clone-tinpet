@@ -4,8 +4,14 @@ import auth from './authentication';
 import createPost from './createPost';
 import post from './post';
 import profile from './profile';
-import ownpets from './ownpets';
+import getSinglePets from './getSinglePets';
+import searchPet from './searchPet';
 
 export default combineReducers({
-    auth, createPost, post, profile,ownpets
+    auth, 
+    createPost, 
+    post, 
+    profile,
+    getSinglePets,
+    searchPet
 });
