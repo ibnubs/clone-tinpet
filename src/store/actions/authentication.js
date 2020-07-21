@@ -58,7 +58,7 @@ export const login = (data, props) => async dispatch => {
 		})
 		props.history.push("/homepage")
 	} catch (error) {
-		console.log(error)
+		console.log(error.response)
 		dispatch({
 			type: LOGIN_FAILED
 		})
@@ -71,4 +71,3 @@ export const login = (data, props) => async dispatch => {
 	}
 
 }
-

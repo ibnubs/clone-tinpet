@@ -9,16 +9,19 @@ import './feed.scss';
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
+    const [ id, setId ] = useState('');
     //like data
     // const [likes, setLikes] = useState(0);
     const [action, setAction] = useState('null')
     const pets = useSelector(state => state.post.pets)
     // console.log(pets, 'ini pets')
     
-    const openRequestMeeting = async () => {
+    const openRequestMeeting = async (id) => {
         await setRequestMeeting (true)
+        setId(id)
+        console.log(id ,"id")
     }
-    
+
     useEffect(() => {
         dispatch(getAllPets())
     }, [dispatch])
@@ -113,12 +116,7 @@ const petList = pets.map((item) =>{
                         </Row>
                     </Col>
                     <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
-                        <Button block className='btn-rqsmeet' onClick={openRequestMeeting} >Request Meeting</Button>
-                        <RequestMeeting
-                            dispatch={dispatch}
-                            requestMeeting={requestMeeting}
-                            setRequestMeeting={setRequestMeeting}
-                        /> 
+                        <Button block className='btn-rqsmeet' onClick={() => openRequestMeeting(item.id)} >Request Meeting</Button>
                     </Col>
                 </Row>
             </Col>
@@ -129,6 +127,13 @@ const petList = pets.map((item) =>{
     return (
         <Fragment>
             {petList}
+
+            <RequestMeeting
+                            id={id}
+                            dispatch={dispatch}
+                            requestMeeting={requestMeeting}
+                            setRequestMeeting={setRequestMeeting}
+                        /> 
         </Fragment>
     );
 }
