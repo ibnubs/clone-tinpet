@@ -9,8 +9,8 @@ export const searchPet = (data) => async dispatch =>{
 	try{
 		const res = await axios.get(`${baseUrl}/api/v1/searches?location=${data.location}&category=${data.category}`, 
 			{ headers: {authorization: token}})
-		console.log("respond edit profile", res)
-		dispatch({type: SEARCH_PET_SUCCESS})
+		console.log("respond search result", res)
+		dispatch({type: SEARCH_PET_SUCCESS, payload: res.data.data })
 	}catch(error){
 		console.log('error', error)
 		dispatch({type: SEARCH_PET_FAILED})

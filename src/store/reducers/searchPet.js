@@ -2,8 +2,7 @@
 const initialState = {
 	token: localStorage.getItem('token'),
 	loading: false,
-	location: [],
-	category: []
+	PetId : []
 }
 
 const searchPet = (state= initialState, action) => {
@@ -12,8 +11,7 @@ const searchPet = (state= initialState, action) => {
 		case 'SEARCH_PET_SUCCESS':
 			return{
 				...state,
-				location: payload,
-				category: payload
+				PetId: payload, 
 			}
 		default:
 			return state
