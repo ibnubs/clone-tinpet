@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {useParams} from 'react-router-dom';
 import { Col, Row } from 'antd';
 import '../feed/feed.scss';
-// import CardFeed from '../feed/CardFeed';
+import CardFeed from '../feed/CardFeed';
 
 const SearchDisplay = (props) => {
 
@@ -21,7 +21,7 @@ const SearchDisplay = (props) => {
                     </Col>
                 </Row>
                 <Row className='feed-post'>
-                    {/*<CardFeed />*/}
+                    <CardFeed />
                 </Row>
             </Col>
         </Fragment>

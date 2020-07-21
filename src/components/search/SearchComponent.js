@@ -2,13 +2,15 @@ import React, { Fragment, useState } from 'react';
 import {useDispatch} from 'react-redux';
 import './search.css';
 import { Row, Col, Button, Form, Input } from 'antd';
+import {useHistory} from 'react-router-dom';
 import {searchPet} from '../../store/actions/searchPet';
 
 
-const SearchComponent = (props) => {
+const SearchComponent = () => {
 
     const [location, setLocation] = useState('')
     const [category, setCategory] = useState('')
+    const history = useHistory();
     const dispatch = useDispatch()
 
     const searchButton = (e) => {
@@ -16,7 +18,8 @@ const SearchComponent = (props) => {
        const userData = {
         location, category
        }
-       dispatch(searchPet(userData, props))
+        dispatch(searchPet(userData))
+        history.push("/searchresult")
     }
 
     return (

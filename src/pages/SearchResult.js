@@ -5,12 +5,12 @@ import {Row} from 'antd';
 import '../assets/styles/homepage.css';
 import SearchDisplay from '../components/search/SearchDisplay';
 
-const SearchResult = () => {
+const SearchResult = (props) => {
 	return(
         <Fragment>
             <Nav />
             <Row className='row-homepage' >
-                <SearchComponent />
+                <SearchComponent props={props}/>
                 <SearchDisplay />
             </Row>
         </Fragment>
