@@ -5,18 +5,20 @@ import axios from 'axios';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
-    export const request = (data, props) => async dispatch => {
-	console.log("data", props, data)
+    export const request = (data, id) => async dispatch => {
 	try {
-		const res = await axios.post(`${baseUrl}/api/v1/requests/${props.id}`, data)
-		console.log("respond dong", res)
-		localStorage.setItem("token", res.data.token)
+		const res = await axios.post(`${baseUrl}/api/v1/requests/${id}`, data, {
+			headers: {
+			Authorization : localStorage.getItem("token")
+			}
+		})
+		console.log(res, "response")
 		dispatch({
 			type: REQUEST_SUCCESS
 		})
 
 	} catch (error) {
-		console.log(error)
+		console.log(error.response)
 		dispatch({
 			type: REQUEST_FAILED
 		})

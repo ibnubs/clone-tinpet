@@ -3,7 +3,7 @@ import { Form, Input, Button, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
 import { useDispatch } from "react-redux";
-// import {request} from '../../store/actions/authentication'
+import {request} from '../../store/actions/reqmeeting'
 
 const RequestMeeting = (props) => {
 
@@ -33,7 +33,7 @@ const RequestMeeting = (props) => {
 	}, [isAuthenticate, closeModal])
 
 	const submitRequest = e => {
-		console.log('test dlu')
+
 		e.preventDefault()
 		const userData = {
 			date,
@@ -41,8 +41,8 @@ const RequestMeeting = (props) => {
 			message,
 			location
 		}
-		//console.log("data", userData)
-		// dispatch(request(userData, props))
+		console.log("data", userData)
+		dispatch(request(userData, props.id))
 	}
 
 

@@ -10,18 +10,19 @@ import './feed.scss';
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
-    const [ id, setId ] = useState();
+    const [ id, setId ] = useState('');
     //like data
     // const [likes, setLikes] = useState(0);
     const [action, setAction] = useState('null')
     const pets = useSelector(state => state.post.pets)
     // console.log(pets, 'ini pets')
     
-    const openRequestMeeting = async () => {
+    const openRequestMeeting = async (id) => {
         await setRequestMeeting (true)
         setId(id)
+        console.log(id ,"id")
     }
-    
+
     useEffect(() => {
         dispatch(getAllPets())
     }, [dispatch])
