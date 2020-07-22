@@ -14,13 +14,10 @@ const auth = (state = initialState, action) => {
 			return{
 			...state
             }
-            
-
 			case type.REQUEST_SUCCESS:
 				return{
 					...state,
 					isAuthenticate: false,
-					token: localStorage.removeItem("token"),
 				}
 
 			case type.REQUEST_FAILED:

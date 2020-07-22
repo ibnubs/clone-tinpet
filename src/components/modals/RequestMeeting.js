@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, Fragment } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
@@ -50,9 +50,10 @@ const RequestMeeting = (props) => {
   	<Modal style={{ transition: "all .4s ease"}}
 	  	onCancel={()=>setRequestMeeting(false)}
 	  	visible={requestMeeting}
-	  	className="modal"
-	  	footer='null'
+	  	className="modal-reqmeeting"
+	  	footer={null}
 		>
+		<Fragment>
 	    <div className="reqmeeting">
 	    	<div className="reqmeeting__header">
 	    		<h1> Request Meeting </h1>    		
@@ -108,8 +109,7 @@ const RequestMeeting = (props) => {
 			   	  </Form>
 	      	</div>
 	      </div>
-
-	    
+		</Fragment>  
     </Modal>
   );
 };
