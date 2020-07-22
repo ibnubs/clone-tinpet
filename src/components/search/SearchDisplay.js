@@ -1,39 +1,10 @@
-// import React, { useState, Fragment  } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import {useParams} from 'react-router-dom';
-// import { Col, Row } from 'antd';
-// import '../feed/feed.scss';
-// import CardFeed from '../feed/CardFeed';
-
-// const SearchDisplay = (props) => {
-
-//     const dispatch = useDispatch();
-
-//     return (
-//         <Fragment>
-//             <Col className='box feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
-//                 <Row className='row-btn-post' >
-//                     <Col lg={24} xs={24}>
-//                         <h3>Found 2 Result ...</h3>
-//                     </Col>
-//                 </Row>
-//                 <Row className='feed-post'>
-//                     <CardFeed />
-//                 </Row>
-//             </Col>
-//         </Fragment>
-//     );
-// }
-
-// export default SearchDisplay;
-
-import React, { Fragment, useState, useEffect, createElement } from 'react';
+import React, { Fragment, useState, createElement } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
 import { HeartFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting'
-import { getAllPets, likeById } from '../../store/actions/post';
-import {searchPet} from '../../store/actions/searchPet';
+// import { getAllPets} from '../../store/actions/post';
+import { likeById } from '../../store/actions/like';
 import './SearchDisplay.scss';
 
 const SearchDisplay = (props) => {
@@ -74,7 +45,7 @@ const petList = pets.map((item) =>{
 
             <Row className='row-btn-post' >
               <Col lg={24} xs={24}>
-                  <h3>Found {item.length} Result ...</h3>
+                  <h3>Found {item.length}masih hardcore Result ...</h3>
               </Col>
             </Row>
 
