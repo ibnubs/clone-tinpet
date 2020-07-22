@@ -4,6 +4,8 @@ import './nav.css';
 import {Link} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../store/actions/profile';
+import { notifCount } from '../../store/actions/notif';
+import { getCountMessage } from '../../store/actions/messages';
 
 const { Header } = Layout;
 
@@ -11,12 +13,21 @@ const Nav = () => {
     
     const dispatch = useDispatch();
     const profile = useSelector(state => state.profile.profileDetail)
+    const notifShow = useSelector (state => state?.notif?.countNotif)
+    const countM = useSelector (state=> state?.mesCount?.countMessage )
+
+
     useEffect(() => {
         dispatch(getProfile())
-        return () => {
-        }
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(notifCount())
+    },[dispatch])
+
+    useEffect(() => {
+        dispatch(getCountMessage())
+    },[dispatch])
     
     const menu = () => {
         return (
@@ -47,14 +58,14 @@ const Nav = () => {
                 <Row justify="end">
                 <Menu  mode="horizontal" className='menu-item'>
                     <Menu.Item key="1" >
-                        <Badge count={1} dot>
+                        <Badge count={countM?.MessagesCount} overflowCount={10}>
                             <Link to='/message'>
                                 <img src={require('../../assets/images/message-icon.svg')}  alt='message-icon' />
                             </Link>
                         </Badge>
                     </Menu.Item>
                     <Menu.Item key="2">
-                        <Badge count={20} overflowCount={10}>
+                        <Badge count={notifShow?.NotifCount} overflowCount={10}>
                             <Link to='/notif'>
                                 <img src={require('../../assets/images/notification-icon.svg')}  alt='notif-icon' />
                             </Link>

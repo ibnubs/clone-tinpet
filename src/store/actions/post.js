@@ -5,6 +5,7 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
 export const getAllPets = () => async (dispatch) => {
     const token = localStorage.getItem('token')
+    console.log('ini code jalan')
     try {
         const res = await axios.get(`${baseUrl}/api/v1/pets/all`, {
             headers: {
@@ -26,20 +27,3 @@ export const getAllPets = () => async (dispatch) => {
     }
 }
 
-export const likeById = async (pets_id, dispatch) => {
-    const token = localStorage.getItem('token')
-    try{
-        const res = await axios.post(`${baseUrl}/api/v1/likes/${pets_id}`,{
-            headers: {
-                authorization:token
-            }
-        })
-        console.log(res, 'like sukses')
-        console.log(res.data, ' res data like')
-        dispatch({
-            type:'LIKE'
-        })
-    } catch (error){
-        console.log(error, 'error like')
-    }
-}
