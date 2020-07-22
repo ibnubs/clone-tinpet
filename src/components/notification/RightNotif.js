@@ -5,7 +5,7 @@ import './right-notif.css';
 import NotificationProfile from './notification/NotificationProfile';
 
 const RightNotif = () => {
-    
+
     return (
         <Fragment>
             <Col className='box-right-profile feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
