@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
-    export const request = (data, id) => async dispatch => {
+    export const request = (data, id, props ) => async dispatch => {
 	try {
 		const res = await axios.post(`${baseUrl}/api/v1/requests/${id}`, data, {
 			headers: {
@@ -26,7 +26,7 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 		props.history.push("/homepage")
 
 	} catch (error) {
-		console.log(error.response)
+		console.log(error)
 		dispatch({
 			type: REQUEST_FAILED
 		})
