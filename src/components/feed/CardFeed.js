@@ -8,7 +8,6 @@ import { getAllPets } from '../../store/actions/post';
 import axios from 'axios';
 import './feed.scss';
 
-
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);

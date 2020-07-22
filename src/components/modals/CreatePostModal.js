@@ -6,12 +6,6 @@ import { useDispatch } from 'react-redux'; //, useSelector
 import {createPost} from '../../store/actions/createPost';
 import './CreatePostModal.scss';
 
-// function getBase64(img, callback){
-// 	const reader = new FileReader();
-// 	reader.addEventListener("load", () => callback(reader.result));
-// 	reader.readAsDataURL(img);
-// 	console.log(reader.result)
-// }
 
 const CreatePostModal = (props) => {
 
@@ -46,10 +40,8 @@ const CreatePostModal = (props) => {
 		data.append("description", description)
 
 		console.log('userdata', data)
-		dispatch(createPost(data,))
+		dispatch(createPost(data))
 		setCreatePostModal(false)
-		//dispatch get all data
-		
 	}
 
 	const submitCategory = async (value) => {

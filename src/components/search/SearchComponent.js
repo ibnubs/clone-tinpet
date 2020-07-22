@@ -1,55 +1,43 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
+import {useDispatch} from 'react-redux';
 import './search.css';
-import { Row, Col, Menu, Dropdown, Button } from 'antd';
-import { DownOutlined, UserOutlined } from '@ant-design/icons';
-
-
-function handleMenuClick(e) {
-    console.log('click', e);
-}
-
-const menu = (
-    <Menu onClick={handleMenuClick} >
-        <Menu.Item key="1" icon={<UserOutlined />}>
-            1st menu item
-        </Menu.Item>
-        <Menu.Item key="2" icon={<UserOutlined />}>
-            2nd menu item
-        </Menu.Item>
-        <Menu.Item key="3" icon={<UserOutlined />}>
-            3rd item
-        </Menu.Item>
-    </Menu>
-);
+import { Row, Col, Button, Form, Input } from 'antd';
+import {useHistory} from 'react-router-dom';
+import {searchPet} from '../../store/actions/searchPet';
 
 
 const SearchComponent = () => {
+
+    const [location, setLocation] = useState('')
+    const [category, setCategory] = useState('')
+    const history = useHistory();
+    const dispatch = useDispatch()
+
+    const searchButton = (e) => {
+        e.preventDefault()
+       const userData = {
+        location, category
+       }
+        dispatch(searchPet(userData))
+        history.push("/searchresult")
+    }
+
     return (
         <Fragment>
             <Col className='search-component box-search' lg={6} md={24} sm={24} xs={24}>
                     <Row justify='center' style={{marginTop:32}} >
-                        <Dropdown overlay={menu}>
-                            <Button block className='btn-search' >
-                                Search Location 
-                                <span style={{fontSize:'0.7em', marginLeft:'1.1rem' }}>
-                                    <DownOutlined />
-                                </span>
-                            </Button>
-                        </Dropdown>
+                        <Form onChange={(e) => setLocation(e.target.value)} className="btn-search">
+                            <Input className="input-search"type='text' placeholder='Search Location'/>
+                        </Form>
                     </Row>
                     <Row justify='center' style={{marginTop:20}} >
-                        <Dropdown overlay={menu}>
-                            <Button block className='btn-search' >
-                                Select Animal Type
-                                <span style={{fontSize:'0.7em', marginLeft:'1.1rem' }}>
-                                    <DownOutlined />
-                                </span>
-                            </Button>
-                        </Dropdown>
+                        <Form onChange={(e) => setCategory(e.target.value)} className="btn-search">
+                            <Input className="input-search"type='text' placeholder='Input Animal Type'/>
+                        </Form>
                     </Row>
                     <Row justify='center' style={{marginTop:20}} >
-                        <Button block className='btn-search btn-search-color' >
-                            Search
+                        <Button block onClick={searchButton} className='btn-search btn-search-color' >
+                             Search
                         </Button>
                     </Row>
             </Col>
@@ -58,3 +46,5 @@ const SearchComponent = () => {
 }
 
 export default SearchComponent;
+
+
