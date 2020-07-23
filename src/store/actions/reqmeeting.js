@@ -24,6 +24,7 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 			text: 'Request Meeting Success',
 		})
 		props.history.push("/homepage")
+		console.log(props)
 
 	} catch (error) {
 		console.log(error)

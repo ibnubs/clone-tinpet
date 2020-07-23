@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
 import { useDispatch } from "react-redux";
 import {request} from '../../store/actions/reqmeeting'
+import { useHistory } from 'react-router-dom'
 
 const RequestMeeting = (props) => {
 
@@ -13,6 +14,7 @@ const RequestMeeting = (props) => {
 	const [hour, setHour] = useState("")
 	const [message, setMessage] = useState("")
 	const [location, setLocation] = useState("")
+	const history = useHistory();
 
 	const { TextArea } = Input;
 
@@ -42,7 +44,8 @@ const RequestMeeting = (props) => {
 			location
 		}
 		console.log("data", userData)
-		dispatch(request(userData, props.id))
+		dispatch(request(userData, props.id, {history}))
+		setRequestMeeting (false)
 	}
 
 
