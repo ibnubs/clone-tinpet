@@ -6,7 +6,6 @@ import RequestMeeting from '../../components/modals/RequestMeeting'
 import { getAllPets } from '../../store/actions/post';
 import axios from 'axios';
 import './feed.scss';
-import { getAllComment } from '../../store/actions/comment';
 
 const {Text, Paragraph} = Typography
 
@@ -17,7 +16,6 @@ const CardFeed = (props) => {
     //selector
     const pets = useSelector(state => state.post.pets)
     const profile = useSelector(state => state.profile.profileDetail)
-    const commentData = useSelector (state=> state.comment.getAllComment )
     //localstorage
     localStorage.setItem("userID", profile.id)
     const SenderId = localStorage.getItem('userID')
@@ -30,14 +28,10 @@ const CardFeed = (props) => {
 
     //react life cycle
     useEffect(() => {
-        dispatch(
-            getAllPets(),
-        )
+        dispatch(getAllPets())
     },[dispatch])
 
-    useEffect(() => {
-        dispatch(getAllComment())
-    },[dispatch])
+
     
 
     //handling like
@@ -64,17 +58,6 @@ const CardFeed = (props) => {
             console.log(error, 'error like')
         }
     }
-    
-    //get-all-comment-map
-    const commentView = commentData.map((cd)=>{
-        return(
-            <li key={cd.id} className='comment-list'>
-                <Paragraph key={cd.id} ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
-                    <Text><span style={{fontWeight:'bold'}}>Hans Solo</span>   {cd.comment}</Text>
-                </Paragraph>
-            </li>
-        )
-    })
 
 const petList = pets.map((item) =>{
     
@@ -86,6 +69,16 @@ const petList = pets.map((item) =>{
         return result;
     },[])
     
+    //handle comment
+    let commentView = item.Comments.map((cd)=>{
+        return(
+            <li key={cd.id} className='comment-list'>
+            <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
+                <Text><span style={{fontWeight:'bold'}}>Hans Solo</span>   {cd.comment}</Text>
+            </Paragraph>
+        </li>
+        )
+    })
 
     return(
         <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} key={item.id} >
@@ -169,10 +162,7 @@ const petList = pets.map((item) =>{
 
         </Row>
         <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
-            {/* <Row style={{ width:'100%', marginTop: '10px'}} > */}
-                    <Input placeholder="Add a comment..."  suffix={<button>post</button>} />
-                    
-            {/* </Row> */}
+                <Input placeholder="Add a comment..."  suffix={<button>post</button>} />
         </Col>
     </Row>
     )})
