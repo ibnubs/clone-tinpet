@@ -1,4 +1,5 @@
 import {CREATEPOST_SUCCESS, CREATEPOST_FAILED} from './types';
+import {getAllPets} from './post';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
@@ -16,6 +17,7 @@ export const createPost = (data) => async dispatch => {
 		dispatch({
 			type: CREATEPOST_SUCCESS
 		})
+		dispatch(getAllPets())
 		Swal.fire({
 			icon: 'success',
 			title: 'success',

@@ -1,20 +1,24 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Row, Col, Avatar, Button } from 'antd';
+import { Row, Col, Avatar, Button, Typography, Input } from 'antd';
 import { HeartFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting'
 import { getAllPets } from '../../store/actions/post';
-// import {likeById} from '../../store/actions/like';
 import axios from 'axios';
 import './feed.scss';
+import { getAllComment } from '../../store/actions/comment';
 
+const {Text, Paragraph} = Typography
 
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
     const [ id, setId ] = useState('');
+    //selector
     const pets = useSelector(state => state.post.pets)
     const profile = useSelector(state => state.profile.profileDetail)
+    const commentData = useSelector (state=> state.comment.getAllComment )
+    //localstorage
     localStorage.setItem("userID", profile.id)
     const SenderId = localStorage.getItem('userID')
     
@@ -24,10 +28,17 @@ const CardFeed = (props) => {
         console.log(id ,"id")
     }
 
+    //react life cycle
     useEffect(() => {
-        dispatch(getAllPets(), 
+        dispatch(
+            getAllPets(),
         )
     },[dispatch])
+
+    useEffect(() => {
+        dispatch(getAllComment())
+    },[dispatch])
+    
 
     //handling like
     const handleLike = async (pets_id ) => {
@@ -54,6 +65,16 @@ const CardFeed = (props) => {
         }
     }
     
+    //get-all-comment-map
+    const commentView = commentData.map((cd)=>{
+        return(
+            <li key={cd.id} className='comment-list'>
+                <Paragraph key={cd.id} ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
+                    <Text><span style={{fontWeight:'bold'}}>Hans Solo</span>   {cd.comment}</Text>
+                </Paragraph>
+            </li>
+        )
+    })
 
 const petList = pets.map((item) =>{
     
@@ -123,7 +144,7 @@ const petList = pets.map((item) =>{
                 <Row style={{ marginTop:'10px'}}>
                     <Col  xl={8} md={12} sm={{span:24}} xs={{span:24}} style={{width:'297px', height:'80px', borderRadius:'15px'}}>
                         <Row>
-                            <p className='likes-comment' > {item?.likeCounter} Likes</p>
+                            <p className='likes-comment' > {item.likeCounter} Likes</p>
                             <p className='likes-comment' > {item.commentCounter} Comments</p>
                         </Row>
                         <Row>
@@ -139,15 +160,26 @@ const petList = pets.map((item) =>{
                         <Button block className='btn-rqsmeet' onClick={() => openRequestMeeting(item.id)} >Request Meeting</Button>
                     </Col>
                 </Row>
+                <Row style={{ marginTop:'10px'}}>
+                    <ul className='comment-view'>
+                        {commentView}
+                    </ul>
+                </Row>
             </Col>
+
         </Row>
+        <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
+            {/* <Row style={{ width:'100%', marginTop: '10px'}} > */}
+                    <Input placeholder="Add a comment..."  suffix={<button>post</button>} />
+                    
+            {/* </Row> */}
+        </Col>
     </Row>
     )})
     
     return (
         <Fragment>
             {petList}
-
             <RequestMeeting
                             id={id}
                             dispatch={dispatch}

@@ -1,6 +1,7 @@
 import {EDIT_PROFILE_SUCCESS, EDIT_PROFILE_FAILED} from './types';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import {getProfile} from './profile';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -17,6 +18,7 @@ export const editProfile = (data) => async dispatch => {
 		dispatch({
 			type: EDIT_PROFILE_SUCCESS
 		})
+		dispatch(getProfile())
 		Swal.fire({
 			icon: 'success',
 			title: 'success',

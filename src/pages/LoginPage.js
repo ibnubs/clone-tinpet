@@ -40,10 +40,8 @@ const LoginPage = (props) => {
 				className="login__form--form-wrapper"
 				initialValues={{ remember: true }}
 				onFinish={submitLogin}
-				>
-						
-			<h1> Log In </h1>
-	          
+				>						
+			<h1> Log In </h1>	          
 	          <Form.Item
               name="email"
               // onFieldsChange={email}
@@ -91,7 +89,11 @@ const LoginPage = (props) => {
 	          </Form.Item>
 			  
 			  <Form.Item>
-	            <Button type="primary" style={{width: '100%', height: '50px', borderRadius:'5px'}}>
+	            <Button type="primary" 
+	            style={{width: '100%', 
+	            height: '50px', 
+	            borderRadius:'5px', 
+	            backgroundColor:'#3E4C6F'}}>
                     <Link to='/'> Create New Account </Link>    
 	            </Button>
               </Form.Item>  

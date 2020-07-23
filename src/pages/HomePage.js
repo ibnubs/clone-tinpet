@@ -7,12 +7,12 @@ import SearchComponent from '../components/search/SearchComponent';
 import FeedDisplay from '../components/feed/FeedDisplay';
 
 
-const HomePage = () => {
+const HomePage = (props) => {
     return (
         <Fragment>
             <Nav />
             <Row className='row-homepage' >
-                <SearchComponent />
+                <SearchComponent props={props}/>
                 <FeedDisplay />
             </Row>
             <CreatePostModal />

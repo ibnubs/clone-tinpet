@@ -1,4 +1,3 @@
-// import {GET_ALL_POST, GET_ALL_POST_FAILED}  from './types';
 import axios from 'axios';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
