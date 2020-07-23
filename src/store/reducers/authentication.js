@@ -39,7 +39,7 @@ const auth = (state = initialState, action) => {
 				return {
 					...state,
 					isAuthenticate: false,
-		}
+				}
 
 	}
 }
