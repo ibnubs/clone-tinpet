@@ -1,7 +1,7 @@
-import React, { useCallback, useEffect, useState, Fragment } from 'react';
+import React, {useState, Fragment } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 import {postMessages} from '../../store/actions/messages';
 
 const PostMessages = (props) => {

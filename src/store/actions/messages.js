@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import {POST_MESSAGE_SUCCESS, POST_MESSAGE_FAILED} from './types';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -72,3 +71,4 @@ export const postMessages = ( data, id, props) => async dispatch => {
         })
     }
 }
+
