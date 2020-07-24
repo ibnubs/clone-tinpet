@@ -1,17 +1,18 @@
 import React, { Fragment, useEffect  } from 'react';
-import { Row, Col, Button } from 'antd';
-import { DeleteFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
+import { Row, Col, Button, Typography } from 'antd';
+import { HeartOutlined, MessageOutlined,HeartFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import {getSinglePets} from '../../../store/actions/getSinglePets';
 import axios from 'axios';
 
+const {Text, Paragraph} = Typography
 
 const PostCard = () => {
     
     const dispatch = useDispatch()
     const postPets = useSelector(state => state.getSinglePets.petsDetail)
     console.log(postPets, 'post pets dari component')
-    // const SenderId = localStorage.getItem('userID')
+    const SenderId = localStorage.getItem('userID')
 
     useEffect(() => {
         dispatch ( getSinglePets() )
@@ -46,13 +47,25 @@ const PostCard = () => {
     const postPetsList = postPets.map ((item)=>{
     
         //handle like
-        let ituLah = <HeartOutlined />
-    // const ituLah = item.Likes.reduce ((result, option)=> {
-    //     if(option.isLike){
-    //         return result.concat(option.SenderId)
-    //     }
-    //     return result;
-    // },[])
+        // let ituLah = <HeartOutlined />
+        const ituLah = item.Likes.reduce ((result, option)=> {
+            if(option.isLike){
+                return result.concat(option.SenderId)
+            }
+            return result;
+        },[])
+
+
+        //handle comment
+        let commentView = item.Comments.map((cd)=>{
+            return(
+                <li key={cd.id} className='comment-list'>
+                <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
+                    <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
+                </Paragraph>
+            </li>
+            )
+        })
 
         return (
             <>
@@ -72,9 +85,6 @@ const PostCard = () => {
                                     <Col span={11}>
                                         <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Gender</p>
                                         <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px'}}>{item.gender}</p>
-                                    </Col>
-                                    <Col span={1} justify='end'>
-                                        <DeleteFilled style={{color:'red'}} />
                                     </Col>
                                 </Row>
                                 <Row>
@@ -115,8 +125,8 @@ const PostCard = () => {
                                 </Row>
                                 <Row>
                                     <span onClick={()=>{handleLike(item.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
-                                        {/* {(ituLah.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )} */}
-                                        {ituLah}
+                                        {(ituLah.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
+                                        {/* {ituLah} */}
                                     </span>
                                     <span>
                                         <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem'}} />
@@ -126,6 +136,11 @@ const PostCard = () => {
                             <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
                                 <Button block className='btn-rqsmeet' >Delete Post</Button>
                             </Col>
+                        </Row>
+                        <Row style={{ marginTop:'10px'}}>
+                            <ul className='comment-view'>
+                                {commentView}
+                            </ul>
                         </Row>
                     </Col>
                 </Row>

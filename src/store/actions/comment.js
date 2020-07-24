@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { getAllPets } from './post';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -27,6 +28,7 @@ export const getAllComment = () => async (dispatch) => {
 
 
 export const getPostComment = (data, pets_id) => async (dispatch) => {
+    
     const token = localStorage.getItem('token')
     let postCommentUrl = `https://product-tinpet-app.herokuapp.com/api/v1/comments/${pets_id}`
     try {
@@ -38,10 +40,12 @@ export const getPostComment = (data, pets_id) => async (dispatch) => {
                 Authorization: token
             }
         })
+        console.log(res.data, 'ini post comment')
         dispatch({
             type: 'POST_COMMENT_SUCCESS',
-            payload: res.data.data
         })
+        dispatch(getAllPets())
+        
     } catch (error) {
         console.log(error, 'error post comment')
         dispatch({

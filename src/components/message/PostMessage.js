@@ -11,6 +11,7 @@ const PostMessages = (props) => {
 
 	const sendMessage = e => {
 		e.preventDefault();
+		
 		const userData = {
 			message
 		}
