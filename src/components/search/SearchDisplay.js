@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
-import { HeartOutlined, MessageOutlined } from '@ant-design/icons';
+import { HeartOutlined, MessageOutlined, HeartFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting'
 import './SearchDisplay.scss';
@@ -12,7 +12,7 @@ const SearchDisplay = (props) => {
     const [ id, setId ] = useState('');
     const pets = useSelector(state => state.searchPet.PetId)
     console.log(pets.length, 'length pets')
-    // const SenderId = localStorage.getItem('userID')
+    const SenderId = localStorage.getItem('userID')
     
     console.log(pets, 'ini search result buat pet')
     
@@ -58,13 +58,12 @@ const SearchDisplay = (props) => {
 const petList = pets.map((item) =>{
     
     //handle like
-    let ituLah =  <HeartOutlined />
-    // const ituLah = item.Likes.reduce ((result, option)=> {
-    //     if(option.isLike){
-    //         return result.concat(option.SenderId)
-    //     }
-    //     return result;
-    // },[])
+    const ituLah = item?.Likes?.reduce((result, option)=> {
+        if(option.isLike){
+            return result.concat(option.SenderId)
+        }
+        return result;
+    },[])
 
     return(
             <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} key={item.id} >
@@ -128,8 +127,7 @@ const petList = pets.map((item) =>{
                                 </Row>
                                 <Row>
                                     <span onClick={()=>{handleLike(item.PetId)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
-                                        {/* {(ituLah.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )} */}
-                                        {ituLah}
+                                        {(ituLah?.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                                     </span>
                                     <span>
                                         <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem'}} />

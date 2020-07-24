@@ -20,7 +20,6 @@ const MessageNotif = () => {
     }
 
     const mList = getAllM.map( m =>{
-        console.log(m, 'isi nya apa m itu')
         return(
             <>
                 <Row style={{height:'', width:'100%', margin:'40px 0px 40px 0px'}} >

@@ -4,6 +4,7 @@ import './notif.css'
 import {DeleteFilled } from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux'
 import { notifDetail } from '../../../store/actions/notif';
+import {Link} from 'react-router-dom';
 
 const NotificationProfile = () => {
     const dispatch = useDispatch()
@@ -45,7 +46,9 @@ const NotificationProfile = () => {
                                         <p className='text-notif' > <span style={{fontWeight:'bold'}}> {n?.detailUser?.Profile?.full_name} </span> {message} </p>
                                     </Row>
                                     <Row justify='center' >
+                                        <Link to='/profile'>
                                             <Button type='text' className='text-seepost'>See Post</Button>
+                                        </Link>    
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>
