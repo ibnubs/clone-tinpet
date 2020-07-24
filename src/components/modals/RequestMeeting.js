@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState, Fragment } from 'react';
-import { Form, Input, Button, Modal } from 'antd';
+import { Form, Input, Button, Modal, Select } from 'antd';
 import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
 import { useDispatch } from "react-redux";
@@ -35,7 +35,6 @@ const RequestMeeting = (props) => {
 	}, [isAuthenticate, closeModal])
 
 	const submitRequest = e => {
-
 		e.preventDefault()
 		const userData = {
 			date,
@@ -46,6 +45,10 @@ const RequestMeeting = (props) => {
 		console.log("data", userData)
 		dispatch(request(userData, props.id, {history}))
 		setRequestMeeting (false)
+	}
+
+	const submitHour= async (value) => {
+		await setHour(value)
 	}
 
 
@@ -68,21 +71,23 @@ const RequestMeeting = (props) => {
 
 		      		<Form.Item className="form">
 				        <Form.Item
-						  label="Date"
+						  label="Select the date"
 				          name="date"
 						  onChange={(e) => setDate(e.target.value)}
 						  style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
-				        >
-		          		<Input placeholder="Input birth date" />
+						  rules={[{ required: true, message: 'Please select the date!' }]}
+						>
+						  <Input type="date"/>
 		        		</Form.Item>
 
 			        	<Form.Item
-				          label="Hour"
+				          label="Choose a meeting time"
 						  name="hour"
 						  onChange={(e) => setHour(e.target.value)}
 				          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
-			       	 	>
-				        <Input placeholder="Input birth hour" />       
+						  rules={[{ required: true, message: 'Please select the time!' }]}
+						>
+						<Input type="time"/>
 	        			</Form.Item>
 	      			</Form.Item>
 
@@ -94,8 +99,11 @@ const RequestMeeting = (props) => {
 						" required />
 				    </Form.Item>
 	      			
-					<Form.Item label="Location"  className="form"
-					onChange={(e) => setLocation(e.target.value)}>
+					<Form.Item 
+						label="Location"  
+						className="form"
+						onChange={(e) => setLocation(e.target.value)}
+					>
 	          		<Input placeholder="Input your location"/>
 	       	 		</Form.Item>
 	       			<hr />
