@@ -35,7 +35,6 @@ const RequestMeeting = (props) => {
 	}, [isAuthenticate, closeModal])
 
 	const submitRequest = e => {
-
 		e.preventDefault()
 		const userData = {
 			date,
@@ -73,7 +72,7 @@ const RequestMeeting = (props) => {
 						  onChange={(e) => setDate(e.target.value)}
 						  style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
 				        >
-		          		<Input placeholder="Input birth date" />
+		          		<Input type="date" />
 		        		</Form.Item>
 
 			        	<Form.Item
@@ -82,7 +81,7 @@ const RequestMeeting = (props) => {
 						  onChange={(e) => setHour(e.target.value)}
 				          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
 			       	 	>
-				        <Input placeholder="Input birth hour" />       
+				        <Input type="time" />       
 	        			</Form.Item>
 	      			</Form.Item>
 
