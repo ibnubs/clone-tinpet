@@ -80,7 +80,9 @@ const CardFeed = (props) => {
         }
 		console.log(commentData, 'ini comment data')
         dispatch(getPostComment (commentData, id))
+        console.log(' ini cek jalan disini')
         setCommentValue('')
+        
     }
     
     //handling event target card
@@ -145,13 +147,13 @@ const petList = pets.map((item) =>{
                             </Col>
                             <Col span={12}>
                                 <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Category</p>
-                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px'}}> {item.Search.category} </p>
+                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px'}}> {item?.Search?.category} </p>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={12}>
                                 <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Location</p>
-                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px', paddingRight:'20px'}}> {item.Search.location} </p>
+                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px', paddingRight:'20px'}}> {item?.Search?.location} </p>
                             </Col>
                             <Col span={12}>
                                 <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Status</p>
@@ -198,10 +200,12 @@ const petList = pets.map((item) =>{
         <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
                 <Form onFinish={()=>sendComment(item.id)}>
                     <Form.Item
-                        onChange={(e) => setCommentValue.console.log(e.currentTarget.value)}
-                        // onChange = {onChange}
+                        name={item.id}
+                        onChange={(e) => setCommentValue(e.target.value)}
                     >
                         <Input
+                            // onChange={(e) => setCommentValue(e.target.value)}
+                            allowClear
                             placeholder="Add a comment..."
                             value={comment}
                             suffix={<Button onClick={()=>sendComment(item.id )} style={{border: 'none', color:'gray'}} >post</Button>} 
