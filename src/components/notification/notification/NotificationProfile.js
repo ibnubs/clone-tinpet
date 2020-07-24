@@ -45,7 +45,7 @@ const NotificationProfile = () => {
                                         <p className='text-notif' > <span style={{fontWeight:'bold'}}> {n?.detailUser?.Profile?.full_name} </span> {message} </p>
                                     </Row>
                                     <Row justify='center' >
-                                        <Button type='text' className='text-seepost'>See Post</Button>
+                                            <Button type='text' className='text-seepost'>See Post</Button>
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>

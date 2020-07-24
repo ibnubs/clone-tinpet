@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
 export const getAllPets = () => async (dispatch) => {
@@ -25,4 +26,5 @@ export const getAllPets = () => async (dispatch) => {
         })
     }
 }
+
 

@@ -2,7 +2,7 @@ import React, { Fragment, useEffect  } from 'react';
 import { Row, Col, Button, Typography } from 'antd';
 import { HeartOutlined, MessageOutlined,HeartFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
-import {getSinglePets} from '../../../store/actions/getSinglePets';
+import {getSinglePets, deletePost} from '../../../store/actions/getSinglePets';
 import axios from 'axios';
 
 const {Text, Paragraph} = Typography
@@ -18,6 +18,14 @@ const PostCard = () => {
         dispatch ( getSinglePets() )
     }, [dispatch])
     
+    const delPost = async (id)  => {
+    const res = await dispatch(deletePost(id));
+      if(res){
+        console.log('success delete')
+      }else{
+        console.log("failed delete")
+      }
+    }
         //handling like
         const handleLike = async (pets_id ) => {
             const token = localStorage.getItem('token')
@@ -134,7 +142,7 @@ const PostCard = () => {
                                 </Row>
                             </Col>
                             <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
-                                <Button block className='btn-rqsmeet' >Delete Post</Button>
+                                <Button onClick={()=>delPost(item.id)} block className='btn-rqsmeet' >Delete Post</Button>
                             </Col>
                         </Row>
                         <Row style={{ marginTop:'10px'}}>

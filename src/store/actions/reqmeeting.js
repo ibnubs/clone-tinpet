@@ -1,16 +1,14 @@
-import { REQUEST_SUCCESS, REQUEST_FAILED
-} from './types';
-// import { message } from 'antd';
+import { REQUEST_SUCCESS, REQUEST_FAILED} from './types';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
-    export const request = (data, id, props ) => async dispatch => {
+  export const request = (data, id, props ) => async dispatch => {
 	try {
 		const res = await axios.post(`${baseUrl}/api/v1/requests/${id}`, data, {
 			headers: {
-			Authorization : localStorage.getItem("token")
+			authorization : localStorage.getItem("token")
 			}
 		})
 		console.log(res, "response")

@@ -41,3 +41,9 @@
         margin-bottom: 0.2em;
     }
 }
+
+.delete-message{
+    margin: auto;
+    margin-left: -100px;
+    width: 200px;
+}
