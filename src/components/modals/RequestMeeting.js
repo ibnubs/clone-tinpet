@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, Fragment } from 'react';
 import { Form, Input, Button, Modal } from 'antd';
 import { useSelector } from 'react-redux';
 import './RequestMeeting.scss';
 import { useDispatch } from "react-redux";
 import {request} from '../../store/actions/reqmeeting'
+import { useHistory } from 'react-router-dom'
 
 const RequestMeeting = (props) => {
 
@@ -13,6 +14,7 @@ const RequestMeeting = (props) => {
 	const [hour, setHour] = useState("")
 	const [message, setMessage] = useState("")
 	const [location, setLocation] = useState("")
+	const history = useHistory();
 
 	const { TextArea } = Input;
 
@@ -42,7 +44,8 @@ const RequestMeeting = (props) => {
 			location
 		}
 		console.log("data", userData)
-		dispatch(request(userData, props.id))
+		dispatch(request(userData, props.id, {history}))
+		setRequestMeeting (false)
 	}
 
 
@@ -50,9 +53,10 @@ const RequestMeeting = (props) => {
   	<Modal style={{ transition: "all .4s ease"}}
 	  	onCancel={()=>setRequestMeeting(false)}
 	  	visible={requestMeeting}
-	  	className="modal"
-	  	footer='null'
+	  	className="modal-reqmeeting"
+	  	footer={null}
 		>
+		<Fragment>
 	    <div className="reqmeeting">
 	    	<div className="reqmeeting__header">
 	    		<h1> Request Meeting </h1>    		
@@ -98,7 +102,7 @@ const RequestMeeting = (props) => {
 	       			
 				    <Form.Item className="button_post">
 						<Button onClick={submitRequest}
-						type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '60px'}}
+						type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '80px'}}
 				         key="submit">Request</Button>
 				    </Form.Item>
 
@@ -108,8 +112,7 @@ const RequestMeeting = (props) => {
 			   	  </Form>
 	      	</div>
 	      </div>
-
-	    
+		</Fragment>  
     </Modal>
   );
 };

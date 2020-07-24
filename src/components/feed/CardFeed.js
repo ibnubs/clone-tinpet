@@ -1,9 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Row, Col, Avatar, Button, Typography, Input } from 'antd';
+import { Row, Col, Avatar, Button, Typography, Input, Form } from 'antd';
 import { HeartFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
-import RequestMeeting from '../../components/modals/RequestMeeting'
+import RequestMeeting from '../../components/modals/RequestMeeting';
+import PostMessage from '../message/PostMessage';
 import { getAllPets } from '../../store/actions/post';
+import {getPostComment} from '../../store/actions/comment';
 import axios from 'axios';
 import './feed.scss';
 
@@ -12,7 +14,11 @@ const {Text, Paragraph} = Typography
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
+    const [ postMessage, setPostMessage] = useState(false);
     const [ id, setId ] = useState('');
+    const [ comment, setCommentValue] = useState('')
+    
+
     //selector
     const pets = useSelector(state => state.post.pets)
     const profile = useSelector(state => state.profile.profileDetail)
@@ -24,6 +30,12 @@ const CardFeed = (props) => {
         await setRequestMeeting (true)
         setId(id)
         console.log(id ,"id")
+    }
+
+    const openPostMessage = async (id) => {
+        await setPostMessage (true)
+        setId (id)
+        console.log(id, 'id')
     }
 
     //react life cycle
@@ -59,6 +71,28 @@ const CardFeed = (props) => {
         }
     }
 
+
+    //handling comment post
+    const sendComment = (id) => {
+        console.log('test ini jalan')
+        const commentData = {
+            comment
+        }
+		console.log(commentData, 'ini comment data')
+        dispatch(getPostComment (commentData, id))
+        setCommentValue('')
+    }
+    
+    //handling event target card
+    // cek input yang sedang aktif..
+    //ubah value yang sedang aktif..
+    // const onChange = (e) => {
+    //     comment,
+    //     setCommentValue(e.tar)
+    // }
+
+
+
 const petList = pets.map((item) =>{
     
     //handle like
@@ -74,7 +108,7 @@ const petList = pets.map((item) =>{
         return(
             <li key={cd.id} className='comment-list'>
             <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
-                <Text><span style={{fontWeight:'bold'}}>Hans Solo</span>   {cd.comment}</Text>
+                <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
             </Paragraph>
         </li>
         )
@@ -144,8 +178,8 @@ const petList = pets.map((item) =>{
                             <span onClick={()=>{handleLike(item.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
                                 {(ituLah.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                             </span>
-                            <span>
-                                <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem'}} />
+                            <span onClick ={()=> openPostMessage(item.UserId)}>
+                                <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
                             </span>
                         </Row>
                     </Col>
@@ -162,7 +196,18 @@ const petList = pets.map((item) =>{
 
         </Row>
         <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
-                <Input placeholder="Add a comment..."  suffix={<button>post</button>} />
+                <Form onFinish={()=>sendComment(item.id)}>
+                    <Form.Item
+                        onChange={(e) => setCommentValue.console.log(e.currentTarget.value)}
+                        // onChange = {onChange}
+                    >
+                        <Input
+                            placeholder="Add a comment..."
+                            value={comment}
+                            suffix={<Button onClick={()=>sendComment(item.id )} style={{border: 'none', color:'gray'}} >post</Button>} 
+                        />
+                    </Form.Item>
+                </Form>
         </Col>
     </Row>
     )})
@@ -171,11 +216,17 @@ const petList = pets.map((item) =>{
         <Fragment>
             {petList}
             <RequestMeeting
-                            id={id}
-                            dispatch={dispatch}
-                            requestMeeting={requestMeeting}
-                            setRequestMeeting={setRequestMeeting}
-                        /> 
+                id={id}
+                dispatch={dispatch}
+                requestMeeting={requestMeeting}
+                setRequestMeeting={setRequestMeeting}
+            /> 
+            <PostMessage
+                id={id}
+                dispatch={dispatch}
+                postMessage={postMessage}
+                setPostMessage={setPostMessage}
+            />
         </Fragment>
     );
 }
