@@ -12,7 +12,7 @@ export const notifDetail = () => async (dispatch) => {
             }
         })
         console.log( res.data.data, 'ini data notif')
-        console.log( res.data?.detailNotification, 'ini data notif')
+        console.log( res?.data?.data?.detailNotification, 'ini data notif')
         dispatch({
             type: 'GET_NOTIF_SUCCESS',
             payload: res.data?.data?.detailNotification 

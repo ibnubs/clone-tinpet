@@ -16,7 +16,7 @@ const NotificationProfile = () => {
     }, [dispatch])
 
     const notifList = detailNotifShow.map((n) => {
-
+        console.log(detailNotifShow, 'ini')
         //handling message notif
         const messageNotif = n?.detailNotif?.type
         let message;
@@ -25,6 +25,7 @@ const NotificationProfile = () => {
             }  else if(messageNotif === 'comment'){
                 message = 'comment on your post'
             }  else if (messageNotif === 'request'){
+                message = 'request meeting on your post'
             }  else {
                 message = "there's not notification"
             }

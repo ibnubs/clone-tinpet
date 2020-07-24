@@ -73,7 +73,7 @@ const RequestMeeting = (props) => {
 						  onChange={(e) => setDate(e.target.value)}
 						  style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
 				        >
-		          		<Input placeholder="Input birth date" />
+		          		<Input placeholder="Input Meeting date" />
 		        		</Form.Item>
 
 			        	<Form.Item
@@ -82,7 +82,7 @@ const RequestMeeting = (props) => {
 						  onChange={(e) => setHour(e.target.value)}
 				          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
 			       	 	>
-				        <Input placeholder="Input birth hour" />       
+				        <Input placeholder="Input Meeting Time" />       
 	        			</Form.Item>
 	      			</Form.Item>
 
