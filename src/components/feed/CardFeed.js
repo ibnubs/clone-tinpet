@@ -145,13 +145,13 @@ const petList = pets.map((item) =>{
                             </Col>
                             <Col span={12}>
                                 <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Category</p>
-                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px'}}> {item.Search.category} </p>
+                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px'}}> {item?.Search?.category} </p>
                             </Col>
                         </Row>
                         <Row>
                             <Col span={12}>
                                 <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Location</p>
-                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px', paddingRight:'20px'}}> {item.Search.location} </p>
+                                <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px', paddingRight:'20px'}}> {item?.Search?.location} </p>
                             </Col>
                             <Col span={12}>
                                 <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Status</p>

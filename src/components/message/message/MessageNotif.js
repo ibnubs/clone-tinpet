@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect  } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
 import './MessageNotif.css'
-import {DeleteFilled } from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux';
-import { getAllMessage } from '../../../store/actions/messages';
+import { getAllMessage, deleteMessage } from '../../../store/actions/messages';
 
 const MessageNotif = () => {
     const dispatch = useDispatch()
@@ -11,7 +10,17 @@ const MessageNotif = () => {
     
     useEffect (()=>{dispatch(getAllMessage())},[dispatch])
 
-    const mList = getAllM.map((m)=>{
+    const delMessage = async (id)  => {
+    const res = await dispatch(deleteMessage(id));
+      if(res){
+        console.log('success delete')
+      }else{
+        console.log("failed delete")
+      }
+    }
+
+    const mList = getAllM.map( m =>{
+        console.log(m, 'isi nya apa m itu')
         return(
             <>
                 <Row style={{height:'', width:'100%', margin:'40px 0px 40px 0px'}} >
@@ -26,11 +35,14 @@ const MessageNotif = () => {
                                         <p className='m-notif' style={{fontWeight:'bold'}} > {m?.User?.Profile?.full_name} </p>
                                     </Row>
                                     <Row>
-                                        <Button type='text' > {m.message} </Button>
+                                        <p> {m.message} </p>
                                     </Row>
                                 </Col>
-                                <Col xl={1} sm={1} xs={1} justify='end'>
-                                    <DeleteFilled style={{color:'red'}} />
+                                <Col className="delete-message" xl={1} sm={1} xs={1} justify='end'>
+                                    {/*<DeleteFilled style={{color:'green'}} />*/}
+                                    <Button onClick={()=>delMessage(m.id)}
+                                    style={{fontWeight: 'bold', borderRadius: '10px'}} type="danger"> 
+                                    Delete Message </Button>
                                 </Col>
                             </Row>
                         </Col>

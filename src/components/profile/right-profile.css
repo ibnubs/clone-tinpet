@@ -68,9 +68,11 @@
 
 
 
-.btn-right-profile{
+.btn-right-profile:hover::after{
     margin: .2em;
     color: #C4C4C4;
     font-weight: bold;
     line-height: 29px;
+    border-bottom: 3px solid black;
+
 }
