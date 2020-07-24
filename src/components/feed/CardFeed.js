@@ -1,13 +1,13 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Row, Col, Avatar, Button, Typography, Input } from 'antd';
+import { Row, Col, Avatar, Button, Typography, Input, Form } from 'antd';
 import { HeartFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting';
 import PostMessage from '../message/PostMessage';
 import { getAllPets } from '../../store/actions/post';
+import {getPostComment} from '../../store/actions/comment';
 import axios from 'axios';
 import './feed.scss';
-import { getAllComment } from '../../store/actions/comment';
 
 const {Text, Paragraph} = Typography
 
@@ -16,10 +16,12 @@ const CardFeed = (props) => {
     const [ requestMeeting, setRequestMeeting ] = useState(false);
     const [ postMessage, setPostMessage] = useState(false);
     const [ id, setId ] = useState('');
+    const [ comment, setCommentValue] = useState('')
+    
+
     //selector
     const pets = useSelector(state => state.post.pets)
     const profile = useSelector(state => state.profile.profileDetail)
-    const commentData = useSelector (state=> state.comment.getAllComment )
     //localstorage
     localStorage.setItem("userID", profile.id)
     const SenderId = localStorage.getItem('userID')
@@ -38,14 +40,10 @@ const CardFeed = (props) => {
 
     //react life cycle
     useEffect(() => {
-        dispatch(
-            getAllPets(),
-        )
+        dispatch(getAllPets())
     },[dispatch])
 
-    useEffect(() => {
-        dispatch(getAllComment())
-    },[dispatch])
+
     
 
     //handling like
@@ -72,17 +70,28 @@ const CardFeed = (props) => {
             console.log(error, 'error like')
         }
     }
+
+
+    //handling comment post
+    const sendComment = (id) => {
+        console.log('test ini jalan')
+        const commentData = {
+            comment
+        }
+		console.log(commentData, 'ini comment data')
+        dispatch(getPostComment (commentData, id))
+        setCommentValue('')
+    }
     
-    //get-all-comment-map
-    const commentView = commentData.map((cd)=>{
-        return(
-            <li key={cd.id} className='comment-list'>
-                <Paragraph key={cd.id} ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
-                    <Text><span style={{fontWeight:'bold'}}>Hans Solo</span>   {cd.comment}</Text>
-                </Paragraph>
-            </li>
-        )
-    })
+    //handling event target card
+    // cek input yang sedang aktif..
+    //ubah value yang sedang aktif..
+    // const onChange = (e) => {
+    //     comment,
+    //     setCommentValue(e.tar)
+    // }
+
+
 
 const petList = pets.map((item) =>{
     
@@ -94,6 +103,16 @@ const petList = pets.map((item) =>{
         return result;
     },[])
     
+    //handle comment
+    let commentView = item.Comments.map((cd)=>{
+        return(
+            <li key={cd.id} className='comment-list'>
+            <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
+                <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
+            </Paragraph>
+        </li>
+        )
+    })
 
     return(
         <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} key={item.id} >
@@ -177,10 +196,18 @@ const petList = pets.map((item) =>{
 
         </Row>
         <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
-            {/* <Row style={{ width:'100%', marginTop: '10px'}} > */}
-                    <Input placeholder="Add a comment..."  suffix={<button>post</button>} />
-                    
-            {/* </Row> */}
+                <Form onFinish={()=>sendComment(item.id)}>
+                    <Form.Item
+                        onChange={(e) => setCommentValue.console.log(e.currentTarget.value)}
+                        // onChange = {onChange}
+                    >
+                        <Input
+                            placeholder="Add a comment..."
+                            value={comment}
+                            suffix={<Button onClick={()=>sendComment(item.id )} style={{border: 'none', color:'gray'}} >post</Button>} 
+                        />
+                    </Form.Item>
+                </Form>
         </Col>
     </Row>
     )})
