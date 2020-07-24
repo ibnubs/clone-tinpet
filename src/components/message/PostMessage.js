@@ -3,6 +3,7 @@ import { Form, Input, Button, Modal } from 'antd';
 import { useDispatch } from 'react-redux';
 // import { useHistory } from 'react-router-dom';
 import {postMessages} from '../../store/actions/messages';
+import './PostMessage.scss';
 
 const PostMessages = (props) => {
 	const {postMessage, setPostMessage } = props
@@ -35,13 +36,17 @@ const PostMessages = (props) => {
 					<h1> Send a Message </h1>
 					<Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical" onFinish={sendMessage}>
 						<Form.Item
-							label="Message"
+							label=""
 							name="message"
 							onChange={(e) => setMessage(e.target.value)}
 							style={{ display: 'inline-block', width: 'calc(50% - 8px)'}}
+							className="form-message"
 						>
 							<TextArea rows={6} placeholder="Type your message here" required />
-							<Button onClick ={sendMessage}>Send</Button>
+							<div className="button-message">
+								<Button onClick={() => setPostMessage(false)}>Cancel</Button>
+								<Button style={{backgroundColor: '#FF65C5', color: 'white', fontWeight: 'bold'}}onClick ={sendMessage}>Send</Button>
+							</div>
 						</Form.Item>
 					</Form>
 				</div>
