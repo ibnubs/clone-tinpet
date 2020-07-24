@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -24,3 +25,28 @@ export const getSinglePets = () => async (dispatch) => {
         })
     }
 }
+
+export const deletePost = ( id, props) => async dispatch => {
+    console.log(id, 'kirim pesan ni',)
+    const token = localStorage.getItem('token')
+    try {
+        const res = await axios.delete(`${baseUrl}/api/v1/pets/${id}`, {headers : {authorization: token}})
+        console.log('res', res)
+        dispatch({
+            type: 'DELETE_POST_SUCCESS',
+            payload: id
+        })
+        Swal.fire({
+            icon: 'success',
+            title: 'success',
+            text: 'Delete post success!',
+        })
+        dispatch(getSinglePets())
+    } catch (error) {
+        console.log(error, 'delete message failed')
+        dispatch({
+            type: 'POST_MESSAGE_FAILED'
+        })
+    }
+}
+

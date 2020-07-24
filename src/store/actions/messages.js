@@ -72,3 +72,27 @@ export const postMessages = ( data, id, props) => async dispatch => {
     }
 }
 
+export const deleteMessage = ( id, props) => async dispatch => {
+    console.log(id, 'kirim pesan ni',)
+    const token = localStorage.getItem('token')
+    try {
+        const res = await axios.delete(`${baseUrl}/api/v1/messages/${id}`, {headers : {authorization: token}})
+        console.log('res', res)
+        dispatch({
+            type: 'DELETE_MESSAGE_SUCCESS',
+            payload: id
+        })
+        Swal.fire({
+            icon: 'success',
+            title: 'success',
+            text: 'Delete message success!',
+        })
+        dispatch(getAllMessage())
+    } catch (error) {
+        console.log(error, 'delete message failed')
+        dispatch({
+            type: 'POST_MESSAGE_FAILED'
+        })
+    }
+}
+

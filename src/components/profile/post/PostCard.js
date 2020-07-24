@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect  } from 'react';
 import { Row, Col, Button } from 'antd';
-import { DeleteFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
+import { HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
-import {getSinglePets} from '../../../store/actions/getSinglePets';
+import {getSinglePets, deletePost} from '../../../store/actions/getSinglePets';
 import axios from 'axios';
 
 
@@ -17,6 +17,14 @@ const PostCard = () => {
         dispatch ( getSinglePets() )
     }, [dispatch])
     
+    const delPost = async (id)  => {
+    const res = await dispatch(deletePost(id));
+      if(res){
+        console.log('success delete')
+      }else{
+        console.log("failed delete")
+      }
+    }
         //handling like
         const handleLike = async (pets_id ) => {
             const token = localStorage.getItem('token')
@@ -73,9 +81,6 @@ const PostCard = () => {
                                         <p style={{fontSize:'14px', color:'#7B7B7B', lineHeight:'17px'}} >Gender</p>
                                         <p style={{fontWeight:'bold', fontSize:'18px',marginTop:'-5px', lineHeight:'22px'}}>{item.gender}</p>
                                     </Col>
-                                    <Col span={1} justify='end'>
-                                        <DeleteFilled style={{color:'red'}} />
-                                    </Col>
                                 </Row>
                                 <Row>
                                     <Col span={12}>
@@ -124,7 +129,7 @@ const PostCard = () => {
                                 </Row>
                             </Col>
                             <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
-                                <Button block className='btn-rqsmeet' >Delete Post</Button>
+                                <Button onClick={()=>delPost(item.id)} block className='btn-rqsmeet' >Delete Post</Button>
                             </Col>
                         </Row>
                     </Col>
