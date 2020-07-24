@@ -1,11 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Row, Col, Avatar, Button, Typography, Input, Form } from 'antd';
-import { HeartFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
+import { HeartFilled, HeartOutlined, MessageOutlined, DeleteFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting';
 import PostMessage from '../message/PostMessage';
 import { getAllPets } from '../../store/actions/post';
-import {getPostComment} from '../../store/actions/comment';
+import {getPostComment, deleteComment} from '../../store/actions/comment';
 import axios from 'axios';
 import './feed.scss';
 
@@ -84,15 +84,11 @@ const CardFeed = (props) => {
         setCommentValue('')
         
     }
-    
-    //handling event target card
-    // cek input yang sedang aktif..
-    //ubah value yang sedang aktif..
-    // const onChange = (e) => {
-    //     comment,
-    //     setCommentValue(e.tar)
-    // }
 
+
+    const delComment = async (id)  => {
+        await dispatch(deleteComment(id));
+        }
 
 
 const petList = pets.map((item) =>{
@@ -111,6 +107,10 @@ const petList = pets.map((item) =>{
             <li key={cd.id} className='comment-list'>
             <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
                 <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
+                <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                    onClick={()=>delComment(cd.id)}
+                    
+                />
             </Paragraph>
         </li>
         )
