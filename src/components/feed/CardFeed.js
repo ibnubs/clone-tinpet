@@ -2,7 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Row, Col, Avatar, Button, Typography, Input } from 'antd';
 import { HeartFilled, HeartOutlined, MessageOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
-import RequestMeeting from '../../components/modals/RequestMeeting'
+import RequestMeeting from '../../components/modals/RequestMeeting';
+import PostMessage from '../message/PostMessage';
 import { getAllPets } from '../../store/actions/post';
 import axios from 'axios';
 import './feed.scss';
@@ -13,6 +14,7 @@ const {Text, Paragraph} = Typography
 const CardFeed = (props) => {
 	const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
+    const [ postMessage, setPostMessage] = useState(false);
     const [ id, setId ] = useState('');
     //selector
     const pets = useSelector(state => state.post.pets)
@@ -26,6 +28,12 @@ const CardFeed = (props) => {
         await setRequestMeeting (true)
         setId(id)
         console.log(id ,"id")
+    }
+
+    const openPostMessage = async (id) => {
+        await setPostMessage (true)
+        setId (id)
+        console.log(id, 'id')
     }
 
     //react life cycle
@@ -151,8 +159,8 @@ const petList = pets.map((item) =>{
                             <span onClick={()=>{handleLike(item.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
                                 {(ituLah.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                             </span>
-                            <span>
-                                <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem'}} />
+                            <span onClick ={()=> openPostMessage(item.UserId)}>
+                                <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
                             </span>
                         </Row>
                     </Col>
@@ -181,11 +189,17 @@ const petList = pets.map((item) =>{
         <Fragment>
             {petList}
             <RequestMeeting
-                            id={id}
-                            dispatch={dispatch}
-                            requestMeeting={requestMeeting}
-                            setRequestMeeting={setRequestMeeting}
-                        /> 
+                id={id}
+                dispatch={dispatch}
+                requestMeeting={requestMeeting}
+                setRequestMeeting={setRequestMeeting}
+            /> 
+            <PostMessage
+                id={id}
+                dispatch={dispatch}
+                postMessage={postMessage}
+                setPostMessage={setPostMessage}
+            />
         </Fragment>
     );
 }
