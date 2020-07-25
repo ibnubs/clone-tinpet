@@ -1,18 +1,20 @@
 import React, { Fragment, useEffect  } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
 import './notif.css'
-import {DeleteFilled } from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux'
-import { notifDetail } from '../../../store/actions/notif';
+import { approved, rejected } from '../../../store/actions/reqmeeting';
 
-const NotificationProfile = () => {
+const NotificationRequest = () => {
     const dispatch = useDispatch()
     const detailNotifShow = useSelector(state => state?.notif?.detailNotif)
     
 
     useEffect(() => {
-        dispatch(notifDetail())
-        
+    dispatch(approved())   
+    }, [dispatch])  
+
+    useEffect(() => {
+    dispatch(rejected())
     }, [dispatch])
 
     const notifList = detailNotifShow.map((n) => {
@@ -21,13 +23,9 @@ const NotificationProfile = () => {
         const messageNotif = n?.detailNotif?.type
         let message;
             if(messageNotif === 'like' ){
-                message = 'liked your post'
-            }  else if(messageNotif === 'comment'){
-                message = 'comment on your post'
-            }  else if (messageNotif === 'request'){
-                message = 'request meeting on your post'
-            }  else {
-                message = "there's not notification"
+                message = 'Requets meeting on your post'
+            }else {
+               
             }
         
 
@@ -45,11 +43,12 @@ const NotificationProfile = () => {
                                         <p className='text-notif' > <span style={{fontWeight:'bold'}}> {n?.detailUser?.Profile?.full_name} </span> {message} </p>
                                     </Row>
                                     <Row justify='center' >
-                                            <Button type='text' className='text-seepost'>See Post</Button>
+                                        <Button type='text' className='text-seepost'>See Post</Button>
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>
-                                   
+                                   <Button type="primary"> Approve </Button>
+                                   <Button> Reject </Button>
                                 </Col>
                             </Row>
                         </Col>
@@ -66,4 +65,4 @@ const NotificationProfile = () => {
     );
 }
 
-export default NotificationProfile;
+export default NotificationRequest;

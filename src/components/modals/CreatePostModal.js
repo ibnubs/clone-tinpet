@@ -73,7 +73,7 @@ const CreatePostModal = (props) => {
 		    	<div className="createpost-wrapper__photo">		    				  
       			<div>
 				    	<label for="image"> <Avatar icon={<UserOutlined />} 
-				    	style={{cursor: "pointer", borderRadius:"50%", marginRight: "30px", marginLeft: '10px'}} 
+				    	style={{cursor: "pointer", borderRadius:"10px", marginRight: "30px", marginLeft: '20px' }} 
 				    	src={imagePreview} size={260}/> </label> 			
       				<input
       					id="image"
@@ -83,7 +83,19 @@ const CreatePostModal = (props) => {
 				    		onChange={onChange}
 				    		placeholder="Upload your photo"
 				    	/>	
-      			</div> 
+      			</div>
+      			<Button
+      			style={{width: '85%', 
+	            height: '50px', 
+	            borderRadius:'5px', 
+	            backgroundColor:'#3E4C6F',
+							color: 'white',
+							fontWeight: 'bold',
+							fontSize: '15px',
+							marginTop: '20px',
+							marginLeft: '20px'
+	          }} 
+	          > Upload a Photo </Button> 
 		    	</div>
 		    	<div 	className="createpost-wrapper__form">
 			      <Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical"
@@ -107,7 +119,7 @@ const CreatePostModal = (props) => {
 			        	<Form.Item
 				        	label="Pet Category"
 				          name="Pet Category"
-				          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
+				          style={{ display: 'inline-block', width: '50%', marginLeft: '8px' }}
 			       	 	>
 				          <Select onChange={submitCategory}>
 				          	<Select.Option  value="Dog" > Dog </Select.Option>
@@ -130,7 +142,7 @@ const CreatePostModal = (props) => {
 				        	label="Breed"
 				          name="Breed"
 				          onChange={(e)=> setBreed(e.target.value)}
-				          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
+				          style={{ display: 'inline-block', width: '50%', marginLeft: '8px' }}
 	        			>
 	          			<Input placeholder="Input your pet's breed" />
 	        			</Form.Item>
@@ -147,11 +159,26 @@ const CreatePostModal = (props) => {
 		       	 		</Form.Item>
 		       			<hr />	       			
 			        <Form.Item className="button_post">
-			          <Button type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '60px'}}
+			          <Button type="primary" 
+			          style={{ fontWeight: 'bold', 
+			          backgroundColor: '#FF65C5', 
+			          width: '200px',
+			          height: '40px',
+			          fontSize: '20px',
+			          border: 'none',
+			          borderRadius: '5px'
+			        	}}
 			           key="submit" onClick={submitCreatePost}>Post</Button>
 			        </Form.Item>
 			        <Form.Item className="button_cancel">
-			          <Button onClick={()=>setCreatePostModal(false)}>Cancel</Button>
+			          <Button 
+			          style={{
+			          	width: '200px',
+			          	fontSize: '20px',
+			          	height: '40px',
+			          	borderRadius: '5px'
+			          }}
+			          onClick={()=>setCreatePostModal(false)}>Cancel</Button>
 			        </Form.Item>
 			   	  </Form>
 	      	</div>

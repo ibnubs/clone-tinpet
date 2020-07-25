@@ -44,8 +44,25 @@ const PostMessages = (props) => {
 						>
 							<TextArea rows={6} placeholder="Type your message here" required />
 							<div className="button-message">
-								<Button onClick={() => setPostMessage(false)}>Cancel</Button>
-								<Button style={{backgroundColor: '#FF65C5', color: 'white', fontWeight: 'bold'}}onClick ={sendMessage}>Send</Button>
+								<Button onClick={() => setPostMessage(false)}
+									style={{
+										width: '200px',
+				          	fontSize: '20px',
+				          	height: '40px',
+				          	borderRadius: '5px'
+									}}
+								>Cancel</Button>
+								<Button style={{
+									fontWeight: 'bold', 
+				          backgroundColor: '#FF65C5',
+				          color: 'white', 
+				          width: '200px',
+				          height: '40px',
+				          fontSize: '20px',
+				          border: 'none',
+				          borderRadius: '5px'								
+								}}
+							onClick ={sendMessage}>Send</Button>
 							</div>
 						</Form.Item>
 					</Form>

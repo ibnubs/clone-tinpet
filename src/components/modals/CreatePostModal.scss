@@ -13,6 +13,7 @@
 			font-weight: bold;
 			padding: 20px;
 			color: #FF65C5;
+			font-size: 40px;
 		}
 		Button{
 			margin: 20px;
@@ -28,6 +29,7 @@
 		
 	// }
 	&__form{
+		margin-top: -25px;
 		position: relative;
 		padding: 20px;
 		font-weight: bold;
@@ -58,12 +60,11 @@
 }
 
 .button_post{
-	float: right; 
+	display: flex;
 }
 
-// .button_cancel{
-	
-// }
+.button_cancel{
+}
 
 .modal-createpost{
 	position: relative !important;

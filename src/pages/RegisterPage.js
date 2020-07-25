@@ -103,7 +103,8 @@ const RegisterPage = (props) => {
 	            backgroundColor: '#FF65C5',
 	            width: '100%',
 	            height: '50px',
-	            borderRadius: '5px' }} type="primary" htmlType="submit">
+	            borderRadius: '5px',
+	            border: 'none' }} type="primary" htmlType="submit">
 	                Sign Up
 	            </Button>
 	          </Form.Item>

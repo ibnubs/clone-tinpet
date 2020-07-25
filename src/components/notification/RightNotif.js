@@ -3,6 +3,7 @@ import { Col, Row, Button } from 'antd';
 import {Link} from 'react-router-dom';
 import './right-notif.css';
 import NotificationProfile from './notification/NotificationProfile';
+import NotificationRequest from './notification/NotificationRequest';
 
 const RightNotif = () => {
 
@@ -22,6 +23,7 @@ const RightNotif = () => {
                 </Row>
                 <Row className='feed-post'>
                     <NotificationProfile />
+                    <NotificationRequest />
                 </Row>
             </Col>
         </Fragment>
