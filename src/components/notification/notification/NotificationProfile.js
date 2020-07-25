@@ -3,7 +3,7 @@ import { Row, Col, Avatar, Button } from 'antd';
 import './notif.css'
 import {DeleteFilled } from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux'
-import { notifDetail } from '../../../store/actions/notif';
+import { notifDetail, deleteNotif } from '../../../store/actions/notif';
 import {Link} from 'react-router-dom';
 
 const NotificationProfile = () => {
@@ -30,7 +30,11 @@ const NotificationProfile = () => {
             }  else {
                 message = "there's not notification"
             }
-        
+
+        //handling delete notif
+    const delNotif = async (id)  => {
+        await dispatch( deleteNotif(id));
+        }
 
         return(
             <>
@@ -52,7 +56,9 @@ const NotificationProfile = () => {
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>
-                                    <DeleteFilled style={{color:'red'}} />
+                                    <DeleteFilled style={{color:'red', cursor: 'pointer'}} 
+                                        onClick={()=>delNotif(n?.detailNotif?.id)}
+                                    />
                                 </Col>
                             </Row>
                         </Col>

@@ -85,7 +85,7 @@ const CardFeed = (props) => {
         
     }
 
-
+    //handling delete comment
     const delComment = async (id)  => {
         await dispatch(deleteComment(id));
         }
