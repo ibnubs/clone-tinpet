@@ -22,12 +22,18 @@ const RegisterPage = (props) => {
 			email,
 			password,
 			confirm_password: confirmPassword 
-
 		}
 		console.log('userdata', userData) 
 		dispatch(register(userData, props))
-
 	}
+
+	// const validatePassword = (value, callback ) => {
+	// 	if( validateStatus === "success"){
+	// 		callback('success')
+	// 	} else {
+	// 		callback()
+	// 	}
+	// }
 
 	return(
 		<div>
@@ -67,9 +73,9 @@ const RegisterPage = (props) => {
 	          </Form.Item>
 
 	          <Form.Item
-              name="password"
-              // onFieldsChange={password}
+              name="password"        
               onChange={(e) => setPassword(e.target.value)}
+       
               rules={[{ required: true, message: 'Please input your Password!' }]}
 	          	>
               <Input
@@ -82,8 +88,8 @@ const RegisterPage = (props) => {
 
 	          <Form.Item
               name="confirm-password"
-              // onFieldsChange={password}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              
               rules={[{ required: true, message: 'Please confirm your Password!' }]}
 	          	>
               <Input
@@ -99,11 +105,12 @@ const RegisterPage = (props) => {
 	          </Form.Item>
 
 	          <Form.Item>
-	            <Button style={{ fontWeight: 'bold', 
+	            <Button className="register__form--submit-button" style={{ fontWeight: 'bold', 
 	            backgroundColor: '#FF65C5',
 	            width: '100%',
 	            height: '50px',
-	            borderRadius: '5px' }} type="primary" htmlType="submit">
+	            borderRadius: '5px',
+	            border: 'none' }} type="primary" htmlType="submit">
 	                Sign Up
 	            </Button>
 	          </Form.Item>

@@ -50,7 +50,7 @@ const LoginPage = (props) => {
 		          >
 		          <Input className="login__form--form-input" 
 		          	prefix={<UserOutlined className="site-form-item-icon" />} 
-					placeholder="Email" 
+								placeholder="Email" 
                     //value={email}
                     //onChange={(e)=> setEmail(e.target.value)}
 		          />
@@ -82,7 +82,8 @@ const LoginPage = (props) => {
 			  	backgroundColor: '#FF65C5', 
 			  	width: '100%',
 			  	height: '50px',
-			  	borderRadius: '5px' }} 
+			  	borderRadius: '5px',
+			  	border: 'none' }} 
 			  	type="primary" htmlType="submit">
 	                Log In
 	            </Button>
@@ -93,7 +94,8 @@ const LoginPage = (props) => {
 	            style={{width: '100%', 
 	            height: '50px', 
 	            borderRadius:'5px', 
-	            backgroundColor:'#3E4C6F'}}>
+	            backgroundColor:'#3E4C6F',
+	            border: 'none'}}>
                     <Link to='/'> Create New Account </Link>    
 	            </Button>
               </Form.Item>  

@@ -1,55 +1,34 @@
 import React, { Fragment, useEffect  } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
-import './notif.css'
 import {DeleteFilled } from '@ant-design/icons';
+import './notif.css'
 import {useDispatch, useSelector} from 'react-redux'
-import { notifDetail, deleteNotif } from '../../../store/actions/notif';
 import { approved, rejected } from '../../../store/actions/reqmeeting';
-import {Link} from 'react-router-dom';
 
-const NotificationProfile = () => {
+const NotificationRequest = () => {
     const dispatch = useDispatch()
     const detailNotifShow = useSelector(state => state?.notif?.detailNotif)
     
 
     useEffect(() => {
-        dispatch(notifDetail())
-        
+    dispatch(approved())   
+    }, [dispatch])  
+
+    useEffect(() => {
+    dispatch(rejected())
     }, [dispatch])
-
-    const approveReq =  (id)  => {
-    console.log(id, 'id')
-    dispatch(approved(id));
-    }
-
-    const rejectReq =  (id)  => {
-    console.log(id, 'id')
-    dispatch(rejected(id));
-    }
 
     const notifList = detailNotifShow.map((n) => {
         console.log(detailNotifShow, 'ini')
         //handling message notif
         const messageNotif = n?.detailNotif?.type
-        let message, reqmeetview;
+        let message;
             if(messageNotif === 'like' ){
-                message = 'liked your post'
-            }  else if(messageNotif === 'comment'){
-                message = 'comment on your post'
-            }  else if (messageNotif === 'request'){
-                message = 'request meeting on your post'
-                reqmeetview = 
-                <div className="button-reqmeeting">
-                    <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)}> Approved </Button> 
-                    <Button onClick={()=>rejectReq(n.detailNotif.PetId)}> Rejected </Button>
-                </div>
-            }  else {
-                message = "there's not notification"
+                message = 'Requets meeting on your post'
+            }else {
+               
             }
-
-
-        //handling delete notif
-    const delNotif = async (id)  => {
+        const delNotif = async (id)  => {
         await dispatch( deleteNotif(id));
         }
 
@@ -67,10 +46,9 @@ const NotificationProfile = () => {
                                         <p className='text-notif' > <span style={{fontWeight:'bold'}}> {n?.detailUser?.Profile?.full_name} </span> {message} </p>
                                     </Row>
                                     <Row justify='center' >
-                                        <Link to='/profile'>
-                                            <Button type='text' className='text-seepost'>See Post</Button>
-                                        </Link>    
-                                    {reqmeetview}
+                                        <Button type='text' className='text-seepost'>See Post</Button>
+                                       <Button type="primary"> Approve </Button>
+                                       <Button> Reject </Button>
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>
@@ -93,4 +71,4 @@ const NotificationProfile = () => {
     );
 }
 
-export default NotificationProfile;
+export default NotificationRequest;

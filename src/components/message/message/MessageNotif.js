@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect  } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
+import {DeleteFilled} from '@ant-design/icons';
 import './MessageNotif.css'
 import {useDispatch, useSelector} from 'react-redux';
 import { getAllMessage, deleteMessage } from '../../../store/actions/messages';
@@ -38,10 +39,9 @@ const MessageNotif = () => {
                                     </Row>
                                 </Col>
                                 <Col className="delete-message" xl={1} sm={1} xs={1} justify='end'>
-                                    {/*<DeleteFilled style={{color:'green'}} />*/}
-                                    <Button onClick={()=>delMessage(m.id)}
-                                    style={{fontWeight: 'bold', borderRadius: '10px'}} type="danger"> 
-                                    Delete Message </Button>
+                                   
+                                    <DeleteFilled style={{color:'red'}}  onClick={()=>delMessage(m.id)}/>
+                                  
                                 </Col>
                             </Row>
                         </Col>

@@ -3,6 +3,7 @@ import { Col, Row, Button } from 'antd';
 import {Link} from 'react-router-dom';
 import './right-notif.css';
 import NotificationProfile from './notification/NotificationProfile';
+// import { approved, rejected } from '../../../store/actions/reqmeeting';
 
 const RightNotif = () => {
 
