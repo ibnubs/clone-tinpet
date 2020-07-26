@@ -52,7 +52,7 @@ const UpdateProfileModal = (props) => {
 				<div className="updateprofile-wrapper__changepicture">
 					 <label for="image" className="updateprofile-wrapper__changepicture--image"> 
 					<Avatar icon={<UserOutlined />}
-					style={{cursor:"pointer", borderRadius:"50%"}} src={imagePreview} size={160}/> </label>					
+					style={{cursor:"pointer", borderRadius:"50%"}} src={imagePreview} size={200}/> </label>					
 					<input 
 						id="image"
 						type="file"
@@ -86,11 +86,27 @@ const UpdateProfileModal = (props) => {
 		      </Form.Item>
 					
 					<Form.Item className="updateprofile-wrapper__form--button-post">
-	          <Button onClick={saveChanges} type="primary" style={{backgroundColor: '#FF65C5', fontWeight: 'bold'}} key="submit">Save Changes</Button>
+	          <Button onClick={saveChanges} type="primary" 
+	          style={{
+	          	fontWeight: 'bold', 
+			        backgroundColor: '#FF65C5', 
+			        width: '200px',
+			        height: '40px',
+			        fontSize: '20px',
+			        border: 'none',
+			        borderRadius: '5px'
+	          }} key="submit">Save Changes</Button>
 	        </Form.Item>
 
 	        <Form.Item className="updateprofile-wrapper__form--button-cancel">
-	          <Button onClick={()=>setUpdateProfileModal(false)}>Cancel</Button>
+	          <Button 
+	          style={{
+							width: '200px',
+			        fontSize: '20px',
+			        height: '40px',
+			        borderRadius: '5px'
+	          }}
+	          onClick={()=>setUpdateProfileModal(false)}>Cancel</Button>
 	        </Form.Item>
 
 				</Form>

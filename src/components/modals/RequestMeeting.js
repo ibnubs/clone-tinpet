@@ -58,7 +58,7 @@ const RequestMeeting = (props) => {
 		<Fragment>
 	    <div className="reqmeeting">
 	    	<div className="reqmeeting__header">
-	    		<h1> Request Meeting </h1>    		
+	    		<h1> Request a Meeting </h1>    		
 	    	</div>
 	    	
 		    	<div 	className="reqmeeting-wrapper__form">
@@ -67,19 +67,19 @@ const RequestMeeting = (props) => {
 
 		      		<Form.Item className="form">
 				        <Form.Item
-						  label="Date"
-				          name="date"
-						  onChange={(e) => setDate(e.target.value)}
-						  style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
+							  	label="Date"
+					        name="date"
+									onChange={(e) => setDate(e.target.value)}
+									style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
 				        >
 		          		<Input type="date" />
 		        		</Form.Item>
 
 			        	<Form.Item
 				          label="Hour"
-						  name="hour"
-						  onChange={(e) => setHour(e.target.value)}
-				          style={{ display: 'inline-block', width: 'calc(50% - 8px)', margin: '0 8px' }}
+								  name="hour"
+								  onChange={(e) => setHour(e.target.value)}
+				          style={{ display: 'inline-block', width: '50%', marginLeft: '8px' }}
 			       	 	>
 				        <Input type="time" />       
 	        			</Form.Item>
@@ -87,7 +87,7 @@ const RequestMeeting = (props) => {
 
 					<Form.Item 
 						className="form"
-					   	label="Leave a Message"
+					  label="Message"
 						onChange={(e) => setMessage(e.target.value)}>
 						<TextArea rows={6} placeholder="Leave a Message
 						" required />
@@ -101,12 +101,27 @@ const RequestMeeting = (props) => {
 	       			
 				    <Form.Item className="button_post">
 						<Button onClick={submitRequest}
-						type="primary" style={{ fontWeight: 'bold', backgroundColor: '#FF65C5', width: '80px'}}
+						type="primary" 
+						style={{ 
+							fontWeight: 'bold', 
+			        backgroundColor: '#FF65C5', 
+			        width: '200px',
+			        height: '40px',
+			        fontSize: '20px',
+			        border: 'none',
+			        borderRadius: '5px'
+						}}
 				         key="submit">Request</Button>
 				    </Form.Item>
 
 				    <Form.Item className="button_cancel">
-				        <Button onClick={()=>setRequestMeeting(false)}>Cancel</Button>
+				        <Button style={{
+				        	width: '200px',
+			          	fontSize: '20px',
+			          	height: '40px',
+			          	borderRadius: '5px'
+				        }}
+				        onClick={()=>setRequestMeeting(false)}>Cancel</Button>
 				    </Form.Item>
 			   	  </Form>
 	      	</div>

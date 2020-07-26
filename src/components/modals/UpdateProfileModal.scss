@@ -6,11 +6,12 @@
 .updateprofile-wrapper{
 	h1{
 		font-weight: bold;
-		font-size: 24px;
+		font-size: 40px;
 		line-height: 29px;
+		color: #FF65C5;
 	}
 	width: 570px;
-	height: 820px;
+	height: 880px;
 	position: relative;
 	padding: 50px;
 	margin: auto !important;
@@ -20,10 +21,7 @@
 		display: flex;
 		position: relative;
 	  &--image{
-			width: 120px;
-			height: 120px;
-			border-radius: 50%;
-			margin-bottom: 60px;
+			margin-bottom: 20px !important;
 		}
 		&--button{
 			margin: auto 20px;
@@ -38,8 +36,8 @@
 	&__form{
 		font-style: normal;
 		font-weight: bold;
-		font-size: 18px;
 		line-height: 22px;
+		font-size: 20px;
 		width: 490px;
 		&--input{
 			border: 1px solid #C4C4C4;
@@ -58,3 +56,4 @@
 .img {
 	border-radius: 50%;
 }
+
