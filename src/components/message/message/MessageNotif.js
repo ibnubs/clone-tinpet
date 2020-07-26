@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect  } from 'react';
-import { Row, Col, Avatar, Button } from 'antd';
+import { Row, Col, Avatar } from 'antd';
 import {DeleteFilled} from '@ant-design/icons';
 import './MessageNotif.css'
 import {useDispatch, useSelector} from 'react-redux';
