@@ -21,6 +21,7 @@ const SearchDisplay = (props) => {
     //selector
     const pets = useSelector(state => state.searchPet.PetId)
     const profile = useSelector(state => state.profile.profileDetail)
+    // const cekLikenComment = useSelector(state => state.post.pets )
 
     //local storage
     localStorage.setItem("userID", profile.id)
@@ -40,11 +41,9 @@ const SearchDisplay = (props) => {
         console.log(id, 'id')
     }
 
-    //handling like reload function search
     // useEffect(() => {
-    //     dispatch(getAllPets(), 
-    //     )
-    // },[dispatch])
+    //     dispatch(getAllPets())
+    // }, [dispatch])
 
     //handling like
     const handleLike = async (pets_id ) => {
@@ -88,12 +87,14 @@ const SearchDisplay = (props) => {
         const delComment = async (id)  => {
             await dispatch(deleteComment(id));
             }
-
+//mapcard
 const petList = pets.map((item) =>{
     
     //handle like
-    const ituLah = item?.Likes?.reduce((result, option)=> {
+    const ituLah = item?.Pet?.Likes?.reduce((result, option)=> {
         if(option.isLike){
+            console.log(option.isLike, 'ini oopsion like')
+            console.log(option.SenderId, 'ini sender id')
             return result.concat(option.SenderId)
         }
         return result;
@@ -101,7 +102,8 @@ const petList = pets.map((item) =>{
 
 
     //handle comment
-    let commentView = item?.Comments?.map((cd)=>{
+    console.log(pets, 'ini hasil comment')
+    let commentView = item?.Pet?.Comments?.map((cd)=>{
         return(
             <li key={cd.id} className='comment-list'>
             <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>

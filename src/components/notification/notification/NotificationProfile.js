@@ -26,7 +26,6 @@ const NotificationProfile = () => {
 
     useEffect(() => {
         dispatch(getAllPets())
-        
     }, [dispatch])
 
     const approveReq =  (id)  => {
@@ -44,25 +43,6 @@ const NotificationProfile = () => {
     let message, reqmeetview, simpanDetailPetReqId;
 
     //handling disable button req meeting while matched
-    // const cekNCek = cekStatus.map((a)=>{
-    //     if(a.id === simpanDetailPetReqId){
-    //         if(a.status === 'Matched'){
-    //             reqmeetview = 
-    //                 <div className="button-reqmeeting">
-    //                     <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)}> Approved </Button> 
-    //                     <Button onClick={()=>rejectReq(n.detailNotif.PetId)}> Rejected </Button>
-    //                 </div>
-    //         }
-    //         if(a.status === 'Available'){
-    //             reqmeetview = 
-    //                 <div className="button-reqmeeting">
-    //                     <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)} disabled> Approved </Button> 
-    //                     <Button onClick={()=>rejectReq(n.detailNotif.PetId)}> Rejected </Button>
-    //                 </div>
-    //         }
-    //     }
-    // })
-
     const notifList = detailNotifShow.map((n) => {
         console.log(detailNotifShow, 'ini')
         //handling message notif
