@@ -88,9 +88,9 @@ const CardFeed = (props) => {
     //handling delete comment
     const delComment = async (id)  => {
         await dispatch(deleteComment(id));
-        }
+    }
 
-
+//map card
 const petList = pets.map((item) =>{
     
     //handle like
