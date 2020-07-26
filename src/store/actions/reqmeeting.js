@@ -38,10 +38,13 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 	}
 }
 
-export const approved = (data, id, props) => async dispatch => {
+export const approved = (id) => async dispatch => {
 	let token = localStorage.getItem("token")
+	let appreqUrl = `https://product-tinpet-app.herokuapp.com/api/v1/requests/approved/${id}`
 	try{
-		const res = await axios.put(`${baseUrl}/api/v1/requests/approved/${id}`, data,{
+		const res = await axios( {
+			method: 'PUT',
+			url : appreqUrl,
 			headers: {
 				authorization: token
 			}
@@ -50,6 +53,7 @@ export const approved = (data, id, props) => async dispatch => {
 		dispatch({
 			type: REQUEST_MEETING_APPROVED
 		})
+
 		Swal.fire({
 			icon: 'success',
 			title: 'success',
@@ -63,20 +67,24 @@ export const approved = (data, id, props) => async dispatch => {
 	}
 }
 
-export const rejected = (data, id, props) => async dispatch => {
+export const rejected = (id) => async dispatch => {
 	let token = localStorage.getItem("token")
+	let apprejectUrl = `https://product-tinpet-app.herokuapp.com/api/v1/requests/rejected/${id}`
 	try{
-		const res = await axios.put(`${baseUrl}/api/v1/requests/rejected/${id}`, data, {
+		const res = await axios({
+			method: 'PUT',
+			url : apprejectUrl,
 			headers : {
 				authorization: token
 			}
 		})
+		console.log(res, 'response')
 		dispatch({
 			type: REQUEST_MEETING_REJECTED
 		})
 		Swal.fire({
-			icon: 'error',
-			title: 'failed',
+			icon: 'success',
+			title: 'success',
 			text: 'Request Meeting Rejected',
 		})
 	}catch(error) {

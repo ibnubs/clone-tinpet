@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getAllPets } from './post';
+import Swal from 'sweetalert2';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -51,5 +52,29 @@ export const getPostComment = (data, pets_id) => async (dispatch) => {
         dispatch({
             type: 'POST_COMMENT_FAILED'
         })
+    }
+}
+
+export const deleteComment = (pets_id) => async (dispatch) => {
+    const token = localStorage.getItem('token')
+    let urlDeleteComment = `https://product-tinpet-app.herokuapp.com/api/v1/comments/${pets_id}` 
+    try {
+        const res = await axios ({
+            method:'DELETE',
+            url:urlDeleteComment,
+            headers:{
+                Authorization: token
+            }
+        })
+        console.log(res.data, 'ini respon dari delete comment')
+        Swal.fire({
+            icon: res.data.status,
+            title: 'Delete Comment',
+            text: res.data.message,
+        })
+
+        dispatch(getAllPets())
+    } catch (error) {
+        console.log(error, 'ini error dari deletecomment')
     }
 }

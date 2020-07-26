@@ -3,7 +3,9 @@ import { Row, Col, Avatar, Button } from 'antd';
 import './notif.css'
 import {DeleteFilled } from '@ant-design/icons';
 import {useDispatch, useSelector} from 'react-redux'
-import { notifDetail } from '../../../store/actions/notif';
+import { notifDetail, deleteNotif } from '../../../store/actions/notif';
+import { approved, rejected } from '../../../store/actions/reqmeeting';
+import {Link} from 'react-router-dom';
 
 const NotificationProfile = () => {
     const dispatch = useDispatch()
@@ -15,21 +17,41 @@ const NotificationProfile = () => {
         
     }, [dispatch])
 
+    const approveReq =  (id)  => {
+    console.log(id, 'id')
+    dispatch(approved(id));
+    }
+
+    const rejectReq =  (id)  => {
+    console.log(id, 'id')
+    dispatch(rejected(id));
+    }
+
     const notifList = detailNotifShow.map((n) => {
         console.log(detailNotifShow, 'ini')
         //handling message notif
         const messageNotif = n?.detailNotif?.type
-        let message;
+        let message, reqmeetview;
             if(messageNotif === 'like' ){
                 message = 'liked your post'
             }  else if(messageNotif === 'comment'){
                 message = 'comment on your post'
             }  else if (messageNotif === 'request'){
                 message = 'request meeting on your post'
+                reqmeetview = 
+                <div className="button-reqmeeting">
+                    <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)}> Approved </Button> 
+                    <Button onClick={()=>rejectReq(n.detailNotif.PetId)}> Rejected </Button>
+                </div>
             }  else {
                 message = "there's not notification"
             }
-        
+
+
+        //handling delete notif
+    const delNotif = async (id)  => {
+        await dispatch( deleteNotif(id));
+        }
 
         return(
             <>
@@ -45,11 +67,16 @@ const NotificationProfile = () => {
                                         <p className='text-notif' > <span style={{fontWeight:'bold'}}> {n?.detailUser?.Profile?.full_name} </span> {message} </p>
                                     </Row>
                                     <Row justify='center' >
+                                        <Link to='/profile'>
                                             <Button type='text' className='text-seepost'>See Post</Button>
+                                        </Link>    
+                                    {reqmeetview}
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>
-                                   
+                                    <DeleteFilled style={{color:'red', cursor: 'pointer'}} 
+                                        onClick={()=>delNotif(n?.detailNotif?.id)}
+                                    />
                                 </Col>
                             </Row>
                         </Col>

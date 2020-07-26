@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect  } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
+import {DeleteFilled } from '@ant-design/icons';
 import './notif.css'
 import {useDispatch, useSelector} from 'react-redux'
 import { approved, rejected } from '../../../store/actions/reqmeeting';
@@ -27,7 +28,9 @@ const NotificationRequest = () => {
             }else {
                
             }
-        
+        const delNotif = async (id)  => {
+        await dispatch( deleteNotif(id));
+        }
 
         return(
             <>
@@ -44,11 +47,14 @@ const NotificationRequest = () => {
                                     </Row>
                                     <Row justify='center' >
                                         <Button type='text' className='text-seepost'>See Post</Button>
+                                       <Button type="primary"> Approve </Button>
+                                       <Button> Reject </Button>
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>
-                                   <Button type="primary"> Approve </Button>
-                                   <Button> Reject </Button>
+                                    <DeleteFilled style={{color:'red', cursor: 'pointer'}} 
+                                        onClick={()=>delNotif(n?.detailNotif?.id)}
+                                    />
                                 </Col>
                             </Row>
                         </Col>

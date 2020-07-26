@@ -95,7 +95,7 @@ const CreatePostModal = (props) => {
 							marginTop: '20px',
 							marginLeft: '20px'
 	          }} 
-	          > Upload a Photo </Button> 
+	          > Click image to upload a Photo </Button> 
 		    	</div>
 		    	<div 	className="createpost-wrapper__form">
 			      <Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical"
@@ -114,7 +114,7 @@ const CreatePostModal = (props) => {
 				          onChange={(e)=> setAge(e.target.value)}
 				          style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
 				        >
-		          		<Input placeholder="Input your pet's birth" />
+		          		<Input type="number" placeholder="Input your pet's birth" />
 		        		</Form.Item>
 			        	<Form.Item
 				        	label="Pet Category"
