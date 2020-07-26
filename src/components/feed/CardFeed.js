@@ -105,14 +105,19 @@ const petList = pets.map((item) =>{
     let commentView = item.Comments.map((cd)=>{
         return(
             <li key={cd.id} className='comment-list'>
-            <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
-                <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
-                <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
-                    onClick={()=>delComment(cd.id)}
-                    
-                />
-            </Paragraph>
-        </li>
+                <Row style={{marginTop:'-10px'}}>
+                    <Col span={23} >
+                        <Paragraph ellipsis={{ rows: 5, expandable: true, symbol: 'more' }}>
+                            <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
+                        </Paragraph>
+                    </Col>
+                    <Col span={1}>
+                        <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                            onClick={()=>delComment(cd.id)}
+                        />
+                    </Col>
+                </Row>
+            </li>
         )
     })
 
@@ -124,7 +129,7 @@ const petList = pets.map((item) =>{
                     <Avatar size={80} src={item.Profile.image_url}  alt='avatar-icon' />
                 </a>
             </Col>
-            <Col xl={{offset:1, span:21}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{offset:4, span:18}}  className='box box-post' >
+            <Col xl={{offset:1, span:21}} lg={{offset:2, span:20}} sm={{offset:3, span:19}} xs={{offset:4, span:18}}  className='box box-post' style={{borderRadius:'5px'}} >
                 <Row >
                     <Col xl={8} md={12} sm={{span:24}} xs={{span:24}} >
                         <img alt='cat-sample' src={item.image_url} style={{height:248, width:'100%', borderRadius:'15px'}}  />
@@ -186,34 +191,33 @@ const petList = pets.map((item) =>{
                         </Row>
                     </Col>
                     <Col xl={{span:15, offset:1}} md={{span:11, offset:1}} sm={{span:24}} xs={{span:24}} >
-                        <Button block className='btn-rqsmeet' onClick={() => openRequestMeeting(item.id)} >Request Meeting</Button>
+                        {(item.status === 'Matched' ? <Button disabled block className='btn-rqsmeet' onClick={() => openRequestMeeting(item.id)} >Request Meeting</Button>  : <Button block className='btn-rqsmeet' onClick={() => openRequestMeeting(item.id)} >Request Meeting</Button>  )}
                     </Col>
                 </Row>
-                <Row style={{ marginTop:'10px'}}>
+                <Row style={{ marginTop:'20px'}}>
                     <ul className='comment-view'>
                         {commentView}
                     </ul>
                 </Row>
             </Col>
-
         </Row>
-        <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
+            <Col className='' xl={{ span: 21, offset: 3 }} lg={{ span: 20, offset: 4 }} md={{span:19, offset:5 }} sm={{span:19, offset:5 }}  xs={{span:18, offset:6 }} style={{marginTop:'10px'}}>
                 <Form onFinish={()=>sendComment(item.id)}>
                     <Form.Item
                         name={item.id}
                         onChange={(e) => setCommentValue(e.target.value)}
                     >
                         <Input
-                            // onChange={(e) => setCommentValue(e.target.value)}
                             allowClear
+                            style={{borderRadius:'5px'}}
                             placeholder="Add a comment..."
                             value={comment}
                             suffix={<Button onClick={()=>sendComment(item.id )} style={{border: 'none', color:'gray'}} >post</Button>} 
                         />
                     </Form.Item>
                 </Form>
-        </Col>
-    </Row>
+            </Col>
+        </Row>
     )})
     
     return (

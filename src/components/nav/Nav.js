@@ -71,8 +71,8 @@ const Nav = () => {
                             </Link>
                         </Badge>
                     </Menu.Item>
-                    <Menu.Item key="3">
-                        <Dropdown overlay={menu} trigger={['click']}>
+                    <Menu.Item key="3" >
+                        <Dropdown overlay={menu}  trigger={['click']}>
                             <a href='/profile'>
                                 <Avatar size={35} src={profile.image_url}  alt='avatar-icon' />
                             </a>

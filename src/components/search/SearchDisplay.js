@@ -1,27 +1,45 @@
 import React, { Fragment, useState } from 'react';
-import { Row, Col, Avatar, Button } from 'antd';
-import { HeartOutlined, MessageOutlined, HeartFilled } from '@ant-design/icons';
+import { Row, Col, Avatar, Button, Typography, Input, Form } from 'antd';
+import { HeartOutlined, MessageOutlined, HeartFilled, DeleteFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting'
 import './SearchDisplay.scss';
 import axios from 'axios';
+import { getAllPets } from '../../store/actions/post';
+import { getPostComment, deleteComment } from '../../store/actions/comment';
+import PostMessage from '../message/PostMessage'
+
+const {Text, Paragraph} = Typography
 
 const SearchDisplay = (props) => {
     const dispatch = useDispatch()
     const [ requestMeeting, setRequestMeeting ] = useState(false);
     const [ id, setId ] = useState('');
+    const [ postMessage, setPostMessage] = useState(false);
+    const [ comment, setCommentValue] = useState('')
+
+    //selector
     const pets = useSelector(state => state.searchPet.PetId)
-    console.log(pets.length, 'length pets')
+    const profile = useSelector(state => state.profile.profileDetail)
+
+    //local storage
+    localStorage.setItem("userID", profile.id)
     const SenderId = localStorage.getItem('userID')
     
-    console.log(pets, 'ini search result buat pet')
-    
+    //handling requestmeeting
     const openRequestMeeting = async (id) => {
         await setRequestMeeting (true)
         setId(id)
         console.log(id ,"id")
     }
     
+    //handling postmessage
+    const openPostMessage = async (id) => {
+        await setPostMessage (true)
+        setId (id)
+        console.log(id, 'id')
+    }
+
     //handling like reload function search
     // useEffect(() => {
     //     dispatch(getAllPets(), 
@@ -43,7 +61,7 @@ const SearchDisplay = (props) => {
             console.log(res.data.status)
             if (res.data.status === 'success'){
                 console.log('oke')
-                // dispatch(getAllPets())
+                dispatch(getAllPets())
             } else{
                 console.log('not oke')
                 
@@ -53,7 +71,23 @@ const SearchDisplay = (props) => {
         }
     }
 
-
+        //handling comment post
+        const sendComment = (id) => {
+            console.log('test ini jalan')
+            const commentData = {
+                comment
+            }
+            console.log(commentData, 'ini comment data')
+            dispatch(getPostComment (commentData, id))
+            console.log(' ini cek jalan disini')
+            setCommentValue('')
+            
+        }
+    
+        //handling delete comment
+        const delComment = async (id)  => {
+            await dispatch(deleteComment(id));
+            }
 
 const petList = pets.map((item) =>{
     
@@ -64,6 +98,22 @@ const petList = pets.map((item) =>{
         }
         return result;
     },[])
+
+
+    //handle comment
+    let commentView = item?.Comments?.map((cd)=>{
+        return(
+            <li key={cd.id} className='comment-list'>
+            <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
+                <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
+                <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                    onClick={()=>delComment(cd.id)}
+                    
+                />
+            </Paragraph>
+        </li>
+        )
+    })
 
     return(
             <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} key={item.id} >
@@ -122,15 +172,15 @@ const petList = pets.map((item) =>{
                         <Row style={{ marginTop:'10px'}}>
                             <Col  xl={8} md={12} sm={{span:24}} xs={{span:24}} style={{width:'297px', height:'80px', borderRadius:'15px'}}>
                                 <Row>
-                                    <p className='likes-comment' > {item.Pet.likeCounter} Likes</p>
-                                    <p className='likes-comment' > {item.Pet.commentCounter} Comments</p>
+                                    <p className='likes-comment' > {item?.Pet?.likeCounter} Likes</p>
+                                    <p className='likes-comment' > {item?.Pet?.commentCounter} Comments</p>
                                 </Row>
                                 <Row>
-                                    <span onClick={()=>{handleLike(item.PetId)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
+                                    <span onClick={()=>{handleLike(item.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
                                         {(ituLah?.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                                     </span>
-                                    <span>
-                                        <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem'}} />
+                                    <span onClick ={()=> openPostMessage(item.UserId)}>
+                                        <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
                                     </span>
                                 </Row>
                             </Col>
@@ -138,8 +188,30 @@ const petList = pets.map((item) =>{
                                 <Button block className='btn-rqsmeet' onClick={() => openRequestMeeting(item.id)} >Request Meeting</Button>
                             </Col>
                         </Row>
+                        <Row style={{ marginTop:'10px'}}>
+                            <ul className='comment-view'>
+                                {commentView}
+                            </ul>
+                        </Row>
                     </Col>
                 </Row>
+                <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
+                    <Form onFinish={()=>sendComment(item.id)}>
+                        <Form.Item
+                            name={item.id}
+                            onChange={(e) => setCommentValue(e.target.value)}
+                        >
+                            <Input
+                                // onChange={(e) => setCommentValue(e.target.value)}
+                                allowClear
+                                placeholder="Add a comment..."
+                                value={comment}
+                                suffix={<Button onClick={()=>sendComment(item.id )} style={{border: 'none', color:'gray'}} >post</Button>} 
+                            />
+                        </Form.Item>
+                    </Form>
+                </Col>
+
             </Row>
     )})
     
@@ -159,6 +231,12 @@ const petList = pets.map((item) =>{
                             requestMeeting={requestMeeting}
                             setRequestMeeting={setRequestMeeting}
                         />
+                    <PostMessage
+                        id={id}
+                        dispatch={dispatch}
+                        postMessage={postMessage}
+                        setPostMessage={setPostMessage}
+                    />
                 </Row>
             </Col>
         </Fragment>

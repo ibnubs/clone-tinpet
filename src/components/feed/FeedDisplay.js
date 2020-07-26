@@ -17,17 +17,9 @@ const FeedDisplay = (props) => {
         await setCreatePostModal (true)
     }  
     
-
-    // const petList = pets.for(item => 
-    // <div key={item.id}>
-    //     <h1 > {item.name} </h1>
-    //     <h3> {item.age} </h3>
-    // </div>
-    // )
-    
     return (
         <Fragment>
-            <Col className='box feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
+            <Col className='box feed-component' xl={{ span: 17, offset: 1 }} lg={{ span: 18, offset: 1 }} md={24} sm={24} xs={24}>  
                 <Row className='row-btn-post' >
                     <Col lg={24} xs={24}>
                         <Button className='btn-post' block  onClick={openCreatePostModal}>

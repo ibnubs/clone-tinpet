@@ -1,5 +1,28 @@
 @import "~antd/dist/antd.css";
 
+/* phone only */
+@media (max-width: 480px){
+  .navBar{
+    height: 80px;
+  }
+}
+@media (min-width: 576px){
+}
+/* tablet potrait up */
+@media (min-width: 768px){
+}
+/* tablet lanscape up */
+@media (min-width: 992px){
+}
+/* desktop up */
+@media (min-width: 1200px){
+}
+/* big desktop up */
+@media (min-width: 1600px){
+}
+
+
+
 .logo {
   float: left;
 }
@@ -11,12 +34,11 @@
   z-index: 1; 
   width: '100%'; 
   background-color: white;
-  height: 7.5vh;
 }
 
 .logo-img{
   width: 8rem;
-  margin-left: 2.6vw;
+  // margin-left: 2.6vw;
 }
 
 .menu-item{
