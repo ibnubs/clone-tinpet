@@ -40,7 +40,7 @@ const MessageNotif = () => {
                                 </Col>
                                 <Col className="delete-message" xl={1} sm={1} xs={1} justify='end'>
                                    
-                                    <DeleteFilled style={{color:'red'}}  onClick={()=>delMessage(m.id)}/>
+                                    <DeleteFilled style={{color:'#ff847c'}}  onClick={()=>delMessage(m.id)}/>
                                   
                                 </Col>
                             </Row>

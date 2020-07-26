@@ -1,27 +1,34 @@
-import * as type from '../actions/types';
+// import * as type from '../actions/types';
 
 const initialState = {
 	token: localStorage.getItem('token'),
-	data: []
+	data: [],
 }
 
+
 const reqMeeting = (state = initialState, action) => {
-	switch (action.type){
+	const {type, payload} = action;
+	switch (type){
 		default: 
 			return{
 			...state
-      }
+			}
 			case type.REQUEST_SUCCESS:
 				return{
 					...state,
-					data: payload,
+					
 				}
-
 			case type.REQUEST_FAILED:
 				return{
 					...state,
+				}
 
-        }
-                
+			case type.REQUEST_MEETING_APPROVED:
+				return{
+					
+					...state,
+				}
     }
 }
+
+export default reqMeeting;

@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect, useState  } from 'react';
 import { Row, Col, Button, Typography, Form, Input } from 'antd';
-import { HeartOutlined, MessageOutlined,HeartFilled,DeleteFilled } from '@ant-design/icons';
+import { HeartOutlined, MailOutlined,HeartFilled,DeleteFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import {getSinglePets, deletePost} from '../../../store/actions/getSinglePets';
 import axios from 'axios';
 import './postcard.css';
 import { getPostComment, deleteComment } from '../../../store/actions/comment';
+import {Link} from 'react-router-dom';
 
 const {Text, Paragraph} = Typography
 
@@ -96,7 +97,7 @@ const PostCard = () => {
                         </Paragraph>
                     </Col>
                     <Col span={1}>
-                        <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                        <DeleteFilled style={{color:'#ff847c', float:'right', cursor: 'pointer'}} 
                             onClick={()=>delComment(cd.id)}
                         />
                     </Col>
@@ -108,7 +109,7 @@ const PostCard = () => {
 
         return (
             <>
-                <Row style={{height:'', width:'100%', margin:'40px 0px 40px 0px'}} >
+                <Row style={{height:'', width:'100%'}} >
                 <Row style={{ width:'100%'}}>
                     <Col xl={{offset:1, span:22}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{span:24}}  className='box box-post' style={{borderRadius:'5px'}} >
                         <Row >
@@ -168,7 +169,9 @@ const PostCard = () => {
                                         {/* {ituLah} */}
                                     </span>
                                     <span>
-                                        <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem'}} />
+                                        <Link to='/message'>
+                                            <MailOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', color:'gray'}} />
+                                        </Link>
                                     </span>
                                 </Row>
                             </Col>

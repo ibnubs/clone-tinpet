@@ -16,8 +16,8 @@ const RightProfile = () => {
 
     return (
         <Fragment>
-            <Col className='box-right-profile feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
-                <Row className='row-profile' justify='center' >
+            <Col className='box-right-profile feed-component' lg={{ span: 17, offset: 1 }}  md={24} sm={24} xs={24}>  
+                <Row className='row-profile' justify='center' style={{marginBottom:'40px'}} >
                     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
                         <Menu.Item key="post" className='menu-profile'>
                             <Link to='/profile'>

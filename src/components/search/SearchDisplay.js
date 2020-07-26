@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Row, Col, Avatar, Button, Typography, Input, Form } from 'antd';
-import { HeartOutlined, MessageOutlined, HeartFilled, DeleteFilled } from '@ant-design/icons';
+import { HeartOutlined, MailOutlined, HeartFilled, DeleteFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting'
 import './SearchDisplay.scss';
@@ -106,7 +106,7 @@ const petList = pets.map((item) =>{
             <li key={cd.id} className='comment-list'>
             <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
                 <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
-                <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                <DeleteFilled style={{color:'#ff847c', float:'right', cursor: 'pointer'}} 
                     onClick={()=>delComment(cd.id)}
                     
                 />
@@ -180,7 +180,7 @@ const petList = pets.map((item) =>{
                                         {(ituLah?.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                                     </span>
                                     <span onClick ={()=> openPostMessage(item.UserId)}>
-                                        <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
+                                        <MailOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
                                     </span>
                                 </Row>
                             </Col>

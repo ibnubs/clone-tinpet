@@ -5,7 +5,7 @@ import './right-message.css';
 import MessageNotif from './message/MessageNotif';
 
 const RightMessage = () => {
-    const [current, setcurrent] = useState('notif')
+    const [current, setcurrent] = useState('message')
 
     const handleClick = e => {
         console.log('click ', e);
