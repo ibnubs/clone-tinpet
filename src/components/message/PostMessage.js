@@ -42,7 +42,7 @@ const PostMessages = (props) => {
 							style={{ display: 'inline-block', width: 'calc(50% - 8px)'}}
 							className="form-message"
 						>
-							<TextArea rows={6} placeholder="Type your message here" required />
+							<TextArea allowClear="true" rows={6} placeholder="Type your message here" required />
 							<div className="button-message">
 								<Button onClick={() => setPostMessage(false)}
 									style={{

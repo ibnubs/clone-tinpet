@@ -58,6 +58,7 @@ const CreatePostModal = (props) => {
 		setImagePreview(URL.createObjectURL(e.target.files[0]))
 	}
 
+
   return (
   	<Modal style={{ transition: "all .4s ease"}}
 	  	onCancel={()=>setCreatePostModal(false)}
@@ -93,7 +94,8 @@ const CreatePostModal = (props) => {
 							fontWeight: 'bold',
 							fontSize: '15px',
 							marginTop: '20px',
-							marginLeft: '20px'
+							marginLeft: '20px',
+							cursor: 'none'
 	          }} 
 	          > Click image to upload a Photo </Button> 
 		    	</div>
@@ -114,7 +116,11 @@ const CreatePostModal = (props) => {
 				          onChange={(e)=> setAge(e.target.value)}
 				          style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
 				        >
-		          		<Input type="number" placeholder="Input your pet's birth" />
+		          		<Input 
+		          		type="number"
+		          		pattern="[0-9]"
+		          		placeholder="Input your pet's birth" />		          		
+		          		
 		        		</Form.Item>
 			        	<Form.Item
 				        	label="Pet Category"
@@ -141,10 +147,11 @@ const CreatePostModal = (props) => {
 	        			<Form.Item  
 				        	label="Breed"
 				          name="Breed"
+				          type="text"
 				          onChange={(e)=> setBreed(e.target.value)}
 				          style={{ display: 'inline-block', width: '50%', marginLeft: '8px' }}
 	        			>
-	          			<Input placeholder="Input your pet's breed" />
+	          			<Input type="text-only" placeholder="Input your pet's breed" />
 	        			</Form.Item>
 	      			</Form.Item>
 		      			<Form.Item label="Description"  className="form"

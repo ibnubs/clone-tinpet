@@ -1,4 +1,14 @@
 @import "~antd/dist/antd.css";
+/* phone only */
+@media (max-width: 480px) {
+  .navBar {
+    height: 80px;
+  }
+}
+/* tablet potrait up */
+/* tablet lanscape up */
+/* desktop up */
+/* big desktop up */
 .logo {
   float: left;
 }
@@ -10,12 +20,10 @@
   z-index: 1;
   width: "100%";
   background-color: white;
-  height: 7.5vh;
 }
 
 .logo-img {
   width: 8rem;
-  margin-left: 2.6vw;
 }
 
 .menu-item {

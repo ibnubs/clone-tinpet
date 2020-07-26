@@ -2,7 +2,7 @@ import React, { useState} from 'react';
 import { Modal, Form, Input, Button, Avatar} from 'antd';
 import { UserOutlined} from '@ant-design/icons'; 
 import './UpdateProfileModal.scss';
-import { useDispatch } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 import { editProfile } from '../../store/actions/editProfile';
 const {TextArea} = Input;
 
@@ -17,6 +17,31 @@ const UpdateProfileModal = (props) => {
 	const [full_address, setFull_address] = useState('')
 	const [description, setDescription] = useState('');
 	const [imagePreview, setImagePreview] = useState('')
+
+	const [isChanged,setIsChanged] = useState({
+    full_name:false,
+    email: false
+  })
+	const [isEdit, setIsEdit] = useState({
+    name: false,
+    email: false
+  })
+
+	const fieldNameChange = () => {
+		setIsChanged({
+			...isChanged, name: true
+		})
+	}
+
+	const fieldEmailChange = () => {
+		setIsChanged({
+			...isChanged, email: true
+		})
+	}
+
+
+	//selector
+	const profile = useSelector(state => state.profile.profileDetail)
 
 	const saveChanges = (e) => {
 		e.preventDefault();
@@ -37,6 +62,7 @@ const UpdateProfileModal = (props) => {
 		setImagePreview(URL.createObjectURL(e.target.files[0]))
 	}
 
+	// const currentProfile = profile.map((item) =>{
 	
 	return(
 		<Modal style={{ transition: "all .4s ease"}}
@@ -65,23 +91,23 @@ const UpdateProfileModal = (props) => {
 				
 				<Form labelCol={{span: 5,}} wrapperCol={{span: 35,}} layout="vertical" className="updateprofile-wrapper__form">
 		      <Form.Item label="Full Name" onChange={(e)=> setFull_name(e.target.value)}>
-		        <Input  className="updateprofile-wrapper__form--input"/>
+		        <Input type="text" defaultValue={profile.full_name} className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
 		      <Form.Item label="Email" onChange={(e)=> setEmail(e.target.value)}>
-		        <Input  className="updateprofile-wrapper__form--input"/>
+		        <Input type="email" defaultValue={profile.email} className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
  					<Form.Item label="Mobile Number" onChange={(e)=> setMobile_number(e.target.value)}>
-		        <Input  className="updateprofile-wrapper__form--input"/>
+		        <Input type="number" className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
  					<Form.Item label="Full Address" onChange={(e)=> setFull_address(e.target.value)}>
-		        <Input  className="updateprofile-wrapper__form--input"/>
+		        <Input type="text" className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
 		      <Form.Item label="Description" onChange={(e)=> setDescription(e.target.value)}>
-		      	<TextArea  className="updateprofile-wrapper__form--input" 
+		      	<TextArea type="text" className="updateprofile-wrapper__form--input" 
 		      	placeholder="About Me" />
 		      </Form.Item>
 					
@@ -108,7 +134,6 @@ const UpdateProfileModal = (props) => {
 	          }}
 	          onClick={()=>setUpdateProfileModal(false)}>Cancel</Button>
 	        </Form.Item>
-
 				</Form>
 			</div>
 		</Modal>

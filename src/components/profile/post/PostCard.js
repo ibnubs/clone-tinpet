@@ -1,9 +1,11 @@
-import React, { Fragment, useEffect  } from 'react';
-import { Row, Col, Button, Typography } from 'antd';
-import { HeartOutlined, MessageOutlined,HeartFilled } from '@ant-design/icons';
+import React, { Fragment, useEffect, useState  } from 'react';
+import { Row, Col, Button, Typography, Form, Input } from 'antd';
+import { HeartOutlined, MessageOutlined,HeartFilled,DeleteFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import {getSinglePets, deletePost} from '../../../store/actions/getSinglePets';
 import axios from 'axios';
+import './postcard.css';
+import { getPostComment, deleteComment } from '../../../store/actions/comment';
 
 const {Text, Paragraph} = Typography
 
@@ -13,6 +15,7 @@ const PostCard = () => {
     const postPets = useSelector(state => state.getSinglePets.petsDetail)
     console.log(postPets, 'post pets dari component')
     const SenderId = localStorage.getItem('userID')
+    const [ comment, setCommentValue] = useState('')
 
     useEffect(() => {
         dispatch ( getSinglePets() )
@@ -51,11 +54,29 @@ const PostCard = () => {
             }
         }
 
+        //handling comment post
+        const sendComment = (id) => {
+            console.log('test ini jalan')
+            const commentData = {
+                comment
+            }
+            console.log(commentData, 'ini comment data')
+            dispatch(getPostComment (commentData, id))
+            console.log(' ini cek jalan disini')
+            setCommentValue('')
+            
+        }
+        
+        //handling delete comment
+        const delComment = async (id)  => {
+            await dispatch(deleteComment(id));
+        }
 
+
+    //map card
     const postPetsList = postPets.map ((item)=>{
     
         //handle like
-        // let ituLah = <HeartOutlined />
         const ituLah = item.Likes.reduce ((result, option)=> {
             if(option.isLike){
                 return result.concat(option.SenderId)
@@ -64,22 +85,32 @@ const PostCard = () => {
         },[])
 
 
-        //handle comment
-        let commentView = item.Comments.map((cd)=>{
-            return(
-                <li key={cd.id} className='comment-list'>
-                <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
-                    <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
-                </Paragraph>
+    //handle comment
+    let commentView = item.Comments.map((cd)=>{
+        return(
+            <li key={cd.id} className='comment-list'>
+                <Row style={{marginTop:'-10px'}}>
+                    <Col span={23} >
+                        <Paragraph ellipsis={{ rows: 5, expandable: true, symbol: 'more' }}>
+                            <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
+                        </Paragraph>
+                    </Col>
+                    <Col span={1}>
+                        <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                            onClick={()=>delComment(cd.id)}
+                        />
+                    </Col>
+                </Row>
             </li>
-            )
-        })
+        )
+    })
+
 
         return (
             <>
                 <Row style={{height:'', width:'100%', margin:'40px 0px 40px 0px'}} >
                 <Row style={{ width:'100%'}}>
-                    <Col xl={{offset:1, span:22}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{offset:4, span:18}}  className='box box-post' >
+                    <Col xl={{offset:1, span:22}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{span:24}}  className='box box-post' style={{borderRadius:'5px'}} >
                         <Row >
                             <Col xl={8} md={12} sm={{span:24}} xs={{span:24}} >
                                 <img alt='post' src={item.image_url} style={{height:248, width:'100%', borderRadius:'15px'}}  />
@@ -125,7 +156,7 @@ const PostCard = () => {
                                 </Row>
                             </Col>
                         </Row>
-                        <Row style={{ marginTop:'10px'}}>
+                        <Row className='row-icon-and-delete'>
                             <Col  xl={8} md={12} sm={{span:24}} xs={{span:24}} style={{width:'297px', height:'80px', borderRadius:'15px'}}>
                                 <Row>
                                     <p className='likes-comment' > {item.likeCounter} Likes </p>
@@ -152,6 +183,22 @@ const PostCard = () => {
                         </Row>
                     </Col>
                 </Row>
+                <Col className='col-comment-post' xxl={{ span: 22 }} xl={{ span: 22 }} lg={{ span: 20, offset: 2 }} md={{span:20, offset:2 }} sm={{span:20, offset:2 }}  xs={{span:24 }} style={{marginTop:'10px'}}>
+                    <Form onFinish={()=>sendComment(item.id)}>
+                        <Form.Item
+                            name={item.id}
+                            onChange={(e) => setCommentValue(e.target.value)}
+                        >
+                            <Input
+                                allowClear
+                                style={{borderRadius:'5px'}}
+                                placeholder="Add a comment..."
+                                value={comment}
+                                suffix={<Button onClick={()=>sendComment(item.id )} style={{border: 'none', color:'gray'}} >post</Button>} 
+                            />
+                        </Form.Item>
+                    </Form>
+                </Col>
             </Row>
             </>
         )

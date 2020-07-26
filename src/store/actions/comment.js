@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { getAllPets } from './post';
 import Swal from 'sweetalert2';
+import { getSinglePets } from './getSinglePets';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -46,6 +47,7 @@ export const getPostComment = (data, pets_id) => async (dispatch) => {
             type: 'POST_COMMENT_SUCCESS',
         })
         dispatch(getAllPets())
+        dispatch(getSinglePets())
         
     } catch (error) {
         console.log(error, 'error post comment')
@@ -73,6 +75,7 @@ export const deleteComment = (pets_id) => async (dispatch) => {
         })
 
         dispatch(getAllPets())
+        dispatch(getSinglePets())
     } catch (error) {
         console.log(error, 'ini error dari deletecomment')
     }
