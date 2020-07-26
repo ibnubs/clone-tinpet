@@ -20,8 +20,7 @@ export const createPost = (data) => async dispatch => {
 		dispatch(getAllPets())
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Create Post Success',
+			title: 'Create Post Success',
 		})
 	}catch(error) {
 		console.log(error)
@@ -30,8 +29,7 @@ export const createPost = (data) => async dispatch => {
 		})
 		Swal.fire({
 		  icon: 'error',
-		  title: 'Oops...',
-		  text: "Create Post Failed!",
+		  title: "Create Post Failed!",
 		})
 	}
 }

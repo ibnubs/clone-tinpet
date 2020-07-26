@@ -69,8 +69,7 @@ export const deleteComment = (pets_id) => async (dispatch) => {
         console.log(res.data, 'ini respon dari delete comment')
         Swal.fire({
             icon: res.data.status,
-            title: 'Delete Comment',
-            text: res.data.message,
+            title: 'Comment Deleted',
         })
 
         dispatch(getAllPets())

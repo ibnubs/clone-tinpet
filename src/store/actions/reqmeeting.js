@@ -19,8 +19,7 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 		})
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Request Meeting Success',
+			title: 'Request Meeting Success',
 		})
 		props.history.push("/homepage")
 		console.log(props)
@@ -32,8 +31,7 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 		})
 		Swal.fire({
 			icon: 'error',
-			title: 'Oops...',
-			text: "Request Meeting Failed, Check your data again!!",
+			title: "Request Meeting Failed, Check your data again!!",
 		  })
 	}
 }
@@ -56,8 +54,7 @@ export const approved = (id) => async dispatch => {
 
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Request Meeting Approved',
+			title: 'Request Meeting Approved',
 		})
 	} catch(error){
 		console.log(error)
@@ -84,8 +81,7 @@ export const rejected = (id) => async dispatch => {
 		})
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Request Meeting Rejected',
+			title: 'Request Meeting Rejected',
 		})
 	}catch(error) {
 		console.log(error)

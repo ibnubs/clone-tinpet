@@ -56,8 +56,7 @@ export const postMessages = ( data, id, props) => async dispatch => {
         })
         Swal.fire({
             icon: 'success',
-            title: 'success',
-            text: 'Message Sent',
+            title: 'Message Sent',
         })
     } catch (error) {
         console.log(error, 'post message failed')
@@ -66,8 +65,7 @@ export const postMessages = ( data, id, props) => async dispatch => {
         })
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: "Message not sent!!",
+            title: "Message not sent!!",
         })
     }
 }
@@ -84,8 +82,7 @@ export const deleteMessage = ( id, props) => async dispatch => {
         })
         Swal.fire({
             icon: 'success',
-            title: 'success',
-            text: 'Delete message success!',
+            title: 'Message Deleted!',
         })
         dispatch(getAllMessage())
     } catch (error) {

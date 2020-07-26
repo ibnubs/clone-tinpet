@@ -38,8 +38,7 @@ export const deletePost = ( id, props) => async dispatch => {
         })
         Swal.fire({
             icon: 'success',
-            title: 'success',
-            text: 'Delete post success!',
+            title: 'Post Deleted!',
         })
         dispatch(getSinglePets())
     } catch (error) {
