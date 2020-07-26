@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState  } from 'react';
+import React, { Fragment, useEffect   } from 'react';
 import { Row, Col, Avatar, Button } from 'antd';
 import './notif.css'
 import {DeleteFilled } from '@ant-design/icons';
@@ -15,9 +15,6 @@ const NotificationProfile = () => {
     const cekStatus = useSelector(state => state.post.pets )
     
     // useEffect(()=>{console.log(cekStatus)},[])
-
-    
-    let respon = '';
 
     useEffect(() => {
         dispatch(notifDetail())
@@ -76,10 +73,11 @@ const NotificationProfile = () => {
                         }
                     }
                 })
+                
             }  else {
                 message = "there's not notification"
             }
-
+        
 
         //handling delete notif
     const delNotif = async (id)  => {

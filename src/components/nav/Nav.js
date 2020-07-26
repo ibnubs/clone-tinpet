@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from '../../store/actions/profile';
 import { notifCount } from '../../store/actions/notif';
 import { getCountMessage } from '../../store/actions/messages';
-import { MailOutlined } from '@ant-design/icons';
+
 
 const { Header } = Layout;
 
