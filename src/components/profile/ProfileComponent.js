@@ -27,25 +27,30 @@ const ProfileComponent = (props) => {
                 <Row justify="center" style={{marginTop:50}}>
                     <Avatar className='img-profile' src={profile.image_url} />
                 </Row>
-                <Row justify='center'>
-                    <p className='name-profile'> {profile.full_name} </p>
-                    <p className='desc-profile'> {profile.description} </p>
-                        <Button type='text' style={{margin:'2em 0px'}} onClick={openUpdateProfileModal}>
-                            <p className='text-edit-profile'>
-                                Edit Profile
-                            </p>
-                        </Button>
-                        <UpdateProfileModal
-                            dispatch={dispatch}
-                            updateProfileModal={updateProfileModal}
-                            setUpdateProfileModal={setUpdateProfileModal}
-                        />
-
+                <Row style={{textAlign:'center'}} >
+                    <Col className='name-profile'  xl={24} xs={24}>
+                        {profile.full_name}
+                    </Col>
+                    <Col className='desc-profile'  xl={24} xs={24}>
+                        {profile.description}
+                    </Col>
+                    <Col style={{marginTop:'1%' }} xl={24} xs={24} >
+                            <Button type='text' style={{margin:'2em 0px'}} onClick={openUpdateProfileModal}>
+                                <p className='text-edit-profile'>
+                                    Edit Profile
+                                </p>
+                            </Button>
+                            <UpdateProfileModal
+                                dispatch={dispatch}
+                                updateProfileModal={updateProfileModal}
+                                setUpdateProfileModal={setUpdateProfileModal}
+                            />
+                    </Col>
                 </Row>
                 
             </Col>
         </Fragment>
     );
 }
-
+// {profile.description}
 export default ProfileComponent;

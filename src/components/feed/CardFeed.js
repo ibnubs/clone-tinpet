@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Row, Col, Avatar, Button, Typography, Input, Form } from 'antd';
-import { HeartFilled, HeartOutlined, MessageOutlined, DeleteFilled } from '@ant-design/icons';
+import { HeartFilled, HeartOutlined, MailOutlined, DeleteFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting';
 import PostMessage from '../message/PostMessage';
@@ -112,7 +112,7 @@ const petList = pets.map((item) =>{
                         </Paragraph>
                     </Col>
                     <Col span={1}>
-                        <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                        <DeleteFilled style={{color:'#ff847c', float:'right', cursor: 'pointer'}} 
                             onClick={()=>delComment(cd.id)}
                         />
                     </Col>
@@ -122,7 +122,7 @@ const petList = pets.map((item) =>{
     })
 
     return(
-        <Row style={{height:'', width:'100%', margin:'40px 32px 40px 32px'}} key={item.id} >
+        <Row style={{height:'', width:'100%', margin:'0px 32px 20px 32px'}} key={item.id} >
         <Row style={{ width:'100%'}}>
             <Col span={2} >
                 <a href='/#'>
@@ -186,7 +186,7 @@ const petList = pets.map((item) =>{
                                 {(ituLah.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                             </span>
                             <span onClick ={()=> openPostMessage(item.UserId)}>
-                                <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
+                                <MailOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
                             </span>
                         </Row>
                     </Col>

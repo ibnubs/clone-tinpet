@@ -52,7 +52,7 @@ const NotificationRequest = () => {
                                     </Row>
                                 </Col>
                                 <Col xl={1} sm={1} xs={1} justify='end'>
-                                    <DeleteFilled style={{color:'red', cursor: 'pointer'}} 
+                                    <DeleteFilled style={{color:'#ff847c', cursor: 'pointer'}} 
                                         onClick={()=>delNotif(n?.detailNotif?.id)}
                                     />
                                 </Col>

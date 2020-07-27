@@ -2,6 +2,8 @@ import { REQUEST_SUCCESS, REQUEST_FAILED,
 	REQUEST_MEETING_APPROVED, REQUEST_MEETING_REJECTED, REQUEST_MEETING_ERROR} from './types';
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import { getAllPets } from './post';
+import { deleteNotif, notifDetail } from './notif';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -19,11 +21,11 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 		})
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Request Meeting Success',
+			title: 'Request Meeting Success',
 		})
 		props.history.push("/homepage")
 		console.log(props)
+		dispatch(getAllPets())
 
 	} catch (error) {
 		console.log(error)
@@ -32,8 +34,7 @@ const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 		})
 		Swal.fire({
 			icon: 'error',
-			title: 'Oops...',
-			text: "Request Meeting Failed, Check your data again!!",
+			title: "Request Meeting Failed, Check your data again!!",
 		  })
 	}
 }
@@ -49,15 +50,14 @@ export const approved = (id) => async dispatch => {
 				authorization: token
 			}
 		})
-		console.log(res, 'response')
+		console.log(res, 'response approve req meeting')
 		dispatch({
-			type: REQUEST_MEETING_APPROVED
+			type: REQUEST_MEETING_APPROVED,
 		})
-
+		dispatch(notifDetail())
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Request Meeting Approved',
+			title: 'Request Meeting Approved',
 		})
 	} catch(error){
 		console.log(error)
@@ -67,9 +67,9 @@ export const approved = (id) => async dispatch => {
 	}
 }
 
-export const rejected = (id) => async dispatch => {
+export const rejected = (id_reject, notif_id) => async dispatch => {
 	let token = localStorage.getItem("token")
-	let apprejectUrl = `https://product-tinpet-app.herokuapp.com/api/v1/requests/rejected/${id}`
+	let apprejectUrl = `https://product-tinpet-app.herokuapp.com/api/v1/requests/rejected/${id_reject}`
 	try{
 		const res = await axios({
 			method: 'PUT',
@@ -82,10 +82,10 @@ export const rejected = (id) => async dispatch => {
 		dispatch({
 			type: REQUEST_MEETING_REJECTED
 		})
+		dispatch(deleteNotif(notif_id))
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Request Meeting Rejected',
+			title: 'Request Meeting Rejected',
 		})
 	}catch(error) {
 		console.log(error)

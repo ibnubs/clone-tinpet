@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react'; // useCallback, useEffect,
-import { Form, Input, Button,Select, Modal, Avatar } from 'antd'; // message, Upload,
+import { Form, Input, InputNumber, Button, Select, Modal, Avatar } from 'antd'; // message, Upload,
 import {  UserOutlined} from '@ant-design/icons'; //LoadingOutlined, PlusOutlined,
 import { useDispatch } from 'react-redux'; //, useSelector
 // import { useHistory } from 'react-router-dom'; 
@@ -93,7 +93,8 @@ const CreatePostModal = (props) => {
 							fontWeight: 'bold',
 							fontSize: '15px',
 							marginTop: '20px',
-							marginLeft: '20px'
+							marginLeft: '20px',
+							cursor: 'none'
 	          }} 
 	          > Click image to upload a Photo </Button> 
 		    	</div>
@@ -111,10 +112,17 @@ const CreatePostModal = (props) => {
 				        <Form.Item
 									label="Pet Age"
 				          name="Pet Age"
+				
 				          onChange={(e)=> setAge(e.target.value)}
 				          style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
 				        >
-		          		<Input type="number" placeholder="Input your pet's birth" />
+		          		<InputNumber
+		          		min={0}
+									max={100}
+									type="number"
+									className="input-number"
+		          		placeholder="Input your pet's birth" />		          		
+		          		
 		        		</Form.Item>
 			        	<Form.Item
 				        	label="Pet Category"
@@ -141,10 +149,11 @@ const CreatePostModal = (props) => {
 	        			<Form.Item  
 				        	label="Breed"
 				          name="Breed"
+				          type="text"
 				          onChange={(e)=> setBreed(e.target.value)}
 				          style={{ display: 'inline-block', width: '50%', marginLeft: '8px' }}
 	        			>
-	          			<Input placeholder="Input your pet's breed" />
+	          			<Input type="text-only" placeholder="Input your pet's breed" />
 	        			</Form.Item>
 	      			</Form.Item>
 		      			<Form.Item label="Description"  className="form"
@@ -155,7 +164,7 @@ const CreatePostModal = (props) => {
 		      			<Form.Item label="Location"  className="form"
 		      			onChange={(e)=> setLocation(e.target.value)}
 		      			>
-		          		<Input placeholder="Input your location" className="input"/>
+		          		<Input type="text"  pattern="[a-zA-Z]*" placeholder="Input your location" className="input"/>
 		       	 		</Form.Item>
 		       			<hr />	       			
 			        <Form.Item className="button_post">

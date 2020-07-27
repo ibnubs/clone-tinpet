@@ -20,7 +20,7 @@ const FeedDisplay = (props) => {
     return (
         <Fragment>
             <Col className='box feed-component' xl={{ span: 17, offset: 1 }} lg={{ span: 18, offset: 1 }} md={24} sm={24} xs={24}>  
-                <Row className='row-btn-post' >
+                <Row className='row-btn-post' style={{marginBottom:'40px'}} >
                     <Col lg={24} xs={24}>
                         <Button className='btn-post' block  onClick={openCreatePostModal}>
                             <span style={{float:'left', marginRight:'20px'}}><PlusSquareOutlined /></span>

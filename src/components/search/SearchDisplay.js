@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Row, Col, Avatar, Button, Typography, Input, Form } from 'antd';
-import { HeartOutlined, MessageOutlined, HeartFilled, DeleteFilled } from '@ant-design/icons';
+import { HeartOutlined, MailOutlined, HeartFilled, DeleteFilled } from '@ant-design/icons';
 import { useDispatch, useSelector } from "react-redux";
 import RequestMeeting from '../../components/modals/RequestMeeting'
 import './SearchDisplay.scss';
@@ -21,6 +21,7 @@ const SearchDisplay = (props) => {
     //selector
     const pets = useSelector(state => state.searchPet.PetId)
     const profile = useSelector(state => state.profile.profileDetail)
+    // const cekLikenComment = useSelector(state => state.post.pets )
 
     //local storage
     localStorage.setItem("userID", profile.id)
@@ -40,11 +41,9 @@ const SearchDisplay = (props) => {
         console.log(id, 'id')
     }
 
-    //handling like reload function search
     // useEffect(() => {
-    //     dispatch(getAllPets(), 
-    //     )
-    // },[dispatch])
+    //     dispatch(getAllPets())
+    // }, [dispatch])
 
     //handling like
     const handleLike = async (pets_id ) => {
@@ -88,12 +87,14 @@ const SearchDisplay = (props) => {
         const delComment = async (id)  => {
             await dispatch(deleteComment(id));
             }
-
+//mapcard
 const petList = pets.map((item) =>{
     
     //handle like
-    const ituLah = item?.Likes?.reduce((result, option)=> {
+    const ituLah = item?.Pet?.Likes?.reduce((result, option)=> {
         if(option.isLike){
+            console.log(option.isLike, 'ini oopsion like')
+            console.log(option.SenderId, 'ini sender id')
             return result.concat(option.SenderId)
         }
         return result;
@@ -101,12 +102,13 @@ const petList = pets.map((item) =>{
 
 
     //handle comment
-    let commentView = item?.Comments?.map((cd)=>{
+    console.log(pets, 'ini hasil comment')
+    let commentView = item?.Pet?.Comments?.map((cd)=>{
         return(
             <li key={cd.id} className='comment-list'>
             <Paragraph ellipsis={{ rows: 1, expandable: true, symbol: 'more' }}>
                 <Text><span style={{fontWeight:'bold'}}>{cd.User.username}</span>   {cd.comment}</Text>
-                <DeleteFilled style={{color:'red', float:'right', cursor: 'pointer'}} 
+                <DeleteFilled style={{color:'#ff847c', float:'right', cursor: 'pointer'}} 
                     onClick={()=>delComment(cd.id)}
                     
                 />
@@ -176,11 +178,11 @@ const petList = pets.map((item) =>{
                                     <p className='likes-comment' > {item?.Pet?.commentCounter} Comments</p>
                                 </Row>
                                 <Row>
-                                    <span onClick={()=>{handleLike(item.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
+                                    <span onClick={()=>{handleLike(item.Pet.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
                                         {(ituLah?.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                                     </span>
-                                    <span onClick ={()=> openPostMessage(item.UserId)}>
-                                        <MessageOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
+                                    <span onClick ={()=> openPostMessage(item.Pet.UserId)}>
+                                        <MailOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
                                     </span>
                                 </Row>
                             </Col>
@@ -196,7 +198,7 @@ const petList = pets.map((item) =>{
                     </Col>
                 </Row>
                 <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
-                    <Form onFinish={()=>sendComment(item.id)}>
+                    <Form onFinish={()=>sendComment(item.Pet.Comments)}>
                         <Form.Item
                             name={item.id}
                             onChange={(e) => setCommentValue(e.target.value)}
