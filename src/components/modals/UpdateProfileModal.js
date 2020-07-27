@@ -22,6 +22,7 @@ const UpdateProfileModal = (props) => {
 
 	//selector
 	const profile = useSelector(state => state.profile.profileDetail)
+	console.log(profile, 'profile dari reducers')
 
 	const saveChanges = (e) => {
 		e.preventDefault();
@@ -79,15 +80,15 @@ const UpdateProfileModal = (props) => {
 		      </Form.Item>
 
  					<Form.Item label="Mobile Number" onChange={(e)=> setMobile_number(e.target.value)}>
-		        <Input type="number" className="updateprofile-wrapper__form--input"/>
+		        <Input type="number" defaultValue={profile.mobile_number} className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
  					<Form.Item label="Full Address" onChange={(e)=> setFull_address(e.target.value)}>
-		        <Input type="text" className="updateprofile-wrapper__form--input"/>
+		        <Input type="text" defaultValue={profile.full_address} className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
 		      <Form.Item label="Description" onChange={(e)=> setDescription(e.target.value)}>
-		      	<TextArea type="text" className="updateprofile-wrapper__form--input" 
+		      	<TextArea type="text" defaultValue={profile.description} className="updateprofile-wrapper__form--input" 
 		      	placeholder="About Me" />
 		      </Form.Item>
 					
