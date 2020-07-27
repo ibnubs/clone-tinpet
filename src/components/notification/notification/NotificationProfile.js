@@ -60,14 +60,14 @@ const NotificationProfile = () => {
                 if (n?.detailNotif?.Pet?.status === 'Matched' ){
                     reqmeetview = 
                         <div className="button-reqmeeting">
-                            <Button type="primary" onClick={()=>approveReq(notifidpets)} disabled> Approved </Button> 
-                            <Button onClick={()=>rejectReq(notifidpets, idnotif)}> Rejected </Button>
+                            <Button type="primary" onClick={()=>approveReq(notifidpets)} disabled> Approve </Button> 
+                            <Button onClick={()=>rejectReq(notifidpets, idnotif)}> Reject </Button>
                         </div>
                 } else if (n?.detailNotif?.Pet?.status === 'Available'){
                     reqmeetview = 
                         <div className="button-reqmeeting">
-                            <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)} > Approved </Button> 
-                            <Button onClick={()=>rejectReq(n?.detailNotif?.PetId, n?.detailNotif?.id )}> Rejected </Button>
+                            <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)} > Approve </Button> 
+                            <Button onClick={()=>rejectReq(n?.detailNotif?.PetId, n?.detailNotif?.id )}> Reject </Button>
                         </div>
                 }
             }  else {

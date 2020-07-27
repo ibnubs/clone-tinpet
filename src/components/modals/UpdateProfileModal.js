@@ -58,7 +58,7 @@ const UpdateProfileModal = (props) => {
 				<div className="updateprofile-wrapper__changepicture">
 					 <label for="image" className="updateprofile-wrapper__changepicture--image"> 
 					<Avatar icon={<UserOutlined />}
-					style={{cursor:"pointer", borderRadius:"50%"}} src={imagePreview} size={200}/> </label>					
+					style={{cursor:"pointer", borderRadius:"50%"}} src={imagePreview || profile.image_url} size={200}/> </label>					
 					<input 
 						id="image"
 						type="file"
