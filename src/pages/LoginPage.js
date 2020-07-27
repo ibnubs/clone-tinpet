@@ -78,25 +78,27 @@ const LoginPage = (props) => {
 	          </Form.Item>
 
 	          <Form.Item>
-			  	<Button style={{ fontWeight: 'bold', 
-			  	backgroundColor: '#FF65C5', 
-			  	width: '100%',
-			  	height: '50px',
-			  	borderRadius: '5px',
-			  	border: 'none' }} 
-			  	type="primary" htmlType="submit">
-	                Log In
-	            </Button>
+				  <Button className="login__form--submit-button" 
+				    style={{ fontWeight: 'bold', 
+					backgroundColor: '#FF65C5', 
+					width: '100%',
+					height: '50px',
+					borderRadius: '5px',
+					border: 'none' }} 
+					type="primary" htmlType="submit">
+						Log In
+					</Button>
 	          </Form.Item>
 			  
 			  <Form.Item>
-	            <Button type="primary" 
-	            style={{width: '100%', 
-	            height: '50px', 
-	            borderRadius:'5px', 
-	            backgroundColor:'#3E4C6F',
-	            border: 'none'}}>
-                    <Link to='/'> Create New Account </Link>    
+				<Button className="login__form--submit-button" 
+					type="primary" 
+					style={{width: '100%', 
+					height: '50px', 
+					borderRadius:'5px', 
+					backgroundColor:'#3E4C6F',
+					border: 'none'}}>
+						<Link to='/'> Create New Account </Link>    
 	            </Button>
               </Form.Item>  
 

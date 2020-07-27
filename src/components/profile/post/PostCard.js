@@ -13,7 +13,9 @@ const {Text, Paragraph} = Typography
 const PostCard = () => {
     
     const dispatch = useDispatch()
+
     const postPets = useSelector(state => state.getSinglePets.petsDetail)
+    
     console.log(postPets, 'post pets dari component')
     const SenderId = localStorage.getItem('userID')
     const [ comment, setCommentValue] = useState('')
