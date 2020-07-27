@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {SEARCH_PET_SUCCESS, SEARCH_PET_FAILED} from './types';
+import {getPostComment, getAllComment} from './comment';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -11,6 +12,7 @@ export const searchPet = (data) => async dispatch =>{
 			{ headers: {authorization: token}})
 		console.log("respond search result", res)
 		dispatch({type: SEARCH_PET_SUCCESS, payload: res.data.data })
+		dispatch(getPostComment(), getAllComment())
 	}catch(error){
 		console.log('error', error)
 		dispatch({type: SEARCH_PET_FAILED})

@@ -7,6 +7,7 @@ import { getProfile } from '../../store/actions/profile';
 import { notifCount } from '../../store/actions/notif';
 import { getCountMessage } from '../../store/actions/messages';
 
+
 const { Header } = Layout;
 
 const Nav = () => {
@@ -60,7 +61,7 @@ const Nav = () => {
                     <Menu.Item key="1" >
                         <Badge count={countM?.MessagesCount} overflowCount={10}>
                             <Link to='/message'>
-                                <img src={require('../../assets/images/message-icon.svg')}  alt='message-icon' />
+                                <img src={require('../../assets/images/icons8-important-mail-50.png')} style={{width:'35px', height:'35px'}}  alt='message-icon' />
                             </Link>
                         </Badge>
                     </Menu.Item>

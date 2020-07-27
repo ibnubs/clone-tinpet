@@ -10,8 +10,9 @@ import notif from './notif';
 import messageTampung from './messages';
 import mesCount from './mesCount';
 import comment from './comment'
+import reqMeeting from './reqmeeting';
 
 export default combineReducers({
-    auth, createPost, post, profile, getSinglePets, searchPet, like, notif, messageTampung, mesCount, comment
+    auth, createPost, post, profile, getSinglePets, searchPet, like, notif, messageTampung, mesCount, comment, reqMeeting
 
 });

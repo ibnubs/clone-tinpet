@@ -23,24 +23,24 @@ const MessageNotif = () => {
     const mList = getAllM.map( m =>{
         return(
             <>
-                <Row style={{height:'', width:'100%', margin:'40px 0px 40px 0px'}} >
+                <Row style={{height:'', width:'100%', margin:'0px 0px 20px 0px'}} >
                     <Row style={{ width:'100%'}}>
-                        <Col xl={{offset:1, span:22}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{offset:4, span:18}}  className='box box-post' >
+                        <Col xl={{offset:1, span:22}} lg={{offset:2, span:20}} sm={{offset:2, span:20}} xs={{offset:4, span:18}}  className='box box-post' style={{borderRadius:'5px'}} >
                             <Row >
-                                <Col xl={4} sm={4} xs={4}  >
+                                <Col xl={4} md={4} sm={4} xs={4} style={{marginTop:'2vh'}} >
                                     <Avatar size={90} src={m?.User?.Profile?.image_url} />
                                 </Col>
-                                <Col className='pets-data' xl={{span:18, offset:1}} sm={{span:18, offset:1}} xs={{span:15, offset:4}}   >
-                                    <Row>
+                                <Col className='pets-data' xl={{span:19, offset:0}} md={{span:18, offset:1}} sm={{span:17, offset:2}} xs={{span:15, offset:4}}   >
+                                    <Row >
                                         <p className='m-notif' style={{fontWeight:'bold'}} > {m?.User?.Profile?.full_name} </p>
                                     </Row>
-                                    <Row>
+                                    <Row >
                                         <p> {m.message} </p>
                                     </Row>
                                 </Col>
                                 <Col className="delete-message" xl={1} sm={1} xs={1} justify='end'>
                                    
-                                    <DeleteFilled style={{color:'red'}}  onClick={()=>delMessage(m.id)}/>
+                                    <DeleteFilled style={{color:'#ff847c'}}  onClick={()=>delMessage(m.id)}/>
                                   
                                 </Col>
                             </Row>

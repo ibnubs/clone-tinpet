@@ -5,7 +5,7 @@ import './right-message.css';
 import MessageNotif from './message/MessageNotif';
 
 const RightMessage = () => {
-    const [current, setcurrent] = useState('notif')
+    const [current, setcurrent] = useState('message')
 
     const handleClick = e => {
         console.log('click ', e);
@@ -15,7 +15,7 @@ const RightMessage = () => {
     return (
         <Fragment>
             <Col className='box-right-profile feed-component' lg={{ span: 17, offset: 1 }} md={24} sm={24} xs={24}>  
-                <Row className='row-profile' justify='center' >
+                <Row className='row-profile' justify='center' style={{marginBottom:'20px'}} >
                     <Menu onClick={handleClick} selectedKeys={[current]} mode="horizontal">
                             <Menu.Item key="post" className='menu-profile'>
                                 <Link to='/profile'>
