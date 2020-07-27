@@ -2,7 +2,7 @@
 const initialState = {
 	token: localStorage.getItem('token'),
 	error: null,
-	loading: false,
+	loading: true,
 	updateStatus: "initial",
 	post: [],
 	pets: [],
@@ -13,12 +13,13 @@ const initialState = {
 
 const post = (state = initialState, action) => {
 
-	const {type, payload} = action;
+	const {type, payload, loading} = action;
 	switch (type){
 		case 'GET_ALL_POST':
 			return{
 				...state,
-				pets: payload
+				pets: payload,
+				loading
 			};
 		case 'LIKE':
 			return{

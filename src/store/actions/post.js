@@ -17,7 +17,8 @@ export const getAllPets = () => async (dispatch) => {
         // console.log(res.data.data, 'ini res getallpost.data.data')
         dispatch({
             type: 'GET_ALL_POST',
-            payload: res.data.data 
+            payload: res.data.data,
+            loading: false
         })
     } catch (error) {
         console.log(error, 'error getAllPets')
