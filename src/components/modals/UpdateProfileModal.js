@@ -18,26 +18,6 @@ const UpdateProfileModal = (props) => {
 	const [description, setDescription] = useState('');
 	const [imagePreview, setImagePreview] = useState('')
 
-	const [isChanged,setIsChanged] = useState({
-    full_name:false,
-    email: false
-  })
-	const [isEdit, setIsEdit] = useState({
-    name: false,
-    email: false
-  })
-
-	const fieldNameChange = () => {
-		setIsChanged({
-			...isChanged, name: true
-		})
-	}
-
-	const fieldEmailChange = () => {
-		setIsChanged({
-			...isChanged, email: true
-		})
-	}
 
 
 	//selector

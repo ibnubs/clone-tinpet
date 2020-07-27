@@ -1,5 +1,5 @@
 import React, {useState, Fragment} from 'react'; // useCallback, useEffect,
-import { Form, Input, Button,Select, Modal, Avatar } from 'antd'; // message, Upload,
+import { Form, Input, InputNumber, Button, Select, Modal, Avatar } from 'antd'; // message, Upload,
 import {  UserOutlined} from '@ant-design/icons'; //LoadingOutlined, PlusOutlined,
 import { useDispatch } from 'react-redux'; //, useSelector
 // import { useHistory } from 'react-router-dom'; 
@@ -58,7 +58,6 @@ const CreatePostModal = (props) => {
 		setImagePreview(URL.createObjectURL(e.target.files[0]))
 	}
 
-
   return (
   	<Modal style={{ transition: "all .4s ease"}}
 	  	onCancel={()=>setCreatePostModal(false)}
@@ -113,12 +112,15 @@ const CreatePostModal = (props) => {
 				        <Form.Item
 									label="Pet Age"
 				          name="Pet Age"
+				
 				          onChange={(e)=> setAge(e.target.value)}
 				          style={{ display: 'inline-block', width: 'calc(50% - 8px)' }}
 				        >
-		          		<Input 
-		          		type="number"
-		          		pattern="[0-9]"
+		          		<InputNumber
+		          		min={0}
+									max={100}
+									type="number"
+									className="input-number"
 		          		placeholder="Input your pet's birth" />		          		
 		          		
 		        		</Form.Item>
@@ -162,7 +164,7 @@ const CreatePostModal = (props) => {
 		      			<Form.Item label="Location"  className="form"
 		      			onChange={(e)=> setLocation(e.target.value)}
 		      			>
-		          		<Input placeholder="Input your location" className="input"/>
+		          		<Input type="text"  pattern="[a-zA-Z]*" placeholder="Input your location" className="input"/>
 		       	 		</Form.Item>
 		       			<hr />	       			
 			        <Form.Item className="button_post">
