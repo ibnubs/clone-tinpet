@@ -22,6 +22,7 @@ const UpdateProfileModal = (props) => {
 
 	//selector
 	const profile = useSelector(state => state.profile.profileDetail)
+	console.log(profile, ' ini data profile')
 
 	const saveChanges = (e) => {
 		e.preventDefault();
@@ -74,20 +75,20 @@ const UpdateProfileModal = (props) => {
 		        <Input type="text" defaultValue={profile.full_name} className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
-		      <Form.Item label="Email" onChange={(e)=> setEmail(e.target.value)}>
+		      <Form.Item label="Email" onChange={(e)=> setEmail(e.target.value )}>
 		        <Input type="email" defaultValue={profile.email} className="updateprofile-wrapper__form--input"/>
 		      </Form.Item>
 
  					<Form.Item label="Mobile Number" onChange={(e)=> setMobile_number(e.target.value)}>
-		        <Input type="number" className="updateprofile-wrapper__form--input"/>
+		        <Input type="number" className="updateprofile-wrapper__form--input" defaultValue={profile.mobile_number} />
 		      </Form.Item>
 
  					<Form.Item label="Full Address" onChange={(e)=> setFull_address(e.target.value)}>
-		        <Input type="text" className="updateprofile-wrapper__form--input"/>
+		        <Input type="text" className="updateprofile-wrapper__form--input" defaultValue={profile.full_address} />
 		      </Form.Item>
 
 		      <Form.Item label="Description" onChange={(e)=> setDescription(e.target.value)}>
-		      	<TextArea type="text" className="updateprofile-wrapper__form--input" 
+		      	<TextArea type="text" className="updateprofile-wrapper__form--input" defaultValue={profile.description}
 		      	placeholder="About Me" />
 		      </Form.Item>
 					

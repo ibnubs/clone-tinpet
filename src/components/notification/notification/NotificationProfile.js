@@ -44,6 +44,7 @@ const NotificationProfile = () => {
 
     //map for check type of notif 
     const notifList = detailNotifShow.map((n) => {
+        
         //handling message notif
         console.log(detailNotifShow,' ini data detail notif')
         const messageNotif = n?.detailNotif?.type
@@ -56,7 +57,7 @@ const NotificationProfile = () => {
                 message = 'comment on your post';
                 reqmeetview='';
             }  else if (messageNotif === 'request'){
-                message = 'request meeting on your post'
+                message = 'request meeting on your '
                 if (n?.detailNotif?.Pet?.status === 'Matched' ){
                     reqmeetview = 
                         <div className="button-reqmeeting">
@@ -90,8 +91,8 @@ const NotificationProfile = () => {
                                     <Avatar size={100} src={n?.detailUser?.Profile?.image_url} />
                                 </Col>
                                 <Col className='pets-data' xl={{span:18, offset:1}} sm={{span:18, offset:1}} xs={{span:15, offset:4}}   >
-                                    <Row justify='center'>
-                                        <p className='text-notif' > <span style={{fontWeight:'bold'}}> {n?.detailUser?.Profile?.full_name} </span> {message} </p>
+                                    <Row justify='center' style={{padding:'0px 20px'}}>
+                                        <p className='text-notif' > <span style={{fontWeight:'bold'}}> {n?.detailUser?.Profile?.full_name} </span>  {message} <span style={{fontWeight:'bold'}}>{n?.detailNotif?.Pet?.name}</span>  Post </p>
                                     </Row>
                                     <Row justify='center' >
                                         <Link to='/profile'>
