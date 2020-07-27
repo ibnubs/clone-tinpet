@@ -18,8 +18,7 @@ export const register = (data, props) => async dispatch => {
 		})
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Register Success',
+			title: 'Register Success',
 		})
 		props.history.push("/login")
 	}
@@ -30,8 +29,7 @@ export const register = (data, props) => async dispatch => {
 		})
 		Swal.fire({
 		  icon: 'error',
-		  title: 'Oops...',
-		  text: "Password Doesn't Match!",
+		  title: "Password Doesn't Match!",
 		})
 	}
 }
@@ -53,8 +51,7 @@ export const login = (data, props) => async dispatch => {
 		})
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Login Success',
+			title: 'Login Success',
 		})
 		props.history.push("/homepage")
 	} catch (error) {
@@ -62,10 +59,10 @@ export const login = (data, props) => async dispatch => {
 		dispatch({
 			type: LOGIN_FAILED
 		})
+
 		Swal.fire({
 		  icon: 'error',
-		  title: 'Oops...',
-		  text: 'Wrong Password!',
+		  title: 'Wrong Password',
 		  footer: '<a href>Forgot your Password ?</a>'
 		})
 	}

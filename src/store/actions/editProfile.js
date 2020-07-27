@@ -21,8 +21,7 @@ export const editProfile = (data) => async dispatch => {
 		dispatch(getProfile())
 		Swal.fire({
 			icon: 'success',
-			title: 'success',
-			text: 'Edit Profile Success',
+			title: 'Edit Profile Success',
 		})
 	}catch(error) {
 		console.log(error)
@@ -31,8 +30,7 @@ export const editProfile = (data) => async dispatch => {
 		})
 		Swal.fire({
 		  icon: 'error',
-		  title: 'Oops...',
-		  text: " Edit Profile Failed!",
+		  title: " Edit Profile Failed!",
 		})
 	}
 }

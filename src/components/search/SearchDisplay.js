@@ -178,10 +178,10 @@ const petList = pets.map((item) =>{
                                     <p className='likes-comment' > {item?.Pet?.commentCounter} Comments</p>
                                 </Row>
                                 <Row>
-                                    <span onClick={()=>{handleLike(item.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
+                                    <span onClick={()=>{handleLike(item.Pet.id)}} style={{fontSize:'1.7rem', marginRight:'1.2rem', color:'', cursor:'pointer' }}>
                                         {(ituLah?.includes(Number(SenderId)) === true ? <HeartFilled style={{color:'red'}} />  : <HeartOutlined />  )}
                                     </span>
-                                    <span onClick ={()=> openPostMessage(item.UserId)}>
+                                    <span onClick ={()=> openPostMessage(item.Pet.UserId)}>
                                         <MailOutlined style={{fontSize:'1.7rem', marginTop:'.4rem', cursor:'pointer'}} />
                                     </span>
                                 </Row>
@@ -198,7 +198,7 @@ const petList = pets.map((item) =>{
                     </Col>
                 </Row>
                 <Col className='' lg={{ span: 21, offset: 3 }} md={24} sm={24} xs={24} style={{marginTop:'10px'}}>
-                    <Form onFinish={()=>sendComment(item.id)}>
+                    <Form onFinish={()=>sendComment(item.Pet.Comments)}>
                         <Form.Item
                             name={item.id}
                             onChange={(e) => setCommentValue(e.target.value)}
