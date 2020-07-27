@@ -3,7 +3,7 @@ import { REQUEST_SUCCESS, REQUEST_FAILED,
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { getAllPets } from './post';
-import { deleteNotif } from './notif';
+import { deleteNotif, notifDetail } from './notif';
 
 const baseUrl = 'https://product-tinpet-app.herokuapp.com';
 
@@ -56,7 +56,7 @@ export const approved = (id) => async dispatch => {
 		dispatch({
 			type: REQUEST_MEETING_APPROVED,
 		})
-		dispatch(getAllPets())
+		dispatch(notifDetail())
 		Swal.fire({
 			icon: 'success',
 			title: 'success',

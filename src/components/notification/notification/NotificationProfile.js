@@ -12,9 +12,11 @@ const NotificationProfile = () => {
     const dispatch = useDispatch()
     const detailNotifShow = useSelector(state => state?.notif?.detailNotif)
 
-    const cekStatus = useSelector(state => state.post.pets )
+    // const cekStatus = useSelector(state => state.post.pets )
     
     // useEffect(()=>{console.log(cekStatus)},[])
+    //inisiasi
+    let message, reqmeetview; 
 
     useEffect(() => {
         dispatch(notifDetail())
@@ -28,6 +30,7 @@ const NotificationProfile = () => {
     const approveReq =  (id)  => {
     console.log(id, 'id')
     dispatch(approved(id));
+
     }
 
     const rejectReq =  (id_reject, notif_id)  => {
@@ -36,44 +39,37 @@ const NotificationProfile = () => {
     dispatch(rejected(id_reject, notif_id));
     }
 
-    //inisiasi
-    let message, reqmeetview, simpanDetailPetReqId;
+    // //inisiasi
+    let notifidpets, idnotif; 
 
-    //handling disable button req meeting while matched
+    //map for check type of notif 
     const notifList = detailNotifShow.map((n) => {
-        console.log(detailNotifShow, 'ini')
         //handling message notif
+        console.log(detailNotifShow,' ini data detail notif')
         const messageNotif = n?.detailNotif?.type
-        
+        notifidpets = n?.detailNotif?.PetId 
+        idnotif = n?.detailNotif?.id 
             if(messageNotif === 'like' ){
-                message = 'liked your post'
+                message = 'liked your post';
+                reqmeetview='';
             }  else if(messageNotif === 'comment'){
-                message = 'comment on your post'
+                message = 'comment on your post';
+                reqmeetview='';
             }  else if (messageNotif === 'request'){
                 message = 'request meeting on your post'
-                simpanDetailPetReqId = n?.detailNotif?.PetId
-                console.log(simpanDetailPetReqId, 'ini simpanan request id')
-                //handling disable button req meeting while matched
-                cekStatus.map((a)=>{
-                    console.log(a.id, 'ini a.id')
-                    if(a.id === simpanDetailPetReqId){
-                        console.log(a.status, 'a status')
-                        if(a.status === 'Matched'){
-                            reqmeetview = 
-                                <div className="button-reqmeeting">
-                                    <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)} disabled> Approved </Button> 
-                                    <Button onClick={()=>rejectReq(n?.detailNotif?.PetId, n?.detailNotif?.id)}> Rejected </Button>
-                                </div>
-                        }else if(a.status === 'Available'){
-                            reqmeetview = 
-                                <div className="button-reqmeeting">
-                                    <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)} > Approved </Button> 
-                                    <Button onClick={()=>rejectReq(n?.detailNotif?.PetId, n?.detailNotif?.id )}> Rejected </Button>
-                                </div>
-                        }
-                    }
-                })
-                
+                if (n?.detailNotif?.Pet?.status === 'Matched' ){
+                    reqmeetview = 
+                        <div className="button-reqmeeting">
+                            <Button type="primary" onClick={()=>approveReq(notifidpets)} disabled> Approved </Button> 
+                            <Button onClick={()=>rejectReq(notifidpets, idnotif)}> Rejected </Button>
+                        </div>
+                } else if (n?.detailNotif?.Pet?.status === 'Available'){
+                    reqmeetview = 
+                        <div className="button-reqmeeting">
+                            <Button type="primary" onClick={()=>approveReq(n.detailNotif.PetId)} > Approved </Button> 
+                            <Button onClick={()=>rejectReq(n?.detailNotif?.PetId, n?.detailNotif?.id )}> Rejected </Button>
+                        </div>
+                }
             }  else {
                 message = "there's not notification"
             }
