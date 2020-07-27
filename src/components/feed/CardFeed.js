@@ -21,6 +21,7 @@ const CardFeed = (props) => {
 
     //selector
     const pets = useSelector(state => state.post.pets)
+    console.log(pets, 'data pets')
     const profile = useSelector(state => state.profile.profileDetail)
     //localstorage
     localStorage.setItem("userID", profile.id)
